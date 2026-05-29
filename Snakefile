@@ -1,0 +1,191 @@
+# openparagraph data pipeline
+# Snakemake DAG: official German law data -> static JSON for the frontend.
+# Run a full build with:   snakemake --cores 4 bundle
+# Stages communicate only through files. Edit one stage -> only its downstream re-runs.
+#
+# This is a SKELETON. Each rule's shell/run body is a stub to be implemented
+# per ARCHITECTURE.md §9. Inputs/outputs are declared so the DAG is correct
+# from day one and Snakemake's incremental caching works.
+
+configfile: "config.yaml"
+
+DATA = "../data"
+JUR = "de-bund"   # v1 jurisdiction; pipeline stays jurisdiction-parameterized
+
+# ---------------------------------------------------------------------------
+# Terminal target
+# ---------------------------------------------------------------------------
+rule bundle:
+    input:
+        f"{DATA}/{JUR}/nodes.json",
+        f"{DATA}/_global/edges.json",
+        f"{DATA}/_global/layout.json",
+        f"{DATA}/_global/search-index.json",
+        f"{DATA}/_global/reference-resolver.json",
+    output:
+        touch(f"{DATA}/.bundle.done")
+    run:
+        # final shape assembly / sanity glue
+        pass
+
+# ---------------------------------------------------------------------------
+# 01–02  Acquire current law texts
+# ---------------------------------------------------------------------------
+rule download_toc:
+    output: "build/gii-toc.xml"
+    shell: "echo 'TODO: fetch https://www.gesetze-im-internet.de/gii-toc.xml' && touch {output}"
+
+rule download_laws:
+    input: "build/gii-toc.xml"
+    output: directory("build/laws_xml")
+    # parallel fetch + unzip each law's xml.zip
+    shell: "echo 'TODO: download ~6000 xml.zip into {output}' && mkdir -p {output}"
+
+# ---------------------------------------------------------------------------
+# 03  Version history (git, ~April 2021 onward)
+# ---------------------------------------------------------------------------
+rule clone_history:
+    output: directory("build/gesetze_history")
+    shell: "echo 'TODO: shallow clone https://github.com/kmein/gesetze' && mkdir -p {output}"
+
+# ---------------------------------------------------------------------------
+# 04  Parse XML -> structured laws + base.html with data-ref-id spans
+# ---------------------------------------------------------------------------
+rule parse_laws:
+    input: "build/laws_xml"
+    output: directory("build/laws_parsed")
+    run:
+        # lxml parse; emit structured Law objects; render base.html
+        pass
+
+# ---------------------------------------------------------------------------
+# 05–06  FNA classification  (Spike B decides the source: buzer.de / BMJ PDF)
+# ---------------------------------------------------------------------------
+rule scrape_fna:
+    output: "build/fna_map.json"
+    run:
+        # FNA code -> [law abbreviations]; 9 main groups
+        pass
+
+rule classify:
+    input:
+        laws="build/laws_parsed",
+        fna="build/fna_map.json",
+    output: "build/laws_classified.json"
+    run:
+        # attach FNA code + meta_cluster to each law
+        pass
+
+# ---------------------------------------------------------------------------
+# 07–08  Cross-reference extraction + resolution
+# ---------------------------------------------------------------------------
+rule extract_refs:
+    input: "build/laws_parsed"
+    output: "build/refs_raw.json"
+    run:
+        # use legal-reference-extraction (openlegaldata); normalize refs
+        pass
+
+rule resolve_refs:
+    input:
+        refs="build/refs_raw.json",
+        laws="build/laws_classified.json",
+    output:
+        edges_struct="build/edges_structural.json",
+        resolver=f"{DATA}/_global/reference-resolver.json",
+    run:
+        # normalized ref -> node id; build clickable-reference resolver
+        pass
+
+# ---------------------------------------------------------------------------
+# 09–10  Embeddings + orphan neighbors -> soft edges
+# ---------------------------------------------------------------------------
+rule embed:
+    input: "build/laws_classified.json"
+    output: "build/embeddings.npy"
+    run:
+        # distiluse-base-multilingual-cased-v2 over title + opening text
+        pass
+
+rule orphan_neighbors:
+    input:
+        emb="build/embeddings.npy",
+        laws="build/laws_classified.json",
+    output: "build/edges_soft.json"
+    run:
+        # top-K cosine neighbors for unclassified laws (weight ~0.1)
+        pass
+
+# ---------------------------------------------------------------------------
+# 11  Build graph (hard + soft edges, degree)
+# ---------------------------------------------------------------------------
+rule build_graph:
+    input:
+        nodes="build/laws_classified.json",
+        hard="build/edges_structural.json",
+        soft="build/edges_soft.json",
+    output:
+        nodes="build/graph_nodes.json",
+        edges=f"{DATA}/_global/edges.json",
+    run:
+        pass
+
+# ---------------------------------------------------------------------------
+# 12  Layout (pure-Python ForceAtlas2, union graph)
+# ---------------------------------------------------------------------------
+rule layout:
+    input:
+        nodes="build/graph_nodes.json",
+        edges=f"{DATA}/_global/edges.json",
+    output: f"{DATA}/_global/layout.json"
+    run:
+        # fa2_modified, fixed seed from config; tuned for the "spore" look
+        pass
+
+# ---------------------------------------------------------------------------
+# 13  Color (three-rule logic)
+# ---------------------------------------------------------------------------
+rule color:
+    input:
+        nodes="build/graph_nodes.json",
+        layout=f"{DATA}/_global/layout.json",
+        edges=f"{DATA}/_global/edges.json",
+    output: f"{DATA}/{JUR}/nodes.json"
+    run:
+        # FNA hue / bridging blend / orphan embedding blend; merge layout coords
+        pass
+
+# ---------------------------------------------------------------------------
+# 14  Diff cache (base + forward patches)
+# ---------------------------------------------------------------------------
+rule diff_cache:
+    input:
+        history="build/gesetze_history",
+        laws="build/laws_parsed",
+    output: directory(f"{DATA}/{JUR}/laws")
+    run:
+        # per law: base.html + patches/<date>.diff (diff-match-patch)
+        pass
+
+# ---------------------------------------------------------------------------
+# 15  Search index
+# ---------------------------------------------------------------------------
+rule search_index:
+    input: f"{DATA}/{JUR}/nodes.json"
+    output: f"{DATA}/_global/search-index.json"
+    run:
+        # FlexSearch serialize over title + short description
+        pass
+
+# ---------------------------------------------------------------------------
+# 17  Validate (integration gate)
+# ---------------------------------------------------------------------------
+rule validate:
+    input:
+        f"{DATA}/{JUR}/nodes.json",
+        f"{DATA}/_global/edges.json",
+        f"{DATA}/_global/reference-resolver.json",
+    output: touch("build/.validated")
+    run:
+        # assert counts in range, no dangling resolver entries, schema valid
+        pass

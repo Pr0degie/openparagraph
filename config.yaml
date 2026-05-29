@@ -1,0 +1,30 @@
+# openparagraph pipeline configuration
+# Edit here, not in the Snakefile, so reruns stay reproducible.
+
+jurisdiction: "de-bund"
+
+sources:
+  gii_toc: "https://www.gesetze-im-internet.de/gii-toc.xml"
+  history_repo: "https://github.com/kmein/gesetze"   # daily-updated git history (~2021+)
+
+embeddings:
+  model: "distiluse-base-multilingual-cased-v2"
+  fields: ["title", "opening_text"]   # what gets embedded per law
+
+orphan_neighbors:
+  k: 5
+  soft_edge_weight: 0.1
+
+layout:
+  seed: 42                 # fixed for reproducible coordinates
+  iterations: 2000
+  scaling_ratio: 2.0
+  gravity: 1.0
+  strong_gravity: false
+  barnes_hut_theta: 1.2
+  outbound_attraction_distribution: true   # dissuade hubs
+
+validation:
+  min_nodes: 5000
+  max_nodes: 8000
+  max_orphan_ratio: 0.35   # if more than this share is unclassified, FNA source is broken

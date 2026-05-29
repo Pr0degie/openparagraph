@@ -1,0 +1,44 @@
+name: data-refresh
+
+# Rebuild the static dataset on a schedule and commit it.
+# The commit to /data triggers the frontend host (Vercel) to redeploy.
+# Weekly is plenty: upstream sources change infrequently. Bump to daily later
+# by editing the cron line — no architecture change required.
+
+on:
+  schedule:
+    - cron: "0 4 * * 1"   # Mondays 04:00 UTC
+  workflow_dispatch: {}     # allow manual runs
+
+permissions:
+  contents: write
+
+jobs:
+  build-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330     # under the 360-min hard cap; watch this as the corpus grows (v2)
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Sync pipeline deps
+        working-directory: pipeline
+        run: uv sync
+
+      - name: Build dataset
+        working-directory: pipeline
+        run: uv run snakemake --cores 4 bundle
+
+      - name: Commit regenerated data
+        run: |
+          git config user.name  "openparagraph-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet || git commit -m "data: scheduled refresh"
+          git push

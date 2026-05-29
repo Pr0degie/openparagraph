@@ -1,0 +1,39 @@
+[project]
+name = "openparagraph-pipeline"
+version = "0.0.1"
+description = "Data pipeline turning German federal law into a static reference graph."
+readme = "../README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+
+dependencies = [
+    "snakemake>=8.0",
+    "lxml>=5.0",
+    "requests>=2.32",
+    "tqdm>=4.66",
+    "networkx>=3.3",
+    "fa2-modified>=0.3",                 # pure-Python ForceAtlas2 (no Java/Gephi)
+    "sentence-transformers>=3.0",        # distiluse multilingual embeddings
+    "numpy>=2.0",
+    "scipy>=1.13",
+    "legal-reference-extraction",        # openlegaldata; install from git if not on PyPI
+    "beautifulsoup4>=4.12",              # FNA scrape (buzer.de)
+    "diff-match-patch>=20230430",        # base + forward patch generation
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+    "matplotlib>=3.9",                   # debug render of the colored layout (Stufe 2)
+]
+
+# Scale-out, not installed by default:
+# gpu = ["cudf-cu12", "cugraph-cu12"]    # v3 GPU layout when node count > ~100k
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
