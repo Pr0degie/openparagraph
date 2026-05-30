@@ -53,10 +53,17 @@ published by the BMJ as **annual PDF only** (since 2005). The per-law GII XML
 contains `fundstelle` but not a reliable FNA Sachgebiet code. The FNA has
 **nine** main divisions (Hauptgliederungspunkte), not eight.
 
-Acquisition options (resolved by Spike B in Stufe 0):
-- **buzer.de** mirrors the FNA tree in browsable HTML (`buzer.de/fna/<code>.htm`) — scrape-friendly.
-- BMJ annual PDF (`recht.bund.de/.../FNA_<year>.pdf`) — authoritative but PDF-parsing pain.
-- Cross-reference both to maximize coverage; fall back to "unclassified → embedding gravitation" for the remainder.
+Acquisition **resolved by Spike B** (see ADR 002, `docs/spike_b.md`):
+- **BMJ annual PDF (`recht.bund.de/.../FNA_<year>.pdf`) — PRIMARY.** A single
+  authoritative download, no rate-limit risk; ideal for a reproducible pipeline.
+  Parsing is painful (two-column layout, hyphenation, glyph artifacts, 1–4 digit
+  code prefixes) — a spike-level parser reaches ~54 % exact coverage of the 6 123
+  laws; fuzzy joining + better segmentation can push toward ~75–80 %.
+- **buzer.de FNA HTML — SECONDARY / best-effort enrichment.** Cleaner structure
+  (exact code per law) BUT an aggressive behavioural anti-bot ("use gateway to
+  start" 403 / connection refusal) makes it unreliable for unattended CI. Use
+  only a slow, jittered, disk-cached crawler; never depend on it.
+- Remainder (no FNA code from either) → "unclassified → embedding gravitation".
 
 ---
 
@@ -226,7 +233,7 @@ references read as fine mist rather than spaghetti, subtle node glow.
 02 download_laws       fetch + unzip each law's XML (parallel)
 03 clone_history       shallow-clone kmein/gesetze for git version history
 04 parse_laws          XML → structured Law objects (lxml); render base.html w/ ref spans
-05 scrape_fna          buzer.de FNA tree (+ BMJ PDF fallback) → code→law mapping
+05 scrape_fna          BMJ FNA PDF parse (primary) + buzer enrichment (best-effort) → code→law mapping
 06 classify            attach FNA code + meta_cluster to each law
 07 extract_refs        legal-reference-extraction over each law → normalized refs
 08 resolve_refs        normalized ref → node id; build reference-resolver.json
@@ -261,7 +268,7 @@ expensive download/parse/embed/layout work.
 | Risk | Bites at | Mitigation |
 |---|---|---|
 | Reference recall < target | v1 | Use `legal-reference-extraction`; track misses; NER upgrade in v2 |
-| FNA only as PDF | v1 (Stufe 0) | buzer.de scrape primary, PDF fallback; orphans handled by embedding rule |
+| FNA only as PDF | v1 (Stufe 0) | **Resolved (ADR 002):** BMJ PDF parse primary (~54% coverage, improvable); buzer best-effort enrichment (anti-bot risk); orphans → embedding rule |
 | No pre-2021 version diffs | v1 | Document honestly; macro time slider still works via `ausfertigung-datum` |
 | GH Actions 6h job limit | v2 (Landesrecht) | Incremental pipeline (process only changed laws) |
 | Initial payload size | v2/v3 | Chunked storage + lazy-load full text on click |

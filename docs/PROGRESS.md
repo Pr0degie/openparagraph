@@ -9,40 +9,56 @@
 ---
 
 ## Current stage
-**Stufe 0 — Foundation & de-risking spikes** (Spike A done, B and C remain)
+**Stufe 0 — Foundation & de-risking spikes** (Spikes A + B done, C remains)
 
 ## Last session
-2026-05-30. Set up proper directory structure (moved scaffold files from root
-into `pipeline/`, `web/`, `.github/workflows/`, `.devcontainer/`). Completed
-**Spike A — data shape**: wrote `pipeline/src/gii_parser.py`, 3 fixture XMLs,
-23 passing unit tests, and `pipeline/spikes/spike_a_data_shape.py`. Ran the
-spike against live GII data — sampled 10 laws from the 6 123-law corpus,
-confirmed all key fields. Key finding: `amtabk` is only 30% present; `jurabk`
-is the reliable primary key. Decision recorded in `docs/decisions/001-data-shape.md`.
+2026-05-30. Completed **Spike B — FNA acquisition** (the riskiest unknown).
+Tested both sources against the live 6 123-law corpus and **reversed the earlier
+"buzer primary" assumption**:
+- **buzer.de**: clean HTML (exact code per law) BUT an aggressive anti-bot blocks
+  unattended crawling — a fast crawl trips a firewall block → persistent HTTP 403
+  "use gateway to start" that doesn't clear in ~45 min and is renewed by probing.
+- **BMJ FNA PDF** (`recht.bund.de/.../FNA_2023.pdf`): one authoritative download,
+  no rate-limit risk → now the PRIMARY source. Two-column parsing is painful
+  (must crop columns with pdfplumber; code regex must allow 1–4 digit prefixes —
+  the early `\d{3,4}` dropped all of group 5). Spike-level parser: **53.5 %
+  coverage (3 279/6 124)**; ceiling 61.9 %; ~60 % of misses are recoverable with
+  fuzzy joining → realistic ~75–80 % target for Stage 05.
+
+Wrote `spike_b_fna.py` (PDF, primary) + `spike_b_buzer.py` (buzer, secondary),
+`docs/spike_b.md`, ADR 002, added `pdfplumber` to pyproject, and updated
+ARCHITECTURE.md §2.3 / stage 05 / risk table to match.
 
 ## Next concrete step
-**Spike B — FNA acquisition** (the riskiest unknown).
+**Spike C — reference extraction.**
 
-Goal: prototype FNA→law mapping for ~50 laws. Decide: buzer.de scrape vs BMJ
-PDF parse vs hybrid. Steps:
-1. Fetch the buzer.de FNA tree (`buzer.de/fna/`); check if it's scrape-friendly
-   and how complete the code→jurabk mapping is.
-2. Optionally cross-check against the BMJ annual PDF for the top FNA codes.
-3. Measure coverage: what fraction of the 6 123 laws get an FNA code?
-4. Write `pipeline/spikes/spike_b_fna.py` + decision note.
-→ Use Opus/xhigh for this — it's the most strategic decision in the project.
+Goal: run `legal-reference-extraction` on ~5 laws, measure recall by hand, and
+prototype the `normalized ref → node id` resolver. Steps:
+1. **First check `legal-reference-extraction` is installable** — it's in
+   `pyproject.toml` but may not be on PyPI under that exact name (see below);
+   may need a git install. Resolve this before building on it.
+2. Run it over 5 varied laws (BGB, StGB, a regulation, a treaty, a short one).
+3. Hand-measure recall of `§`/Art. citations; note miss patterns.
+4. Prototype `reference-resolver.json` (normalized ref → `de-bund/<jurabk>`),
+   degrading gracefully on unresolvable refs.
+→ Sonnet/high (parser recall is detail-heavy), per ROADMAP guidance.
 
 ## Open questions / parked thoughts
 - `legal-reference-extraction` is listed in `pyproject.toml` but may not be
-  on PyPI under that exact name. Will need to check at Stufe 1 / Spike C time.
-- ZIP files can contain non-XML entries (images). The spike script handles this
-  correctly (filters for `.xml` entries only).
+  on PyPI under that exact name. **Resolve at the start of Spike C** (step 1).
+- Stage 05 work for later: lift PDF coverage past 53.5% via fuzzy/token title
+  matching + FNA-abbr↔jurabk join (1 808 unmatched laws' titles already appear in
+  the PDF text); pull the code→Sachgebiet-name taxonomy tree from the PDF front
+  matter for group labelling; add buzer enrichment behind a slow cached crawler.
+- ZIP files can contain non-XML entries (images). Spike scripts filter `.xml` only.
+- buzer may keep blocking this IP for a while; the buzer prototype is expected to
+  hit the 403 gateway block from a cold IP (documented, not a bug).
 
 ## Stage checklist
 - [ ] Stufe 0 — Foundation & de-risking spikes
   - [x] Monorepo scaffold (dirs, pyproject, package.json, Snakefile skeleton, CI)
   - [x] Spike A — data shape
-  - [ ] Spike B — FNA acquisition
+  - [x] Spike B — FNA acquisition
   - [ ] Spike C — reference extraction
 - [ ] Stufe 1 — Pipeline backbone
 - [ ] Stufe 2 — Layout & color

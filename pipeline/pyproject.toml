@@ -17,7 +17,8 @@ dependencies = [
     "numpy>=2.0",
     "scipy>=1.13",
     "legal-reference-extraction",        # openlegaldata; install from git if not on PyPI
-    "beautifulsoup4>=4.12",              # FNA scrape (buzer.de)
+    "pdfplumber>=0.11",                  # FNA PRIMARY: parse BMJ annual FNA PDF (Spike B / ADR 002)
+    "beautifulsoup4>=4.12",              # FNA secondary: buzer.de enrichment scrape (anti-bot risk)
     "diff-match-patch>=20230430",        # base + forward patch generation
 ]
 
