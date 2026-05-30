@@ -24,15 +24,17 @@ New files:
 - `resolve_refs` stub updated to declare `slug_table.json` as input
 
 ## Next concrete step
-**Stage 03 (clone_history) + Stage 04 (parse_laws).**
+**Stage 07 (extract_refs) + Stage 08 (resolve_refs).**
 
-Stage 03: shallow clone of `https://github.com/kmein/gesetze` into `build/gesetze_history`.
-Stage 04: for each slug in `build/laws_xml/`, call `gii_parser.parse_law` to produce
-structured Law objects; render `base.html` with `data-ref-id` spans per norm;
-write `build/laws_parsed/{slug}.json` (metadata + norms) and `build/laws_parsed/{slug}.html`.
+Stage 07: run `refex` over each law's norm text (from `laws_parsed/{slug}.json`),
+apply the false-positive block-list, write `build/refs_raw.json` —
+list of `{source_slug, book, section}` raw citations.
 
-Consider Stage 03 optional for now (no other stage depends on it immediately) and tackle
-Stage 04 first so the parse logic can be tested in isolation.
+Stage 08: load `slug_table.json`, build `jurabk_index` (normalized_jurabk → slug),
+normalize each raw citation's book field, look up slug, emit
+`build/edges_structural.json` + `data/_global/reference-resolver.json`.
+
+Both stages build directly on Spike C's prototype code.
 
 ## Open questions / parked thoughts
 - Stage 05 work for later: lift FNA PDF coverage past 53.5% via fuzzy/token title
@@ -55,6 +57,9 @@ Stage 04 first so the parse logic can be tested in isolation.
 - [ ] Stufe 1 — Pipeline backbone
   - [x] Stage 01 download_toc (build/toc.json)
   - [x] Stage 02 download_laws (build/laws_xml/ + build/slug_table.json)
+  - [x] Stage 04 parse_laws (build/laws_parsed/ — JSON + HTML per law)
+  - [x] Stage 05 scrape_fna (build/fna_map.json — PDF primary, resumable)
+  - [x] Stage 06 classify (build/laws_classified.json — fna_code + main_group + opening_text)
 - [ ] Stufe 2 — Layout & color
 - [ ] Stufe 3 — Frontend graph shell
 - [ ] Stufe 4 — Interaction & detail view
