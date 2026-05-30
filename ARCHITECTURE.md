@@ -231,12 +231,16 @@ references read as fine mist rather than spaghetti, subtle node glow.
 ```
 01 download_toc        gii-toc.xml → list of ~6000 law xml.zip URLs
 02 download_laws       fetch + unzip each law's XML (parallel)
+                       also outputs slug_table.json: {slug → {jurabk, langue}} for resolver
 03 clone_history       shallow-clone kmein/gesetze for git version history
 04 parse_laws          XML → structured Law objects (lxml); render base.html w/ ref spans
 05 scrape_fna          BMJ FNA PDF parse (primary) + buzer enrichment (best-effort) → code→law mapping
 06 classify            attach FNA code + meta_cluster to each law
-07 extract_refs        legal-reference-extraction over each law → normalized refs
-08 resolve_refs        normalized ref → node id; build reference-resolver.json
+07 extract_refs        legal-reference-extraction (refex) over each law → normalized refs
+                       false-positive filter applied (vorschriften/verordnung etc. dropped)
+08 resolve_refs        refex book → normalize → jurabk lookup via slug_table.json
+                       → build reference-resolver.json + edges.json
+                       expected coverage: ~55–65% of raw citations (see ADR 003)
 09 embed               distiluse embeddings for all laws
 10 orphan_neighbors    top-K cosine neighbors for unclassified laws → soft edges
 11 build_graph         assemble nodes + (hard + soft) edges, compute degree
