@@ -18,6 +18,7 @@ include: "rules/04_parse_laws.smk"
 include: "rules/05_scrape_fna.smk"
 include: "rules/06_classify.smk"
 include: "rules/07_extract_refs.smk"
+include: "rules/08_resolve_refs.smk"
 
 # ---------------------------------------------------------------------------
 # Terminal target
@@ -41,21 +42,6 @@ rule bundle:
 rule clone_history:
     output: directory("build/gesetze_history")
     shell: "echo 'TODO: shallow clone https://github.com/kmein/gesetze' && mkdir -p {output}"
-
-# ---------------------------------------------------------------------------
-# 08  Reference resolution
-# ---------------------------------------------------------------------------
-rule resolve_refs:
-    input:
-        refs="build/refs_raw.json",
-        laws="build/laws_classified.json",
-        slug_table="build/slug_table.json",
-    output:
-        edges_struct="build/edges_structural.json",
-        resolver=f"{DATA}/_global/reference-resolver.json",
-    run:
-        # normalized ref -> node id; build clickable-reference resolver
-        pass
 
 # ---------------------------------------------------------------------------
 # 09–10  Embeddings + orphan neighbors -> soft edges
