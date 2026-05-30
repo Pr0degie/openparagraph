@@ -24,17 +24,16 @@ New files:
 - `resolve_refs` stub updated to declare `slug_table.json` as input
 
 ## Next concrete step
-**Stage 07 (extract_refs) + Stage 08 (resolve_refs).**
+**Stage 11 (build_graph)** — assemble graph nodes from `laws_classified.json`
+and edges from `edges_structural.json` (hard) + future soft edges.
 
-Stage 07: run `refex` over each law's norm text (from `laws_parsed/{slug}.json`),
-apply the false-positive block-list, write `build/refs_raw.json` —
-list of `{source_slug, book, section}` raw citations.
+Write `pipeline/rules/11_build_graph.smk` + `pipeline/src/graph_builder.py`:
+- One node per slug: `{id, jurabk, langue, ausfertigung_datum, norm_count, fna_code, main_group}`
+- Compute in-degree + out-degree per node from edges_structural
+- Write `build/graph_nodes.json` + `data/_global/edges.json`
 
-Stage 08: load `slug_table.json`, build `jurabk_index` (normalized_jurabk → slug),
-normalize each raw citation's book field, look up slug, emit
-`build/edges_structural.json` + `data/_global/reference-resolver.json`.
-
-Both stages build directly on Spike C's prototype code.
+Stages 09+10 (embed + orphan_neighbors) can be stubbed for now — they add soft
+edges for unclassified laws, but the graph is valid without them for early testing.
 
 ## Open questions / parked thoughts
 - Stage 05 work for later: lift FNA PDF coverage past 53.5% via fuzzy/token title
@@ -60,6 +59,8 @@ Both stages build directly on Spike C's prototype code.
   - [x] Stage 04 parse_laws (build/laws_parsed/ — JSON + HTML per law)
   - [x] Stage 05 scrape_fna (build/fna_map.json — PDF primary, resumable)
   - [x] Stage 06 classify (build/laws_classified.json — fna_code + main_group + opening_text)
+  - [x] Stage 07 extract_refs (build/refs_raw.json — ProcessPool refex + FP filter)
+  - [x] Stage 08 resolve_refs (build/edges_structural.json + data/_global/reference-resolver.json)
 - [ ] Stufe 2 — Layout & color
 - [ ] Stufe 3 — Frontend graph shell
 - [ ] Stufe 4 — Interaction & detail view
