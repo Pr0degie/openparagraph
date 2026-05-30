@@ -1,0 +1,18 @@
+.claude/settings.local.json
+
+# Python
+__pycache__/
+*.pyc
+.python-version
+pipeline/.venv/
+pipeline/build/
+
+# Generated data (the /data dir is committed only from CI; spike outputs are not)
+data/spike_a/
+data/spike_b/
+data/spike_c/
+data/build/
+
+# Frontend
+web/node_modules/
+web/dist/

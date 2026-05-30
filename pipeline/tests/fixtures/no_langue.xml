@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Edge case: <langue> absent (happens in some GII files). -->
+<dokument>
+  <norm builddate="20240101000000" doknr="BJNR888">
+    <metadaten>
+      <jurabk>NoLangG</jurabk>
+      <ausfertigung-datum>2010-06-15</ausfertigung-datum>
+      <!-- <langue> intentionally omitted -->
+    </metadaten>
+    <textdaten/>
+  </norm>
+  <norm builddate="20240101000000" doknr="BJNR888BJNE0001">
+    <metadaten>
+      <jurabk>NoLangG</jurabk>
+      <enbez>§ 1</enbez>
+    </metadaten>
+    <textdaten>
+      <text format="XML"><Content><P>Inhalt.</P></Content></text>
+    </textdaten>
+  </norm>
+</dokument>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Intentionally malformed: unclosed tag that the recovery parser must survive. -->
+<dokument>
+  <norm builddate="20240101000000" doknr="BJNR999">
+    <metadaten>
+      <jurabk>MalG</jurabk>
+      <ausfertigung-datum>1999-12-31</ausfertigung-datum>
+      <langue>Malformes Gesetz</langue>
+    </metadaten>
+    <textdaten>
+      <text format="XML">
+        <Content><P>Text mit <B>unclosed bold
+      </text>
+    </textdaten>
+  </norm>
+</dokument>

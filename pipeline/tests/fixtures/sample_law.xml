@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Minimal realistic GII XML fixture for unit tests.
+     Field names and nesting match the real gesetze-im-internet.de format. -->
+<dokument>
+  <norm builddate="20240101000000" doknr="BJNR001950896">
+    <metadaten>
+      <jurabk>TestG</jurabk>
+      <amtabk>TestG</amtabk>
+      <ausfertigung-datum manuell="ja">2000-01-01</ausfertigung-datum>
+      <fundstelle typ="amtlich">
+        <periodikum>BGBl I</periodikum>
+        <zitstelle>S. 1</zitstelle>
+      </fundstelle>
+      <langue>Testgesetz</langue>
+    </metadaten>
+    <textdaten>
+      <fussnoten>
+        <Content>
+          <P>Dieses Gesetz dient nur Testzwecken.</P>
+        </Content>
+      </fussnoten>
+    </textdaten>
+  </norm>
+  <norm builddate="20240101000000" doknr="BJNR001950896BJNE000100328">
+    <metadaten>
+      <jurabk>TestG</jurabk>
+      <enbez>§ 1</enbez>
+      <titel>Anwendungsbereich</titel>
+    </metadaten>
+    <textdaten>
+      <text format="XML">
+        <Content>
+          <P>Dieses Gesetz gilt für alle Testfälle.</P>
+        </Content>
+      </text>
+    </textdaten>
+  </norm>
+  <norm builddate="20240101000000" doknr="BJNR001950896BJNE000200328">
+    <metadaten>
+      <jurabk>TestG</jurabk>
+      <enbez>§ 2</enbez>
+      <!-- no <titel> — this is common in real laws -->
+    </metadaten>
+    <textdaten>
+      <text format="XML">
+        <Content>
+          <P>Weitere Bestimmungen sind möglich.</P>
+        </Content>
+      </text>
+    </textdaten>
+  </norm>
+</dokument>
