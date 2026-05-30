@@ -6,6 +6,7 @@ jurisdiction: "de-bund"
 sources:
   gii_toc: "https://www.gesetze-im-internet.de/gii-toc.xml"
   history_repo: "https://github.com/kmein/gesetze"   # daily-updated git history (~2021+)
+  fna_pdf_year: 2023   # update annually; URL pattern: recht.bund.de/.../FNA_{year}.pdf
 
 embeddings:
   model: "distiluse-base-multilingual-cased-v2"

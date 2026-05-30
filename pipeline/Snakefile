@@ -15,6 +15,7 @@ JUR = "de-bund"   # v1 jurisdiction; pipeline stays jurisdiction-parameterized
 include: "rules/01_download_toc.smk"
 include: "rules/02_download_laws.smk"
 include: "rules/04_parse_laws.smk"
+include: "rules/05_scrape_fna.smk"
 
 # ---------------------------------------------------------------------------
 # Terminal target
@@ -40,14 +41,8 @@ rule clone_history:
     shell: "echo 'TODO: shallow clone https://github.com/kmein/gesetze' && mkdir -p {output}"
 
 # ---------------------------------------------------------------------------
-# 05–06  FNA classification  (Spike B decides the source: buzer.de / BMJ PDF)
+# 06  FNA classification
 # ---------------------------------------------------------------------------
-rule scrape_fna:
-    output: "build/fna_map.json"
-    run:
-        # FNA code -> [law abbreviations]; 9 main groups
-        pass
-
 rule classify:
     input:
         laws="build/laws_parsed",
