@@ -16,6 +16,7 @@ include: "rules/01_download_toc.smk"
 include: "rules/02_download_laws.smk"
 include: "rules/04_parse_laws.smk"
 include: "rules/05_scrape_fna.smk"
+include: "rules/06_classify.smk"
 
 # ---------------------------------------------------------------------------
 # Terminal target
@@ -39,18 +40,6 @@ rule bundle:
 rule clone_history:
     output: directory("build/gesetze_history")
     shell: "echo 'TODO: shallow clone https://github.com/kmein/gesetze' && mkdir -p {output}"
-
-# ---------------------------------------------------------------------------
-# 06  FNA classification
-# ---------------------------------------------------------------------------
-rule classify:
-    input:
-        laws="build/laws_parsed",
-        fna="build/fna_map.json",
-    output: "build/laws_classified.json"
-    run:
-        # attach FNA code + meta_cluster to each law
-        pass
 
 # ---------------------------------------------------------------------------
 # 07–08  Cross-reference extraction + resolution

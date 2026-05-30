@@ -6,6 +6,7 @@ __pycache__/
 .python-version
 pipeline/.venv/
 pipeline/build/
+pipeline/.snakemake/
 
 # Generated data (the /data dir is committed only from CI; spike outputs are not)
 data/spike_a/
