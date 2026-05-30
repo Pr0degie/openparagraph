@@ -19,6 +19,10 @@ include: "rules/05_scrape_fna.smk"
 include: "rules/06_classify.smk"
 include: "rules/07_extract_refs.smk"
 include: "rules/08_resolve_refs.smk"
+include: "rules/09_embed.smk"
+include: "rules/10_orphan_neighbors.smk"
+include: "rules/11_build_graph.smk"
+include: "rules/12_layout.smk"
 
 # ---------------------------------------------------------------------------
 # Terminal target
@@ -42,51 +46,6 @@ rule bundle:
 rule clone_history:
     output: directory("build/gesetze_history")
     shell: "echo 'TODO: shallow clone https://github.com/kmein/gesetze' && mkdir -p {output}"
-
-# ---------------------------------------------------------------------------
-# 09–10  Embeddings + orphan neighbors -> soft edges
-# ---------------------------------------------------------------------------
-rule embed:
-    input: "build/laws_classified.json"
-    output: "build/embeddings.npy"
-    run:
-        # distiluse-base-multilingual-cased-v2 over title + opening text
-        pass
-
-rule orphan_neighbors:
-    input:
-        emb="build/embeddings.npy",
-        laws="build/laws_classified.json",
-    output: "build/edges_soft.json"
-    run:
-        # top-K cosine neighbors for unclassified laws (weight ~0.1)
-        pass
-
-# ---------------------------------------------------------------------------
-# 11  Build graph (hard + soft edges, degree)
-# ---------------------------------------------------------------------------
-rule build_graph:
-    input:
-        nodes="build/laws_classified.json",
-        hard="build/edges_structural.json",
-        soft="build/edges_soft.json",
-    output:
-        nodes="build/graph_nodes.json",
-        edges=f"{DATA}/_global/edges.json",
-    run:
-        pass
-
-# ---------------------------------------------------------------------------
-# 12  Layout (pure-Python ForceAtlas2, union graph)
-# ---------------------------------------------------------------------------
-rule layout:
-    input:
-        nodes="build/graph_nodes.json",
-        edges=f"{DATA}/_global/edges.json",
-    output: f"{DATA}/_global/layout.json"
-    run:
-        # fa2_modified, fixed seed from config; tuned for the "spore" look
-        pass
 
 # ---------------------------------------------------------------------------
 # 13  Color (three-rule logic)

@@ -9,31 +9,35 @@
 ---
 
 ## Current stage
-**Stufe 1 — Pipeline backbone** (Stage 01 + 02 implemented)
+**Stufe 2 — Layout & color** (Stages 09–12 done, Stage 13 next)
 
 ## Last session
-2026-05-30. Implemented **Stage 01 (download_toc) + Stage 02 (download_laws)** as real Snakemake rules.
+2026-05-30. Implemented **Stages 09, 10, 11 (updated), 12** in one block.
 New files:
-- `pipeline/src/toc_parser.py` — `parse_toc_xml()` (pure, tested)
-- `pipeline/src/downloader.py` — `fetch_law_xml()` (thin HTTP wrapper)
-- `pipeline/rules/01_download_toc.smk` — fetches gii-toc.xml → `build/toc.json`
-- `pipeline/rules/02_download_laws.smk` — parallel download of ~6000 xml.zips →
-  `build/laws_xml/{slug}.xml` + `build/slug_table.json`; resumable (skips existing XMLs)
-- `pipeline/tests/test_toc_parser.py` — 5 new tests, all green (28 total)
-- Snakefile stubs replaced with `include:` — DAG dry-run verified
-- `resolve_refs` stub updated to declare `slug_table.json` as input
+- `pipeline/src/embedder.py` — `texts_for_embedding()` + `embed()` (sentence-transformers)
+- `pipeline/src/orphan_neighbors.py` — `orphan_indices()` + `compute_soft_edges()` (cosine KNN)
+- `pipeline/src/layout_builder.py` — `build_nx_graph()` + `run_layout()` (fa2_modified)
+- `pipeline/rules/09_embed.smk` — laws_classified → build/embeddings.npy
+- `pipeline/rules/10_orphan_neighbors.smk` — embeddings + classified → build/edges_soft.json
+- `pipeline/rules/12_layout.smk` — graph_nodes + edges → data/_global/layout.json
+- Stage 11 updated: now takes edges_structural + edges_soft as union input
+- 160 tests green; DAG dry-run: full 11-rule chain 01→02→04→05→06→07→08→09→10→11→12 verified
+
+Key decisions:
+- Row order in embeddings.npy = sorted(laws_classified.keys()) — no companion slug file needed
+- FA2 initial positions generated via np.random.default_rng(seed) on sorted node IDs for
+  full reproducibility (fa2_modified uses networkx's internal RNG when pos=None, ignoring
+  np.random.seed — fixed by passing explicit pos=)
 
 ## Next concrete step
-**Stage 11 (build_graph)** — assemble graph nodes from `laws_classified.json`
-and edges from `edges_structural.json` (hard) + future soft edges.
+**Stage 13 (color)** — three-rule FNA color logic, merge layout coords into final nodes.json.
 
-Write `pipeline/rules/11_build_graph.smk` + `pipeline/src/graph_builder.py`:
-- One node per slug: `{id, jurabk, langue, ausfertigung_datum, norm_count, fna_code, main_group}`
-- Compute in-degree + out-degree per node from edges_structural
-- Write `build/graph_nodes.json` + `data/_global/edges.json`
-
-Stages 09+10 (embed + orphan_neighbors) can be stubbed for now — they add soft
-edges for unclassified laws, but the graph is valid without them for early testing.
+Write `pipeline/rules/13_color.smk` + `pipeline/src/color_builder.py`:
+- Rule 1: FNA-unambiguous → pure main_group hue (9 fixed base hues, TBD palette)
+- Rule 2: FNA-bridging → weighted HSL blend, proportional to out-edge target main_groups
+- Rule 3: FNA-unclassified → blend of top-K soft-edge neighbours' colors (weighted by edge score)
+- Merge layout.json x/y coords into each node
+- Write `data/de-bund/nodes.json` (final node list with x, y, color, meta_cluster all filled)
 
 ## Open questions / parked thoughts
 - Stage 05 work for later: lift FNA PDF coverage past 53.5% via fuzzy/token title
@@ -61,7 +65,12 @@ edges for unclassified laws, but the graph is valid without them for early testi
   - [x] Stage 06 classify (build/laws_classified.json — fna_code + main_group + opening_text)
   - [x] Stage 07 extract_refs (build/refs_raw.json — ProcessPool refex + FP filter)
   - [x] Stage 08 resolve_refs (build/edges_structural.json + data/_global/reference-resolver.json)
+  - [x] Stage 11 build_graph (build/graph_nodes.json + data/_global/edges.json)
 - [ ] Stufe 2 — Layout & color
+  - [x] Stage 09 embed (build/embeddings.npy)
+  - [x] Stage 10 orphan_neighbors (build/edges_soft.json)
+  - [x] Stage 11 updated (hard + soft edge union)
+  - [x] Stage 12 layout (data/_global/layout.json)
 - [ ] Stufe 3 — Frontend graph shell
 - [ ] Stufe 4 — Interaction & detail view
 - [ ] Stufe 5 — Time axis & versions
