@@ -23,6 +23,7 @@ include: "rules/09_embed.smk"
 include: "rules/10_orphan_neighbors.smk"
 include: "rules/11_build_graph.smk"
 include: "rules/12_layout.smk"
+include: "rules/13_color.smk"
 
 # ---------------------------------------------------------------------------
 # Terminal target
@@ -46,19 +47,6 @@ rule bundle:
 rule clone_history:
     output: directory("build/gesetze_history")
     shell: "echo 'TODO: shallow clone https://github.com/kmein/gesetze' && mkdir -p {output}"
-
-# ---------------------------------------------------------------------------
-# 13  Color (three-rule logic)
-# ---------------------------------------------------------------------------
-rule color:
-    input:
-        nodes="build/graph_nodes.json",
-        layout=f"{DATA}/_global/layout.json",
-        edges=f"{DATA}/_global/edges.json",
-    output: f"{DATA}/{JUR}/nodes.json"
-    run:
-        # FNA hue / bridging blend / orphan embedding blend; merge layout coords
-        pass
 
 # ---------------------------------------------------------------------------
 # 14  Diff cache (base + forward patches)

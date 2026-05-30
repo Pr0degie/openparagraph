@@ -9,7 +9,7 @@
 ---
 
 ## Current stage
-**Stufe 2 — Layout & color** (Stages 09–12 done, Stage 13 next)
+**Stufe 2 — Layout & color** (Stages 09–13 complete — Stufe 2 done)
 
 ## Last session
 2026-05-30. Implemented **Stages 09, 10, 11 (updated), 12** in one block.
@@ -29,15 +29,36 @@ Key decisions:
   full reproducibility (fa2_modified uses networkx's internal RNG when pos=None, ignoring
   np.random.seed — fixed by passing explicit pos=)
 
-## Next concrete step
-**Stage 13 (color)** — three-rule FNA color logic, merge layout coords into final nodes.json.
+## Last session (Stage 13)
+2026-05-30. Implemented **Stage 13 (color)**.
+New files:
+- `pipeline/src/color_builder.py` — `hsl_to_hex`, `blend_hsl` (circular hue mean), `assign_colors`
+  (two-pass: classified first, orphans second), `merge_layout`, `build_meta_taxonomy`
+- `pipeline/rules/13_color.smk` — graph_nodes + layout + edges → data/de-bund/nodes.json
+  + data/_global/meta-taxonomy.json
+- `pipeline/tests/test_color_builder.py` — 27 tests, all green (187 total)
+- Snakefile stub replaced with `include: "rules/13_color.smk"`
+- DAG dry-run: full 12-rule chain through Stage 13 verified
 
-Write `pipeline/rules/13_color.smk` + `pipeline/src/color_builder.py`:
-- Rule 1: FNA-unambiguous → pure main_group hue (9 fixed base hues, TBD palette)
-- Rule 2: FNA-bridging → weighted HSL blend, proportional to out-edge target main_groups
-- Rule 3: FNA-unclassified → blend of top-K soft-edge neighbours' colors (weighted by edge score)
-- Merge layout.json x/y coords into each node
-- Write `data/de-bund/nodes.json` (final node list with x, y, color, meta_cluster all filled)
+Key decisions:
+- Palette (9 HSL base hues) hard-coded in color_builder.py as module constants — will be
+  superseded when FNA taxonomy PDF is fully parsed (Stage 05 enrichment, parked).
+- meta-taxonomy.json is also output of Stage 13 (frontend needs group→color mapping).
+- Bridging blend: only hard out-edge target groups count; own group has no self-weight.
+- Orphan color: equal-weight blend of soft-edge neighbours' HSL (weight from edge dict).
+  Orphans with no resolvable neighbours get neutral slate (#ORPHAN_HSL).
+
+## Next concrete step
+**Stufe 3 — Frontend graph shell.**
+Start with `web/` scaffold: Vite + TypeScript + sigma.js v3 + graphology.
+First milestone: load `data/de-bund/nodes.json` + `data/_global/edges.json` + `data/_global/layout.json`
+and render the graph with correct colors and sizes — no interaction yet.
+
+Steps:
+1. `web/src/data.ts` — typed loader for nodes.json + edges.json + layout.json
+2. `web/src/graph.ts` — build graphology MultiGraph from loaded data
+3. `web/src/main.ts` — mount sigma.js renderer with node reducers for color/size
+4. Verify: `pnpm dev` renders ~6000 nodes on dark background
 
 ## Open questions / parked thoughts
 - Stage 05 work for later: lift FNA PDF coverage past 53.5% via fuzzy/token title
@@ -71,6 +92,7 @@ Write `pipeline/rules/13_color.smk` + `pipeline/src/color_builder.py`:
   - [x] Stage 10 orphan_neighbors (build/edges_soft.json)
   - [x] Stage 11 updated (hard + soft edge union)
   - [x] Stage 12 layout (data/_global/layout.json)
+  - [x] Stage 13 color (data/de-bund/nodes.json + data/_global/meta-taxonomy.json)
 - [ ] Stufe 3 — Frontend graph shell
 - [ ] Stufe 4 — Interaction & detail view
 - [ ] Stufe 5 — Time axis & versions
