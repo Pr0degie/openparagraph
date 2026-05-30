@@ -12,6 +12,9 @@ configfile: "config.yaml"
 DATA = "../data"
 JUR = "de-bund"   # v1 jurisdiction; pipeline stays jurisdiction-parameterized
 
+include: "rules/01_download_toc.smk"
+include: "rules/02_download_laws.smk"
+
 # ---------------------------------------------------------------------------
 # Terminal target
 # ---------------------------------------------------------------------------
@@ -27,19 +30,6 @@ rule bundle:
     run:
         # final shape assembly / sanity glue
         pass
-
-# ---------------------------------------------------------------------------
-# 01–02  Acquire current law texts
-# ---------------------------------------------------------------------------
-rule download_toc:
-    output: "build/gii-toc.xml"
-    shell: "echo 'TODO: fetch https://www.gesetze-im-internet.de/gii-toc.xml' && touch {output}"
-
-rule download_laws:
-    input: "build/gii-toc.xml"
-    output: directory("build/laws_xml")
-    # parallel fetch + unzip each law's xml.zip
-    shell: "echo 'TODO: download ~6000 xml.zip into {output}' && mkdir -p {output}"
 
 # ---------------------------------------------------------------------------
 # 03  Version history (git, ~April 2021 onward)
@@ -90,6 +80,7 @@ rule resolve_refs:
     input:
         refs="build/refs_raw.json",
         laws="build/laws_classified.json",
+        slug_table="build/slug_table.json",
     output:
         edges_struct="build/edges_structural.json",
         resolver=f"{DATA}/_global/reference-resolver.json",

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed>
+  <item>
+    <title>Bürgerliches Gesetzbuch</title>
+    <link>https://www.gesetze-im-internet.de/bgb/index.html</link>
+  </item>
+  <item>
+    <title>Telekommunikationsgesetz</title>
+    <link>https://www.gesetze-im-internet.de/tkg_2021/index.html</link>
+  </item>
+  <item>
+    <title>Strafgesetzbuch</title>
+    <link>https://www.gesetze-im-internet.de/stgb/index.html</link>
+  </item>
+  <item>
+    <title>Incomplete item — no link</title>
+  </item>
+  <item>
+    <link>https://www.gesetze-im-internet.de/no_title/index.html</link>
+  </item>
+</feed>
