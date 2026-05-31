@@ -15,6 +15,7 @@ export interface GraphNode {
   repealed_at: string | null
   x: number
   y: number
+  z?: number // optional semantic depth (pipeline 3D layout); absent in 2D-only data
   color: string
   size: number
   degree: number

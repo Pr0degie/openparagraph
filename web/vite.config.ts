@@ -7,6 +7,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const pipelineData = resolve(__dirname, '../data')
 
 export default defineConfig({
+  // Project lives on /mnt/c (Windows drive): inotify doesn't fire across the
+  // WSL boundary, so file watching needs polling for HMR to work at all.
+  server: {
+    host: '0.0.0.0',
+    watch: { usePolling: true, interval: 300 },
+  },
   plugins: [
     {
       // Serve ../data/* at /data/* in dev so both sample fixtures and real

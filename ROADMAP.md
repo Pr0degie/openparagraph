@@ -107,7 +107,8 @@ what if a law has zero references?) you want thought through up front.
 ## Stufe 3 — Frontend graph shell
 **~3–4 weeks. Goal: the graph is live in a browser and deployed.**
 
-- 🎨 Vite + TS + sigma.js + graphology project
+- 🎨 Vite + TS + Three.js (3d-force-graph) project — renderer swapped from
+  sigma.js to a single Three.js renderer for 2D/2.5D/3D, see ADR 009
 - 🎨 Load nodes/edges, render with FA2 positions and FNA colors
 - 🎨 Camera, zoom, pan; BGB start-zoom + dismissible hint
 - 🎨 Dark aesthetic: node glow, ~0.1 edge opacity
@@ -115,7 +116,7 @@ what if a law has zero references?) you want thought through up front.
 
 **Done when:** the live URL shows the interactive, navigable, colored graph.
 
-→ **Vite setup + sigma.js scaffolding:** Sonnet/medium. **Camera + zoom +
+→ **Vite setup + Three.js scaffolding:** Sonnet/medium. **Camera + zoom +
 interaction primitives:** Sonnet/high (small bugs here ruin the UX). **Deploy
 config + GH Action wiring:** Sonnet/medium.
 
@@ -126,7 +127,8 @@ config + GH Action wiring:** Sonnet/medium.
 
 - 🎨 Click node → sidebar with rendered full text + table of contents
 - 🎨 Clickable `§` references → camera flies to target node + opens it
-- 🎨 FlexSearch + highlight UX (brighten matches, dim the rest via node reducer)
+- 🎨 FlexSearch + highlight UX (brighten matches, dim the rest via Three.js
+  node-color/opacity accessors — built once, works in all three views)
 - 🐍 Stage 15: ship the serialized search index
 
 **Done when:** you can search "Mietrecht", click a result, read the law, click a
@@ -135,8 +137,8 @@ referenced `§`, and land on the right node.
 → **Sidebar layout + text rendering:** Sonnet/medium. **Reference resolver +
 fly-to-node logic:** Sonnet/high (where unresolved refs get handled gracefully,
 where camera animation lives — classic edge-case territory). **FlexSearch +
-node-reducer highlight pattern:** Sonnet/high — node reducers in sigma.js have
-subtle perf traps you want a thoughtful pass on.
+highlight pattern:** Sonnet/high — reactive accessor functions over a highlight
+set; mind redraw throttling on 6k nodes.
 
 ---
 
@@ -165,7 +167,7 @@ the moment you actually design the seeding mechanism.
 **~2–3 weeks. Goal: portfolio-grade, launch-ready.**
 
 - 🎨 Loading/empty/error states, legend, about page, onboarding hint
-- 🎨 Performance pass (reducer throttling, lazy text fetch if needed)
+- 🎨 Performance pass (accessor/redraw throttling, lazy text fetch if needed)
 - 🚀 README polish: screenshots, demo GIF, quick-start, contributing guide
 - 🚀 Launch: Show HN, r/de / r/recht, Mastodon, link from the Malt profile
 
@@ -194,7 +196,7 @@ expensive.
 
 ### v3 — Europe (~open-ended)
 - EU law via EUR-Lex (CELEX ids; EuroVoc → meta-taxonomy mapping)
-- Renderer port to cosmos.gl if sigma.js stalls past ~100k nodes
+- Renderer port (2D path) to cosmos.gl if Three.js stalls past ~100k nodes
 - GPU layout (cuGraph / Datashader)
 
 ### v4 — the full corpus

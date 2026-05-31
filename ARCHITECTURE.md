@@ -84,7 +84,7 @@ Acquisition **resolved by Spike B** (see ADR 002, `docs/spike_b.md`):
                       └──────────────────┬────────────────────────┘
                                          │ writes /data/**.json + commits
                       ┌──────────────────▼────────────────────────┐
-                      │  Static frontend (Vite + TS + sigma.js)     │
+                      │  Static frontend (Vite + TS + Three.js)     │
                       │  served from Vercel / Netlify / GH Pages    │
                       └─────────────────────────────────────────────┘
 ```
@@ -103,8 +103,7 @@ artifacts; the frontend is a static bundle that fetches them.
 | Reference parsing | **`legal-reference-extraction`** (openlegaldata) | Maintained, normalizes `§ 211 Absatz 1 des Strafgesetzbuches` → `§ 211 Abs. 1 StGB`; used in production. Beats hand-rolled regex. |
 | Embeddings | **`sentence-transformers` / `distiluse-base-multilingual-cased-v2`** | CPU-runnable on ~6k docs in minutes; multilingual = no model swap when EU law arrives |
 | Layout | **`fa2_modified`** (pure-Python ForceAtlas2, Barnes-Hut + Cython) | Eliminates the Java/Gephi-Toolkit dependency entirely. Reproducible, Snakemake-native. |
-| Graph data structure | **graphology** | Required companion to sigma.js |
-| Renderer | **sigma.js v3** (WebGL) | Battle-tested since 2014, node-reducer API fits the highlight UX, handles 6k nodes trivially |
+| Renderer | **3d-force-graph** (Three.js, WebGL) | One renderer for the 2D / 2.5D / 3D views via a z-source + camera toggle; precomputed coords fed in (force engine off in 2D/2.5D) to keep layout deterministic. Replaced sigma.js v3 + graphology — see ADR 009 |
 | Diff engine | **diff-match-patch** | Tiny client-side lib; reconstructs versions from base + forward patches |
 | Search | **FlexSearch** | Fastest client-side full-text index; title + short description |
 | Build tool | **Vite** + TypeScript | Fast HMR, static output |
@@ -113,7 +112,7 @@ artifacts; the frontend is a static bundle that fetches them.
 
 ### Deferred / scale-out choices (do NOT adopt in v1)
 - **GPU layout** (`cuGraph` ForceAtlas2 or Datashader `forceatlas2_layout`) — only when node count crosses ~100k (v3, EU law). Note: a local RTX 4070 can run cuGraph for one-off layout precompute if CPU FA2 ever feels slow.
-- **`cosmos.gl`** renderer — only if sigma.js stalls past ~100k nodes. API is close enough that it's a port, not a rewrite.
+- **`cosmos.gl`** renderer — only if 3d-force-graph / Three.js stalls past ~100k nodes. The 2D path is the candidate for a swap; the 3D views would stay on Three.js.
 - **Incremental pipeline** (process only changed laws) — required once a full rebuild can't finish inside the GitHub Actions 6h job limit (v2, Landesrecht).
 
 ---
@@ -212,13 +211,18 @@ references read as fine mist rather than spaghetti, subtle node glow.
 
 ## 8. Frontend interaction model
 
+- **View toggle:** 2D (flat FA2 map, rotation locked, top-down) / 2.5D (map + semantic
+  z) / 3D (full force layout). One renderer; the toggle swaps z-source + camera. 2D→3D
+  can later animate by raising z rather than a hard cut (single-renderer benefit).
 - **Entry:** camera starts zoomed onto the BGB neighborhood with a dismissible
   hint ("zoom out for the bird's-eye view"). Avoids the wall-of-nodes shock.
 - **Click node:** sidebar with rendered full text + table of contents.
 - **Clickable references:** each `<span data-ref-id="…">` resolves via
-  `reference-resolver.json`; click → camera flies to the target node + opens it.
+  `reference-resolver.json`; click → camera flies to the target node (3d-force-graph
+  `cameraPosition`) + opens it.
 - **Search:** FlexSearch over title + short description, debounced ~50ms. Matches
-  brighten (higher opacity/size/glow via sigma node reducer); non-matches dim to ~15%.
+  brighten (higher opacity/size/glow via Three.js node-color/opacity accessors);
+  non-matches dim to ~15%.
 - **Time slider (global, bottom):** filters node/edge *visibility* by
   `created_at`/`repealed_at`. Positions never move.
 - **Version timeline (per law):** in the sidebar; select a version, see a
@@ -275,8 +279,9 @@ expensive download/parse/embed/layout work.
 | FNA only as PDF | v1 (Stufe 0) | **Resolved (ADR 002):** BMJ PDF parse primary (~54% coverage, improvable); buzer best-effort enrichment (anti-bot risk); orphans → embedding rule |
 | No pre-2021 version diffs | v1 | Document honestly; macro time slider still works via `ausfertigung-datum` |
 | GH Actions 6h job limit | v2 (Landesrecht) | Incremental pipeline (process only changed laws) |
-| Initial payload size | v2/v3 | Chunked storage + lazy-load full text on click |
-| sigma.js performance ceiling | v3 (>100k nodes) | Port renderer to cosmos.gl |
+| Initial payload size | v2/v3 | Chunked storage + lazy-load full text on click; Three.js bundle ~1 MB (ADR 009) |
+| Three.js performance ceiling | v3 (>100k nodes) | Port 2D path to cosmos.gl; keep 3D on Three.js |
+| Node occlusion in 3D | v1 | Depth ambiguity hides nodes / hampers clicking — 2D & 2.5D top-down views remain the primary map (ADR 009) |
 | CPU layout too slow | v3 | GPU layout (cuGraph / Datashader); local RTX 4070 viable |
 | FNA is DE-Bund only | v2 | Pluggable meta-taxonomy + per-scheme mapping tables |
 

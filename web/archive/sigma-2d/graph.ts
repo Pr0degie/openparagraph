@@ -8,7 +8,7 @@ export function buildGraph(nodes: GraphNode[], edges: GraphEdge[]): DirectedGrap
     graph.addNode(node.id, {
       x: node.x,
       y: node.y,
-      size: node.size,
+      size: node.size * 0.45,
       color: node.color,
       label: node.jurabk ?? node.id,
     })

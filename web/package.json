@@ -13,11 +13,10 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "3d-force-graph": "^1.80.0",
     "diff-match-patch": "^1.0.5",
     "flexsearch": "^0.7.43",
-    "graphology": "^0.25.4",
-    "graphology-layout": "^0.6.1",
-    "sigma": "^3.0.0"
+    "three": "0.184.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
