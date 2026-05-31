@@ -8,6 +8,23 @@ import numpy as np
 import networkx as nx
 
 
+def pca_z(embeddings: np.ndarray, component: int = 0) -> np.ndarray:
+    """Deterministic semantic z-axis for the 3D layout.
+
+    Returns the score of one principal component (default the first) per row,
+    z-scored to mean 0 / std 1. Pure NumPy SVD — no sklearn dependency, fully
+    reproducible. Row order is the caller's responsibility (must match the
+    embeddings matrix, i.e. sorted slug order from stage 09).
+    """
+    X = np.asarray(embeddings, dtype=np.float64)
+    X = X - X.mean(axis=0, keepdims=True)
+    # X = U S Vt; principal-component scores = U[:, k] * S[k]  (== X @ V[:, k]).
+    U, S, _Vt = np.linalg.svd(X, full_matrices=False)
+    scores = U[:, component] * S[component]
+    std = float(scores.std())
+    return scores / std if std > 0.0 else scores
+
+
 def build_nx_graph(nodes: list[dict], edges: list[dict]) -> nx.Graph:
     G: nx.Graph = nx.Graph()
     for n in nodes:

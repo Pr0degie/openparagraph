@@ -142,6 +142,19 @@ def test_merge_layout_does_not_mutate_input():
     assert NODES[0].get("x") == original_x
 
 
+def test_merge_layout_copies_z_when_present():
+    layout_3d = {"de-bund/BGB": {"x": 10.0, "y": -5.0, "z": 42.0}}
+    updated = merge_layout(NODES, layout_3d)
+    bgb = next(n for n in updated if n["id"] == "de-bund/BGB")
+    assert bgb["z"] == 42.0
+
+
+def test_merge_layout_omits_z_when_absent():
+    # 2D layout (no z) must not introduce a z key — keeps output byte-identical.
+    updated = merge_layout(NODES, LAYOUT)
+    assert all("z" not in n for n in updated)
+
+
 # ---------------------------------------------------------------------------
 # assign_colors — Rule 1 (unambiguous)
 # ---------------------------------------------------------------------------

@@ -175,12 +175,19 @@ def merge_layout(
     nodes: list[dict],
     layout: dict[str, dict],
 ) -> list[dict]:
-    """Copy x/y from layout.json into each node.  Missing entries get x=y=0."""
-    return [
-        {**node, "x": layout.get(node["id"], {}).get("x", 0.0),
-                 "y": layout.get(node["id"], {}).get("y", 0.0)}
-        for node in nodes
-    ]
+    """Copy x/y (and z, if present) from layout.json into each node.
+
+    Missing entries get x=y=0. z is only added when the layout carries it, so
+    2D layouts (dimensions=2) produce byte-identical node output as before.
+    """
+    out = []
+    for node in nodes:
+        entry = layout.get(node["id"], {})
+        merged = {**node, "x": entry.get("x", 0.0), "y": entry.get("y", 0.0)}
+        if "z" in entry:
+            merged["z"] = entry["z"]
+        out.append(merged)
+    return out
 
 
 def build_meta_taxonomy(

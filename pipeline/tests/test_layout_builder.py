@@ -1,6 +1,7 @@
+import numpy as np
 import pytest
 
-from src.layout_builder import build_nx_graph
+from src.layout_builder import build_nx_graph, pca_z
 
 # We test build_nx_graph (pure Python, no FA2) extensively.
 # run_layout is tested with a smoke test using a tiny graph + few iterations.
@@ -126,3 +127,45 @@ def test_run_layout_reproducible_with_same_seed():
     for nid in p1:
         assert abs(p1[nid]["x"] - p2[nid]["x"]) < 1e-4
         assert abs(p1[nid]["y"] - p2[nid]["y"]) < 1e-4
+
+
+# ---------------------------------------------------------------------------
+# pca_z — semantic z-axis for the 3D layout
+# ---------------------------------------------------------------------------
+
+def _toy_embeddings():
+    # Two clear clusters along one axis → PC1 separates them.
+    rng = np.random.default_rng(0)
+    a = rng.normal(loc=[5.0, 0.0, 0.0], scale=0.1, size=(8, 3))
+    b = rng.normal(loc=[-5.0, 0.0, 0.0], scale=0.1, size=(8, 3))
+    return np.vstack([a, b]).astype(np.float32)
+
+
+def test_pca_z_one_value_per_row():
+    emb = _toy_embeddings()
+    z = pca_z(emb)
+    assert z.shape == (emb.shape[0],)
+
+
+def test_pca_z_is_z_scored():
+    z = pca_z(_toy_embeddings())
+    assert abs(float(z.mean())) < 1e-6
+    assert abs(float(z.std()) - 1.0) < 1e-6
+
+
+def test_pca_z_is_deterministic():
+    emb = _toy_embeddings()
+    assert np.allclose(pca_z(emb), pca_z(emb))
+
+
+def test_pca_z_separates_clusters():
+    # The two clusters should land on opposite signs of the principal component.
+    z = pca_z(_toy_embeddings())
+    assert np.sign(z[:8]).sum() == -np.sign(z[8:]).sum()
+
+
+def test_pca_z_constant_input_does_not_blow_up():
+    # std == 0 → return scores as-is (all ~0) instead of dividing by zero.
+    emb = np.ones((5, 4), dtype=np.float32)
+    z = pca_z(emb)
+    assert np.all(np.isfinite(z))

@@ -134,6 +134,7 @@ a painful schema migration when Landesrecht and EU law arrive.
   "created_at": "1896-08-18",         // ausfertigung-datum
   "repealed_at": null,                 // null = currently in force
   "x": 142.7, "y": -88.3,              // ForceAtlas2 output (union-graph coords)
+  "z": 88.1,                           // optional semantic depth (PCA of embeddings); only when layout.dimensions=3
   "color": "#4F8DFB",                  // resolved per §6 color logic
   "size": 24,                          // f(degree)
   "degree": 311                        // number of cross-references touching this node
@@ -199,10 +200,14 @@ edges) and the **semantic** graph (text similarity, soft edges, orphans only).
 - `fa2_modified` settings for the organic look:
   - `outboundAttractionDistribution=True` (dissuade hubs — keeps mega-laws like BGB from collapsing everything inward)
   - `barnesHutOptimize=True`, `barnesHutTheta≈1.2`
-  - `scalingRatio≈2.0`, `gravity≈1.0`, `strongGravityMode=False` (lets outliers fan out as "spores")
+  - `scalingRatio≈8.0`, `gravity≈0.3`, `adjustSizes=True`, `strongGravityMode=False` (retuned up from 2.0/1.0 to stop the core clumping; lets outliers fan out as "spores")
   - `edgeWeightInfluence=1.0`
   - fixed `seed` for reproducible layouts across pipeline runs
 - Node size = f(degree). Dense reference hubs become visually large centers.
+- **Optional z-axis** (`layout.dimensions=3`): x/y stay the tuned FA2 map; z is a
+  deterministic PCA component of the stage-09 embeddings (`pca_z`, z-scored ×
+  `z_scale`), so every node — classified or orphan — gets a semantic depth. Feeds
+  the frontend's 2.5D/3D views. See ADR 009.
 
 Rendering aesthetic (frontend): dark background, low edge opacity (~0.1) so
 references read as fine mist rather than spaghetti, subtle node glow.
@@ -248,7 +253,7 @@ references read as fine mist rather than spaghetti, subtle node glow.
 09 embed               distiluse embeddings for all laws
 10 orphan_neighbors    top-K cosine neighbors for unclassified laws → soft edges
 11 build_graph         assemble nodes + (hard + soft) edges, compute degree
-12 layout              fa2_modified on union graph → x/y per node
+12 layout              fa2_modified on union graph → x/y (+ optional PCA z) per node
 13 color               apply three-rule color logic
 14 diff_cache          per law: base.html + forward patches from git history
 15 search_index        FlexSearch serialize (title + short desc)

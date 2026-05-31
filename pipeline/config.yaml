@@ -25,6 +25,12 @@ layout:
   barnes_hut_theta: 1.2
   outbound_attraction_distribution: true   # dissuade hubs
   adjust_sizes: true       # FA2 accounts for node sizes in repulsion — larger hubs push harder
+  # 3D depth axis. dimensions=2 → x/y only (code default). dimensions=3 → also
+  # emit a semantic z so the frontend's 2.5D/3D views have meaningful depth.
+  dimensions: 3
+  z_source: "pca-embeddings"   # z = a principal component of the stage-09 embeddings
+  z_scale: 6000.0              # ≈ x/y std, so z spread is comparable to the map
+  z_component: 0               # which principal component becomes z
 
 validation:
   min_nodes: 5000
