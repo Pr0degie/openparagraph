@@ -1,0 +1,40 @@
+{
+  "FNA": {
+    "1": {
+      "cluster": "state-law",
+      "color": "#4775f5"
+    },
+    "2": {
+      "cluster": "admin-law",
+      "color": "#24ccdb"
+    },
+    "3": {
+      "cluster": "justice",
+      "color": "#e8304f"
+    },
+    "4": {
+      "cluster": "civil-law",
+      "color": "#f2a436"
+    },
+    "5": {
+      "cluster": "commercial-law",
+      "color": "#27ce5f"
+    },
+    "6": {
+      "cluster": "labor-social",
+      "color": "#c2e029"
+    },
+    "7": {
+      "cluster": "finance",
+      "color": "#a554de"
+    },
+    "8": {
+      "cluster": "transport",
+      "color": "#e147c7"
+    },
+    "9": {
+      "cluster": "other",
+      "color": "#6a98af"
+    }
+  }
+}
