@@ -2,9 +2,8 @@
 # Input:  build/laws_parsed/  ({slug}.json per law, from Stage 04)
 # Output: build/refs_raw.json  (list of filtered citation records)
 #
-# Uses ProcessPoolExecutor (not ThreadPoolExecutor) because refex is CPU-bound.
-# Worker functions live in src/ref_extractor.py (must be module-level to be
-# pickleable by multiprocessing).  One CitationExtractor per worker process.
+# Uses pebble.ProcessPool which actually kills stuck worker processes on timeout,
+# unlike concurrent.futures.ProcessPoolExecutor whose timeout only stops waiting.
 
 rule extract_refs:
     input: "build/laws_parsed"
@@ -14,8 +13,10 @@ rule extract_refs:
         import json
         import logging
         import sys
-        from concurrent.futures import ProcessPoolExecutor, as_completed
+        from concurrent.futures import TimeoutError as FutureTimeoutError
         from pathlib import Path
+
+        from pebble import ProcessPool
 
         sys.path.insert(0, str(Path(workflow.snakefile).parent))
         from src.ref_extractor import init_extractor, process_law_file
@@ -29,19 +30,24 @@ rule extract_refs:
         all_refs: list[dict] = []
         done = 0
 
-        with ProcessPoolExecutor(
-            max_workers=threads, initializer=init_extractor
-        ) as pool:
-            futs = {
-                pool.submit(process_law_file, str(p)): p.stem
-                for p in json_files
-            }
-            for fut in as_completed(futs):
+        with ProcessPool(max_workers=threads, initializer=init_extractor) as pool:
+            future = pool.map(
+                process_law_file,
+                [str(p) for p in json_files],
+                timeout=60,
+            )
+            it = future.result()
+            for p in json_files:
+                slug = p.stem
                 try:
-                    refs = fut.result()
+                    refs = next(it)
                     all_refs.extend(refs)
+                except StopIteration:
+                    break
+                except FutureTimeoutError:
+                    _log.warning("timeout in %s — skipped", slug)
                 except Exception as exc:
-                    _log.warning("error in %s: %s", futs[fut], exc)
+                    _log.warning("error in %s: %s", slug, exc)
                 done += 1
                 if done % 500 == 0:
                     _log.info(

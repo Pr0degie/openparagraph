@@ -20,6 +20,7 @@ dependencies = [
     "pdfplumber>=0.11",                  # FNA PRIMARY: parse BMJ annual FNA PDF (Spike B / ADR 002)
     "beautifulsoup4>=4.12",              # FNA secondary: buzer.de enrichment scrape (anti-bot risk)
     "diff-match-patch>=20230430",        # base + forward patch generation
+    "pebble>=5.2.0",
 ]
 
 [project.optional-dependencies]
