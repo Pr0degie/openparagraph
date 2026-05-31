@@ -9,12 +9,71 @@
 ---
 
 ## Current stage
-**Stufe 4 — Interaction & detail view** — core features shipped (tooltip,
-detail panel, search+highlight, fly-to, smooth controls, node labels).
-Node-size proportions and colour/contrast tuning are still open (deferred to
-next session if the user wants further tweaks).
+**Stufe 5 — Time axis & versions** — macro time slider shipped with full
+**birth *and* death** semantics, plus a round of **visual/UX tuning** on top.
+Dual-range year slider (delivered via Ultraplan on branch `stufe5-time-slider`)
+dims nodes outside the window; extended so the filter uses real lifespan
+interval-overlap (`created_at` .. `repealed_at`). Pipeline now extracts
+`repealed_at` from the source XML (was hardcoded `None`). Then, from live user
+feedback: 2.5D back to discrete FNA layers, opaque spheres + depth-tested labels,
+large-only permanent labels (others on hover), a live tuning panel, and 3D
+centre-gravity + softened repulsion. Branch `stufe5-time-slider`; **not merged**,
+**not committed**. Live visual eyeball ongoing with the user (build/tests green).
 
 ## Last session
+2026-05-31. **Stufe 5 — birth/death time filter + `repealed_at` extraction, then
+a visual/UX tuning round from live user feedback.**
+
+Branch `stufe5-time-slider` (Ultraplan delivered the base dual-range slider as
+`46541b2`; this session added the death dimension end-to-end, then visual fixes).
+
+**Visual / UX (web/src/main.ts, ui.ts, style.css) — from user feedback:**
+- **2.5D = discrete FNA layers** again (not the continuous PCA `z`, which read as
+  "Kuddelmuddel"). `applyHighlight`'s 2.5D z uses `zFromMainGroup`. See ADR 012.
+- **Spheres never transparent** — dimmed nodes go solid dark (`#23232b`,
+  opacity 1) instead of see-through. See ADR 013.
+- **Label occlusion** — label sprites `depthTest:true` (front sphere hides rear
+  label); labels float above the *scaled* sphere so a node never hides its own.
+- **Label visibility** — only "large" nodes (size ≥ `tuneLabelThreshold`, def 7.5)
+  show a permanent label; the rest reveal theirs on hover. See ADR 013.
+- **Tuning panel** (`initTunePanel`) — collapsible live sliders w/ numeric readout:
+  sphere sizes, label threshold/offset, node/layer spacing (2D/2.5D), centre-gravity
+  + repulsion (3D). Mode-aware spec. See ADR 014.
+- **3D forces** — custom `centerGravityForce` (hand-rolled d3 force pulling nodes
+  to origin, default 0.18) + softened `charge` repulsion (12 vs ~30). Live-tunable.
+  Position changes apply via `d3ReheatSimulation()` (the lib only rewrites object
+  positions inside `layoutTick`, which stops after cooldown). See ADR 014.
+- All TS strict, `pnpm typecheck`/`build` green; 11 vitest still green.
+
+**Pipeline + frontend `repealed_at` (the Stufe-5 core):**
+
+- **Pipeline `repealed_at`** (was `graph_builder.py:59` hardcoded `None`):
+  new `parse_repeal_date` + `extract_repealed_at` in `gii_parser.py` read the
+  `<standangabe><standtyp>Aufh</standtyp><standkommentar>` block via an
+  **anchor-based regex** (`mit Ablauf` / `mWv` / `am … außer Kraft` /
+  `bis zum … verlängert`), deliberately ignoring the amending-act `v. DATE`
+  citation. New `Law.repealed_at` field threaded through `law_serializer.py:45`
+  → `classifier.py:65` → `graph_builder.py:59`; stages 12/13 pass it through via
+  `{**node}` spread. See **ADR 011**.
+- **Coverage**: 130/6124 laws carry an Aufh block; **108** yield a parseable
+  date, 22 stay `None` (conditional/partial repeals). Verified in
+  `data/de-bund/nodes.json` (108 non-null). Spot-checks: BattG → 2026-08-18
+  (latest mWv of a selective repeal), AugOptMstrV → 2026-07-01 (trap avoided).
+- **Frontend**: extracted pure `web/src/timefilter.ts` (`parseYear`,
+  `isInTimeWindow`); `applyHighlight` in `main.ts` now uses interval-overlap
+  `[born, death] ∩ [from, to]` (null death = open-ended). **Behaviour change
+  (intended):** laws born before `from` but still alive are now shown, not dimmed.
+- **Tests**: pipeline 218 pytest green (new `parse_repeal_date` parametrisation +
+  pass-through asserts + `sample_repealed_law.xml` fixture); frontend 11 new
+  vitest in `timefilter.test.ts` (first frontend tests — `pnpm test` now passes
+  instead of "no test files"). `pnpm typecheck` + `pnpm build` green.
+- **Re-run note**: `--forcerun parse_laws build/laws_classified.json` is variadic
+  and swallowed the file as a second force-item → no explicit target → Snakemake
+  rebuilt the default `bundle` (full pipeline). Harmless (deterministic layout,
+  same coords) but re-embedded needlessly. To target just classify, pass the
+  file as a positional **before** `--forcerun`, or use `--until`.
+
+## Last session (Stufe 4 — Interaction & detail view, commit `67ea97e`)
 2026-05-31. **Stufe 4 — Interaction & detail view (commit `67ea97e`).**
 
 New files: `web/src/ui.ts` (tooltip, detail panel, search box, banner).
@@ -105,14 +164,38 @@ Key decisions:
   Orphans with no resolvable neighbours get neutral slate (#ORPHAN_HSL).
 
 ## Next concrete step
-1. Open `http://<wsl-ip>:5173` (pnpm dev from web/), eyeball all three modes.
-   Tune `NODE_R`, `dampingFactor`, `zoomSpeed` in `main.ts` if feel is off.
-2. Optional UI tweaks the user may still want: node-size proportions (range
-   in data unknown — check min/max `size` in nodes.json), colour/contrast pass,
-   edge width proportional to weight.
-3. Stufe 5 — Time axis & versions (macro slider via `ausfertigung-datum` / `repealed_at`).
+**Nothing is committed yet** — the whole session lives in the working tree on
+branch `stufe5-time-slider`. First action next time: review `git status`/diff and
+commit (pipeline `repealed_at` + tests + ADR 011, then the visual work + ADRs
+012–014, then the doc updates). There is also a stray untracked
+`stufe5timeslider.patch` (teleport artifact) that can be deleted.
+
+1. **Finish the visual eyeball / tuning** on the dev server
+   (`http://<wsl-ip>:5174`, branch `stufe5-time-slider`): the user was dialling in
+   the tuning-panel sliders (sphere sizes, label threshold/offset, 2.5D layer +
+   node spacing, 3D centre-gravity + repulsion). **Once they settle on values they
+   like, bake them in as the new defaults** (the `tune*` consts in `main.ts`) and
+   decide whether to keep the tuning panel as dev-only or hide it for v1.
+2. Time slider: consider a label like "existierte zwischen" to convey the
+   lifespan-overlap semantics. Verify future range (2027–2030) dims repealed laws.
+3. **Commit + merge** `stufe5-time-slider` → `main`. Note: local `main` already
+   carries an equivalent teleported commit `1a4c292` (base slider only, no
+   `repealed_at`) — reconcile when merging.
+4. Then **Stufe 6 — Polish & v1 launch** (perf, a11y, deploy, CI smoke test), and
+   the still-open Stufe-5 tail: Stage 14 version history + per-law diff viewer.
 
 ## Open questions / parked thoughts
+- **⚠️ Layout (Stage 12 / FA2) is NOT reproducible across runs.** Discovered this
+  session: a full rebuild moved all 6124 x/y coords (max ~39k units) even though
+  node set, edges, embeddings and the seed were unchanged. The z-axis (PCA from
+  embeddings) IS deterministic — only the 2D FA2 step drifts. This contradicts
+  CLAUDE.md golden rule ("layout seed reproduces coordinates") and the prior
+  session's note about passing explicit `pos=`. Likely a residual nondeterminism
+  in `fa2_modified` (BLAS thread order / dict iteration) the seed doesn't pin.
+  Worked around for now by **not** committing the re-layout: `nodes.json` was
+  patched to add only the 108 `repealed_at` values onto the committed coords;
+  `layout.json` left at HEAD. Needs a real fix before any future full rebuild
+  (pin BLAS threads = 1, or persist+reuse layout.json as the seed of record).
 - DONE: Stage 15 `search_index` already emits `search-index.json`; frontend
   search now works via simple substring match (fast enough, ~3 ms). FlexSearch
   import is in deps but not used — could swap in later for fuzzy/prefix search.
@@ -154,5 +237,9 @@ Key decisions:
   - [x] Stage 13 color (data/de-bund/nodes.json + data/_global/meta-taxonomy.json)
 - [x] Stufe 3 — Frontend graph shell (scaffold + real pipeline data: 6124 nodes, 20091 edges)
 - [x] Stufe 4 — Interaction & detail view (tooltip, panel, search, fly-to, smooth controls, labels)
-- [ ] Stufe 5 — Time axis & versions
+- [~] Stufe 5 — Time axis & versions
+  - [x] Dual-range time slider, birth/death interval-overlap
+  - [x] `repealed_at` extraction (Stage 04/06/11) — ADR 011
+  - [x] Visual tuning: discrete 2.5D layers, opaque spheres, labels, tuning panel, 3D gravity — ADRs 012–014
+  - [ ] Stage 14 version history (kmein/gesetze patches) + per-law paragraph diff viewer
 - [ ] Stufe 6 — Polish & v1 launch

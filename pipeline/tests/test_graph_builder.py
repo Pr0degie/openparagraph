@@ -22,6 +22,7 @@ LAWS = {
         "jurabk": "StGB",
         "langue": "Strafgesetzbuch",
         "ausfertigung_datum": "1871-05-15",
+        "repealed_at": "2026-08-18",
         "norm_count": 358,
         "fna_code": "450-2",
         "main_group": 4,
@@ -114,10 +115,16 @@ def test_build_graph_node_schema_fields():
     assert bgb["classification"] == {"scheme": "FNA", "code": "400-2", "main_group": 4}
     assert bgb["meta_cluster"] is None
     assert bgb["created_at"] == "1896-08-18"
-    assert bgb["repealed_at"] is None
+    assert bgb["repealed_at"] is None  # no repealed_at in meta → None
     assert bgb["x"] is None
     assert bgb["y"] is None
     assert bgb["color"] is None
+
+
+def test_build_graph_repealed_at_passed_through():
+    nodes, _ = build_graph(LAWS, EDGES, "DE-BUND")
+    stgb = next(n for n in nodes if n["id"] == "DE-BUND/StGB")
+    assert stgb["repealed_at"] == "2026-08-18"
 
 
 def test_build_graph_null_jurabk_law_fields():

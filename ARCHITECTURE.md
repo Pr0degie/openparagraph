@@ -206,8 +206,17 @@ edges) and the **semantic** graph (text similarity, soft edges, orphans only).
 - Node size = f(degree). Dense reference hubs become visually large centers.
 - **Optional z-axis** (`layout.dimensions=3`): x/y stay the tuned FA2 map; z is a
   deterministic PCA component of the stage-09 embeddings (`pca_z`, z-scored ×
-  `z_scale`), so every node — classified or orphan — gets a semantic depth. Feeds
-  the frontend's 2.5D/3D views. See ADR 009.
+  `z_scale`), so every node — classified or orphan — gets a semantic depth. See ADR 009.
+  Note: the **2.5D view no longer uses this PCA z** — it stacks nodes into discrete
+  planes, one per FNA main_group (clearer, less "Kuddelmuddel"); see ADR 012. The
+  PCA `z` stays in the data, reserved for a future genuine semantic-3D mode.
+
+> ⚠️ **Layout reproducibility caveat.** The PCA `z` is deterministic, but the
+> FA2 **x/y** coordinates are *not* reproducible across runs (a full rebuild moves
+> every node, even with a fixed seed — likely BLAS-thread / iteration-order
+> nondeterminism `fa2_modified` doesn't pin). Treat the committed `nodes.json`
+> coords as the source of record; do not blindly re-run stage 12. See PROGRESS
+> "Open questions". This is the layout-stability problem ROADMAP flagged for Stufe 5.
 
 Rendering aesthetic (frontend): dark background, low edge opacity (~0.1) so
 references read as fine mist rather than spaghetti, subtle node glow.
@@ -216,9 +225,16 @@ references read as fine mist rather than spaghetti, subtle node glow.
 
 ## 8. Frontend interaction model
 
-- **View toggle:** 2D (flat FA2 map, rotation locked, top-down) / 2.5D (map + semantic
-  z) / 3D (full force layout). One renderer; the toggle swaps z-source + camera. 2D→3D
-  can later animate by raising z rather than a hard cut (single-renderer benefit).
+- **View toggle:** 2D (flat FA2 map, rotation locked, top-down) / 2.5D (map +
+  discrete FNA-group layers, see ADR 012) / 3D (full in-browser force layout with
+  centre-gravity + softened repulsion, see ADR 014). One renderer; the toggle swaps
+  z-source + camera. 2D→3D can later animate by raising z (single-renderer benefit).
+- **Labels:** only "large" nodes (size ≥ threshold) carry a permanent sprite label;
+  all others reveal theirs on hover. Spheres are always opaque and depth-test their
+  labels (a front sphere hides a rear label; a node never hides its own). See ADR 013.
+- **Tuning panel:** a collapsible dev panel of live sliders (sphere sizes, label
+  threshold/offset, node/layer spacing in 2D/2.5D, centre-gravity + repulsion in 3D)
+  for visual fine-tuning. See ADR 014.
 - **Entry:** camera starts zoomed onto the BGB neighborhood with a dismissible
   hint ("zoom out for the bird's-eye view"). Avoids the wall-of-nodes shock.
 - **Click node:** sidebar with rendered full text + table of contents.

@@ -81,7 +81,14 @@ def test_classify_law_metadata():
     assert r["jurabk"] == "BGB"
     assert r["langue"] == "Bürgerliches Gesetzbuch"
     assert r["ausfertigung_datum"] == "1896-08-18"
+    assert r["repealed_at"] is None  # not in source dict → None
     assert r["norm_count"] == 2385
+
+
+def test_classify_law_repealed_at_passed_through():
+    d = _sample_law_dict()
+    d["repealed_at"] = "2026-07-01"
+    assert classify_law("bgb", d, "400-2")["repealed_at"] == "2026-07-01"
 
 
 def test_classify_law_fna_fields():

@@ -145,13 +145,18 @@ set; mind redraw throttling on 6k nodes.
 ## Stufe 5 — Time axis & versions
 **~3–4 weeks. Goal: the "git" promise becomes visible.**
 
-- 🐍 Stage 14: per-law base.html + forward patches from `kmein/gesetze` git history (2021+)
-- 🎨 Global time slider (filter visibility by `created_at`/`repealed_at`)
-- 🎨 Per-law version timeline + paragraph-level diff viewer (diff-match-patch)
-- 🎨 Honest UI note: fine-grained diffs start ~2021
+- ✅ 🎨 Global time slider (filter visibility by `created_at`/`repealed_at`) —
+  dual-range year slider, real lifespan interval-overlap (birth *and* death)
+- ✅ 🐍 `repealed_at` extraction from GII `<standangabe>` (was hardcoded null;
+  108/130 Aufh laws now dated) — see ADR 011
+- ⏳ 🐍 Stage 14: per-law base.html + forward patches from `kmein/gesetze` git history (2021+)
+- ⏳ 🎨 Per-law version timeline + paragraph-level diff viewer (diff-match-patch)
+- ⏳ 🎨 Honest UI note: fine-grained diffs start ~2021
 
-**Done when:** dragging the slider grows/shrinks the corpus over the decades, and
-a law with post-2021 changes shows a working paragraph-level diff.
+**Mostly done:** the time slider grows/shrinks the corpus over the decades.
+**Still open:** per-law version timeline + paragraph diff (Stage 14 / diff cache).
+Note: the layout-stability problem flagged below surfaced as real FA2
+non-reproducibility this stage — see ARCHITECTURE §7 caveat.
 
 → **Diff cache stage:** Sonnet/high — diff-match-patch chain correctness matters
 (a broken patch breaks reconstruction for that law forever). **Time slider

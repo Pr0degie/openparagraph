@@ -63,6 +63,7 @@ def classify_law(slug: str, law_dict: dict, fna_code: str | None) -> dict:
         "amtabk": law_dict.get("amtabk"),
         "langue": law_dict.get("langue"),
         "ausfertigung_datum": law_dict.get("ausfertigung_datum"),
+        "repealed_at": law_dict.get("repealed_at"),
         "norm_count": law_dict.get("norm_count", 0),
         "fna_code": fna_code,
         "main_group": main_group_from_fna(fna_code),

@@ -43,6 +43,7 @@ def law_to_dict(slug: str, law: Law) -> dict:
         "jurabk": law.jurabk,
         "amtabk": law.amtabk,
         "ausfertigung_datum": law.ausfertigung_datum,
+        "repealed_at": law.repealed_at,
         "langue": law.langue,
         "norm_count": law.norm_count,
         "parse_warnings": law.parse_warnings,

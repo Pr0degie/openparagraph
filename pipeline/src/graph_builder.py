@@ -56,7 +56,7 @@ def build_graph(
             },
             "meta_cluster": None,
             "created_at": meta.get("ausfertigung_datum"),
-            "repealed_at": None,
+            "repealed_at": meta.get("repealed_at"),
             "x": None,
             "y": None,
             "color": None,

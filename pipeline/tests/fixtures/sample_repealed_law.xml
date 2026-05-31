@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Minimal GII XML fixture for a repealed law. Carries both a Stand and an Aufh
+     standangabe. The Aufh standkommentar deliberately contains the amending act's
+     date ("v. 8.7.2025") BEFORE the effective repeal date ("mWv 1.7.2026") to
+     prove the anchor-based parser picks the mWv date, not the citation date. -->
+<dokument>
+  <norm builddate="20250101000000" doknr="BJNR000010000">
+    <metadaten>
+      <jurabk>RepealG</jurabk>
+      <amtabk>RepealG</amtabk>
+      <ausfertigung-datum manuell="ja">2005-03-10</ausfertigung-datum>
+      <standangabe checked="ja">
+        <standtyp>Stand</standtyp>
+        <standkommentar>Zuletzt geändert durch Art. 1 G v. 2.1.2024 I Nr. 5</standkommentar>
+      </standangabe>
+      <standangabe checked="ja">
+        <standtyp>Aufh</standtyp>
+        <standkommentar>V aufgeh. durch § 9a idF d. Art. 2 V v. 8.7.2025 mWv 1.7.2026</standkommentar>
+      </standangabe>
+      <langue>Aufzuhebendes Testgesetz</langue>
+    </metadaten>
+    <textdaten>
+      <fussnoten>
+        <Content>
+          <P>Dieses Gesetz dient nur Testzwecken.</P>
+        </Content>
+      </fussnoten>
+    </textdaten>
+  </norm>
+  <norm builddate="20250101000000" doknr="BJNR000010000BJNE000100000">
+    <metadaten>
+      <jurabk>RepealG</jurabk>
+      <enbez>§ 1</enbez>
+      <titel>Anwendungsbereich</titel>
+    </metadaten>
+    <textdaten>
+      <text format="XML">
+        <Content>
+          <P>Dieses Gesetz gilt befristet.</P>
+        </Content>
+      </text>
+    </textdaten>
+  </norm>
+</dokument>

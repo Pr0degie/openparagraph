@@ -43,6 +43,12 @@ def test_law_to_dict_metadata():
     assert d["jurabk"] == "BGB"
     assert d["langue"] == "Bürgerliches Gesetzbuch"
     assert d["ausfertigung_datum"] == "1896-08-18"
+    assert d["repealed_at"] is None  # active law
+
+def test_law_to_dict_repealed_at():
+    law = _sample_law()
+    law.repealed_at = "2026-07-01"
+    assert law_to_dict("bgb", law)["repealed_at"] == "2026-07-01"
 
 def test_law_to_dict_norm_count():
     d = law_to_dict("bgb", _sample_law())

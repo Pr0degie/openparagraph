@@ -82,8 +82,12 @@ ARCHITECTURE.md in the same change.**
 
 - Python 3.12, managed with **uv**. Don't use `pip` directly; use `uv add`.
 - Each Snakemake rule = one stage, named `NN_verb` (e.g. `12_layout`).
-- Stages must be **idempotent** and **deterministic** (fixed random seeds; the
-  layout seed lives in config so re-runs reproduce coordinates).
+- Stages must be **idempotent** and **deterministic** (fixed random seeds). ⚠️
+  **Known exception:** the FA2 layout (stage 12) does *not* reproduce its x/y
+  coordinates across runs despite the seed — a full rebuild moves every node. The
+  PCA `z` is deterministic; the 2D map is not. Treat the committed `nodes.json`
+  coords as the source of record and avoid re-running stage 12 casually. See
+  ARCHITECTURE §7 caveat and PROGRESS "Open questions".
 - Use **lxml** for XML. The GII source XML is dirty (style markup, not pure
   semantics) — handle malformed input gracefully, log, continue.
 - References: always go through `legal-reference-extraction`; do not hand-roll

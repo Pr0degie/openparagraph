@@ -179,3 +179,57 @@ export function initBanner(current: Mode): void {
   el.innerHTML = `<span class="op-logo">openparagraph</span> ${links}`
   document.body.appendChild(el)
 }
+
+// ── Tuning panel ──────────────────────────────────────────────────────────────
+// A collapsible box of live sliders for visual fine-tuning. Each slider shows
+// its current numeric value and fires onChange(key, value) on every input.
+
+export interface TuneSpec {
+  key: string
+  label: string
+  min: number
+  max: number
+  step: number
+  value: number
+}
+
+export function initTunePanel(
+  specs: TuneSpec[],
+  onChange: (key: string, value: number) => void,
+): void {
+  const wrap = document.createElement('div')
+  wrap.className = 'op-tune'
+  const rows = specs
+    .map(
+      (s) => `
+      <label class="op-tune-row" data-key="${s.key}">
+        <span class="op-tune-label">${s.label}</span>
+        <input type="range" min="${s.min}" max="${s.max}" step="${s.step}" value="${s.value}" />
+        <span class="op-tune-val">${s.value}</span>
+      </label>`,
+    )
+    .join('')
+  wrap.innerHTML = `
+    <div class="op-tune-head">Tuning <span class="op-tune-toggle">–</span></div>
+    <div class="op-tune-body">${rows}</div>
+  `
+  document.body.appendChild(wrap)
+
+  const body = wrap.querySelector<HTMLDivElement>('.op-tune-body')!
+  const toggle = wrap.querySelector<HTMLSpanElement>('.op-tune-toggle')!
+  wrap.querySelector<HTMLDivElement>('.op-tune-head')!.addEventListener('click', () => {
+    const hidden = body.style.display === 'none'
+    body.style.display = hidden ? '' : 'none'
+    toggle.textContent = hidden ? '–' : '+'
+  })
+
+  wrap.querySelectorAll<HTMLElement>('.op-tune-row').forEach((row) => {
+    const key = row.dataset.key!
+    const input = row.querySelector<HTMLInputElement>('input')!
+    const val = row.querySelector<HTMLSpanElement>('.op-tune-val')!
+    input.addEventListener('input', () => {
+      val.textContent = input.value
+      onChange(key, parseFloat(input.value))
+    })
+  })
+}
