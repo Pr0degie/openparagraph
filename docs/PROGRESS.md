@@ -105,10 +105,10 @@ Key decisions:
    node-color/opacity accessors; ref fly-to via `cameraPosition`.
 
 ## Open questions / parked thoughts
-- `rule search_index` (Stage 15) is still a `run: pass` STUB → it fails on
-  `output: search-index.json`, so a full `snakemake` (default target → bundle)
-  can't complete. Pre-existing, not a regression. Build the FlexSearch serialize
-  in Stufe 4, or mark the rule's output `touch()`-only until then.
+- DONE: Stage 15 `search_index` implemented (`rules/15_search_index.smk` +
+  `src/search_index.py`) — emits `search-index.json` (6124 docs: id/jurabk/title/
+  desc) for the frontend to load into FlexSearch. Full `snakemake bundle` now
+  completes end-to-end. The frontend FlexSearch wiring itself is still Stufe 4.
 - z visual tuning: `z_scale=6000` ≈ x/y std; frontend `POS_SCALE=20` divides both.
   Might want the 2D→3D "lift" animation (single-renderer benefit) in Stufe 4/6.
 - Real production view-switcher UI (the current banner is a minimal spike toggle);

@@ -13,6 +13,8 @@ data/spike_a/
 data/spike_b/
 data/spike_c/
 data/build/
+# Snakemake completion marker, not an artifact
+data/.bundle.done
 
 # Frontend
 web/node_modules/

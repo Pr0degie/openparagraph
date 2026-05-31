@@ -24,6 +24,7 @@ include: "rules/10_orphan_neighbors.smk"
 include: "rules/11_build_graph.smk"
 include: "rules/12_layout.smk"
 include: "rules/13_color.smk"
+include: "rules/15_search_index.smk"
 
 # ---------------------------------------------------------------------------
 # Terminal target
@@ -61,14 +62,8 @@ rule diff_cache:
         pass
 
 # ---------------------------------------------------------------------------
-# 15  Search index
+# 15  Search index  →  rules/15_search_index.smk
 # ---------------------------------------------------------------------------
-rule search_index:
-    input: f"{DATA}/{JUR}/nodes.json"
-    output: f"{DATA}/_global/search-index.json"
-    run:
-        # FlexSearch serialize over title + short description
-        pass
 
 # ---------------------------------------------------------------------------
 # 17  Validate (integration gate)
