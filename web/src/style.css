@@ -219,3 +219,64 @@ html, body {
   color: #444;
   align-self: center;
 }
+
+/* ── Time slider ── */
+.op-timeslider {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 340px;
+  z-index: 10;
+}
+.op-timeslider-label {
+  text-align: center;
+  font-size: 11px;
+  color: #888;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+  user-select: none;
+}
+.op-timeslider-track {
+  position: relative;
+  height: 20px;
+}
+.op-timeslider-track input[type=range] {
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
+  appearance: none;
+  background: transparent;
+  height: 4px;
+  top: 8px;
+}
+.op-timeslider-track input[type=range]::-webkit-slider-thumb {
+  appearance: none;
+  pointer-events: all;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #6b9bf0;
+  cursor: pointer;
+  border: 2px solid #0d0d0f;
+}
+.op-timeslider-track input[type=range]::-moz-range-thumb {
+  pointer-events: all;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #6b9bf0;
+  cursor: pointer;
+  border: 2px solid #0d0d0f;
+  box-sizing: border-box;
+}
+.op-timeslider-track input[type=range]::-webkit-slider-runnable-track {
+  background: #2a2a38;
+  height: 4px;
+  border-radius: 2px;
+}
+.op-timeslider-track input[type=range]::-moz-range-track {
+  background: #2a2a38;
+  height: 4px;
+  border-radius: 2px;
+}

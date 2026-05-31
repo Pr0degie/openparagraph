@@ -12,7 +12,7 @@ import type { GraphNode, GraphEdge } from './types'
 import {
   initTooltip, showTooltip, hideTooltip,
   initPanel, showPanel,
-  initSearch, initBanner,
+  initSearch, initTimeSlider, initBanner,
   type Mode,
 } from './ui'
 
@@ -89,15 +89,29 @@ function makeNodeObject(node: any): THREE.Group {
   return group
 }
 
-// ── Highlight ──────────────────────────────────────────────────────────────────
+// ── Highlight + time filter ────────────────────────────────────────────────────
 let searchActive = false
 const highlightedIds = new Set<string>()
+
+let timeFilterActive = false
+let timeRange: [number, number] = [0, 9999]
+
+function parseYear(date: string | null): number | null {
+  if (!date || date.startsWith('0000')) return null
+  const y = parseInt(date.slice(0, 4), 10)
+  return isNaN(y) ? null : y
+}
 
 function applyHighlight(nodeById: Map<string, GraphNode>): void {
   nodeFillMats.forEach((mat, id) => {
     const n = nodeById.get(id)
     if (!n) return
-    if (!searchActive || highlightedIds.has(id)) {
+    const inSearch = !searchActive || highlightedIds.has(id)
+    const inTime = !timeFilterActive || (() => {
+      const y = parseYear(n.created_at)
+      return y == null || (y >= timeRange[0] && y <= timeRange[1])
+    })()
+    if (inSearch && inTime) {
       mat.color.set(n.color)
       mat.opacity = 1
       mat.transparent = false
@@ -280,6 +294,16 @@ async function main(): Promise<void> {
       highlightedIds.clear()
       runSearch(q, nodes).forEach((id) => highlightedIds.add(id))
     }
+    applyHighlight(nodeById)
+  })
+
+  // ── Time slider wiring ────────────────────────────────────────────────────────
+  const years = nodes.map((n) => parseYear(n.created_at)).filter((y): y is number => y != null)
+  const minYear = Math.min(...years)
+  const maxYear = Math.max(...years)
+  initTimeSlider(minYear, maxYear, (from, to) => {
+    timeFilterActive = from !== minYear || to !== maxYear
+    timeRange = [from, to]
     applyHighlight(nodeById)
   })
 

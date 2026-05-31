@@ -122,6 +122,46 @@ export function initSearch(onSearch: (q: string) => void): void {
   })
 }
 
+// ── Time slider ───────────────────────────────────────────────────────────────
+
+export function initTimeSlider(
+  min: number,
+  max: number,
+  onChange: (from: number, to: number) => void,
+): void {
+  const wrap = document.createElement('div')
+  wrap.className = 'op-timeslider'
+  wrap.innerHTML = `
+    <div class="op-timeslider-label">
+      <span class="op-ts-from">${min}</span>
+      <span class="op-ts-sep"> – </span>
+      <span class="op-ts-to">${max}</span>
+    </div>
+    <div class="op-timeslider-track">
+      <input class="op-ts-lo" type="range" min="${min}" max="${max}" value="${min}" step="1" />
+      <input class="op-ts-hi" type="range" min="${min}" max="${max}" value="${max}" step="1" />
+    </div>
+  `
+  document.body.appendChild(wrap)
+
+  const lo = wrap.querySelector<HTMLInputElement>('.op-ts-lo')!
+  const hi = wrap.querySelector<HTMLInputElement>('.op-ts-hi')!
+  const fromLabel = wrap.querySelector<HTMLSpanElement>('.op-ts-from')!
+  const toLabel = wrap.querySelector<HTMLSpanElement>('.op-ts-to')!
+
+  function update(): void {
+    let f = parseInt(lo.value, 10)
+    let t = parseInt(hi.value, 10)
+    if (f > t) { [f, t] = [t, f]; lo.value = String(f); hi.value = String(t) }
+    fromLabel.textContent = String(f)
+    toLabel.textContent = String(t)
+    onChange(f, t)
+  }
+
+  lo.addEventListener('input', update)
+  hi.addEventListener('input', update)
+}
+
 // ── Banner ────────────────────────────────────────────────────────────────────
 
 export function initBanner(current: Mode): void {
