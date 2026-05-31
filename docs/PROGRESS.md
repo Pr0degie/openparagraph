@@ -9,9 +9,36 @@
 ---
 
 ## Current stage
-**Stufe 3 — Frontend graph shell** — DONE. Pipeline end-to-end complete; 6124 nodes, 20 091 edges on disk.
+**Stufe 3 — Frontend graph shell** — DONE, plus a major mid-stream pivot:
+the renderer moved from sigma.js (2D-only) to a **single Three.js renderer
+(3d-force-graph)** serving **2D / 2.5D / 3D** views, and the pipeline grew a
+**semantic z-axis**. Next up is Stufe 4 (interaction) on the new renderer.
+Branch: `spike/3d-view` (no longer a throwaway — our feature branch; not yet
+merged to main).
 
 ## Last session
+2026-05-31 (later). **3D renderer migration + pipeline z-axis (ADR 009).**
+
+Decided one renderer for all three views (see `docs/decisions/009-single-renderer-3d.md`).
+Three commits on `spike/3d-view`:
+- `76076ee` pipeline(layout): retune FA2 (scaling_ratio 2→8, gravity 1→0.3,
+  adjust_sizes) to stop the core clumping — regenerated layout/nodes.
+- `ceb0354` web(render): replace sigma.js + graphology with 3d-force-graph
+  (Three.js). Spike → `web/src/main.ts`; old sigma trio archived under
+  `web/archive/sigma-2d/` (not deleted). Flat MeshBasic + dark BackSide outline
+  reproduces the sigma 2D look; 2D mode is camera-locked top-down, no rotation.
+  View toggle via `#mode=2d|2.5d|3d`. Bundle ~1 MB (three.js).
+- `11b5e4f` pipeline(layout): semantic z from PCA of stage-09 embeddings
+  (`pca_z`, deterministic SVD). Stage 12 injects z when `layout.dimensions=3`;
+  `merge_layout` copies it; all 6124 nodes now have z (std 6000 ≈ x/y). 43 tests.
+
+Docs: ADR 009 created; ARCHITECTURE §3/4/5/7/8/9/11 + ROADMAP updated.
+
+App now at `/` (not `/spike.html`); dev server bound to 0.0.0.0 + Vite polling
+(WSL `/mnt/c` HMR fix). Verified renders headless via the bundled Chromium at
+`~/.cache/ms-playwright/chromium-1223/`.
+
+## Last session (Stufe 3 scaffold)
 2026-05-31. **Erste End-to-End-Ausführung der Pipeline + Stage-07-Bugfix.**
 
 **Frontend scaffold (Stufe 3):**
@@ -70,10 +97,22 @@ Key decisions:
   Orphans with no resolvable neighbours get neutral slate (#ORPHAN_HSL).
 
 ## Next concrete step
-1. `cd web && pnpm dev` — im Browser prüfen ob 6 124 Nodes korrekt rendern (Farben, Größen, Zoom/Pan)
-2. Danach **Stufe 4 — Interaction & detail view**: Hover-Tooltip (jurabk + Titel) + Click-to-detail-Panel (Metadaten, ausgehende Referenzen).
+1. Eyeball the three views in a real browser (`cd web && pnpm dev`, open
+   `http://<wsl-ip>:5173/#mode=2d|2.5d|3d`); tune `z_scale` / `NODE_R` if needed.
+2. Decide on merging `spike/3d-view` → `main` (squash or keep the 3 commits).
+3. Then **Stufe 4 — Interaction & detail view** on the Three.js renderer:
+   hover tooltip (jurabk + title) + click → detail panel; search highlight via
+   node-color/opacity accessors; ref fly-to via `cameraPosition`.
 
 ## Open questions / parked thoughts
+- `rule search_index` (Stage 15) is still a `run: pass` STUB → it fails on
+  `output: search-index.json`, so a full `snakemake` (default target → bundle)
+  can't complete. Pre-existing, not a regression. Build the FlexSearch serialize
+  in Stufe 4, or mark the rule's output `touch()`-only until then.
+- z visual tuning: `z_scale=6000` ≈ x/y std; frontend `POS_SCALE=20` divides both.
+  Might want the 2D→3D "lift" animation (single-renderer benefit) in Stufe 4/6.
+- Real production view-switcher UI (the current banner is a minimal spike toggle);
+  pick the default landing view (currently 2.5d).
 - Stage 05 work for later: lift FNA PDF coverage past 53.5% via fuzzy/token title
   matching + FNA-abbr↔jurabk join; pull code→Sachgebiet-name taxonomy tree from
   PDF front matter; add buzer enrichment behind a slow cached crawler.
