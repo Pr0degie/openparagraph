@@ -48,7 +48,7 @@ continuity across sessions.
 
 openparagraph: a static, two-part system. A **Python/Snakemake pipeline**
 (`/pipeline`) turns official German law data into static JSON; a **TypeScript +
-sigma.js frontend** (`/web`) renders it. No server, no DB, no Docker in
+Three.js frontend** (`/web`) renders it. No server, no DB, no Docker in
 production. Full design in `ARCHITECTURE.md`; plan in `ROADMAP.md`. **If a design
 decision is unclear, ARCHITECTURE.md wins — and if you change a decision, update
 ARCHITECTURE.md in the same change.**
@@ -73,7 +73,7 @@ ARCHITECTURE.md in the same change.**
 
 ```
 /pipeline   Python + Snakemake. Stages 01–17 (see ARCHITECTURE.md §9).
-/web        Vite + TS + sigma.js frontend.
+/web        Vite + TS + Three.js (3d-force-graph) frontend.
 /data       Generated artifacts. NOT hand-edited. Output of the pipeline.
 /docs       Spike decision notes, ADRs.
 ```
@@ -94,8 +94,11 @@ ARCHITECTURE.md in the same change.**
 ## Frontend conventions (`/web`)
 
 - TypeScript, **pnpm**, Vite. Strict mode on.
-- sigma.js v3 + graphology. Use **node reducers** for the search-highlight and
-  hover states — do not mutate the graph for transient visual state.
+- **One renderer: Three.js via `3d-force-graph`** (ADR 009) for all three views
+  (2D / 2.5D / 3D), switched by URL hash. Drive search-highlight and hover via
+  the node color/size/opacity **accessor functions** (recompute over a reactive
+  highlight set) — do not mutate the graph for transient visual state. The old
+  sigma.js renderer is archived under `web/archive/sigma-2d/`.
 - **No `localStorage`/`sessionStorage`** assumptions for core data; the data is
   fetched static JSON. (Browser storage is fine for user prefs like theme.)
 - Keep all colors and sizing driven by the data (`color`, `size` on nodes) — the

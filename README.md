@@ -33,9 +33,9 @@ XML from gesetze-im-internet.de and the git history from community law mirrors,
 extracts cross-references with
 [`legal-reference-extraction`](https://github.com/openlegaldata/legal-reference-extraction),
 classifies laws by their Fundstellennachweis A (FNA) domain, computes a
-ForceAtlas2 layout, and emits static JSON. A Vite + TypeScript + sigma.js
-frontend renders it. No server, no database — just static files refreshed by a
-scheduled GitHub Action.
+ForceAtlas2 layout, and emits static JSON. A Vite + TypeScript + Three.js
+frontend renders it in 2D, 2.5D and 3D. No server, no database — just static
+files refreshed by a scheduled GitHub Action.
 
 See [ARCHITECTURE.md](./ARCHITECTURE.md) for the full design.
 
@@ -45,7 +45,7 @@ See [ARCHITECTURE.md](./ARCHITECTURE.md) for the full design.
 |---|---|
 | Pipeline | Python 3.12, Snakemake, lxml, sentence-transformers, fa2_modified |
 | References | openlegaldata/legal-reference-extraction |
-| Frontend | TypeScript, Vite, sigma.js v3, graphology, FlexSearch, diff-match-patch |
+| Frontend | TypeScript, Vite, Three.js (3d-force-graph), FlexSearch, diff-match-patch |
 | Hosting | Static (Vercel / Netlify / GH Pages) + GitHub Actions cron |
 
 ## Data sources
