@@ -9,30 +9,38 @@
 ---
 
 ## Current stage
-**Stufe 3 — Frontend graph shell** — DONE, plus a major mid-stream pivot:
-the renderer moved from sigma.js (2D-only) to a **single Three.js renderer
-(3d-force-graph)** serving **2D / 2.5D / 3D** views, and the pipeline grew a
-**semantic z-axis**. Next up is Stufe 4 (interaction) on the new renderer.
-Branch: `spike/3d-view` (no longer a throwaway — our feature branch; not yet
-merged to main).
+**Stufe 4 — Interaction & detail view** — core features shipped (tooltip,
+detail panel, search+highlight, fly-to, smooth controls, node labels).
+Node-size proportions and colour/contrast tuning are still open (deferred to
+next session if the user wants further tweaks).
 
 ## Last session
-2026-05-31 (later). **3D renderer migration + pipeline z-axis (ADR 009).**
+2026-05-31. **Stufe 4 — Interaction & detail view (commit `67ea97e`).**
 
-Decided one renderer for all three views (see `docs/decisions/009-single-renderer-3d.md`).
-Three commits on `spike/3d-view`:
-- `76076ee` pipeline(layout): retune FA2 (scaling_ratio 2→8, gravity 1→0.3,
-  adjust_sizes) to stop the core clumping — regenerated layout/nodes.
-- `ceb0354` web(render): replace sigma.js + graphology with 3d-force-graph
-  (Three.js). Spike → `web/src/main.ts`; old sigma trio archived under
-  `web/archive/sigma-2d/` (not deleted). Flat MeshBasic + dark BackSide outline
-  reproduces the sigma 2D look; 2D mode is camera-locked top-down, no rotation.
-  View toggle via `#mode=2d|2.5d|3d`. Bundle ~1 MB (three.js).
-- `11b5e4f` pipeline(layout): semantic z from PCA of stage-09 embeddings
-  (`pca_z`, deterministic SVD). Stage 12 injects z when `layout.dimensions=3`;
-  `merge_layout` copies it; all 6124 nodes now have z (std 6000 ≈ x/y). 43 tests.
+New files: `web/src/ui.ts` (tooltip, detail panel, search box, banner).
+Refactored `web/src/main.ts` + `style.css`. Key changes:
 
-Docs: ADR 009 created; ARCHITECTURE §3/4/5/7/8/9/11 + ROADMAP updated.
+- **Hover tooltip**: custom HTML div tracking mouse via `onNodeHover`;
+  suppresses 3d-force-graph's native title-attr tooltip.
+- **Detail panel**: slide-in right sidebar (300 px, CSS transform transition).
+  Shows jurabk (coloured left-border), full title, FNA code, cluster,
+  dates, degree, outgoing + incoming ref chips (≤25, +N overflow).
+  Ref chips are clickable → fly camera to that node.
+- **Search / highlight**: pill input (center-top), `/` keyboard shortcut
+  focuses it, `Esc` clears. Simple substring match over jurabk+title
+  (~3 ms for 6124 nodes). Hit nodes keep colour; rest dims to #1a1a22 @
+  22% opacity by imperatively updating `nodeFillMats` Map (MeshBasicMaterial).
+- **Fly-to**: 2D mode rotates camera 90° left (side-on from −x) with
+  `noRotate` unlocked and an "↑ Übersicht" button to reset top-down.
+  2.5D/3D flies to dist-120 offset sphere around the node.
+- **Smooth controls**: `enableDamping=true`, `dampingFactor=0.07`,
+  `zoomSpeed=0.35`, `rotateSpeed=0.45` — three-forcegraph calls
+  `controls.update()` each frame so damping works without a second loop.
+- **Node labels**: OffscreenCanvas sprites floating above spheres; rely on
+  Three.js `sizeAttenuation` for zoom-threshold effect (tiny when zoomed
+  out, readable when zoomed in — no per-frame JS).
+- Added `@types/three 0.184.1`; removed `declare module 'three'` override
+  that was blocking proper type resolution.
 
 App now at `/` (not `/spike.html`); dev server bound to 0.0.0.0 + Vite polling
 (WSL `/mnt/c` HMR fix). Verified renders headless via the bundled Chromium at
@@ -97,18 +105,17 @@ Key decisions:
   Orphans with no resolvable neighbours get neutral slate (#ORPHAN_HSL).
 
 ## Next concrete step
-1. Eyeball the three views in a real browser (`cd web && pnpm dev`, open
-   `http://<wsl-ip>:5173/#mode=2d|2.5d|3d`); tune `z_scale` / `NODE_R` if needed.
-2. Decide on merging `spike/3d-view` → `main` (squash or keep the 3 commits).
-3. Then **Stufe 4 — Interaction & detail view** on the Three.js renderer:
-   hover tooltip (jurabk + title) + click → detail panel; search highlight via
-   node-color/opacity accessors; ref fly-to via `cameraPosition`.
+1. Open `http://<wsl-ip>:5173` (pnpm dev from web/), eyeball all three modes.
+   Tune `NODE_R`, `dampingFactor`, `zoomSpeed` in `main.ts` if feel is off.
+2. Optional UI tweaks the user may still want: node-size proportions (range
+   in data unknown — check min/max `size` in nodes.json), colour/contrast pass,
+   edge width proportional to weight.
+3. Stufe 5 — Time axis & versions (macro slider via `ausfertigung-datum` / `repealed_at`).
 
 ## Open questions / parked thoughts
-- DONE: Stage 15 `search_index` implemented (`rules/15_search_index.smk` +
-  `src/search_index.py`) — emits `search-index.json` (6124 docs: id/jurabk/title/
-  desc) for the frontend to load into FlexSearch. Full `snakemake bundle` now
-  completes end-to-end. The frontend FlexSearch wiring itself is still Stufe 4.
+- DONE: Stage 15 `search_index` already emits `search-index.json`; frontend
+  search now works via simple substring match (fast enough, ~3 ms). FlexSearch
+  import is in deps but not used — could swap in later for fuzzy/prefix search.
 - z visual tuning: `z_scale=6000` ≈ x/y std; frontend `POS_SCALE=20` divides both.
   Might want the 2D→3D "lift" animation (single-renderer benefit) in Stufe 4/6.
 - Real production view-switcher UI (the current banner is a minimal spike toggle);
@@ -146,6 +153,6 @@ Key decisions:
   - [x] Stage 12 layout (data/_global/layout.json)
   - [x] Stage 13 color (data/de-bund/nodes.json + data/_global/meta-taxonomy.json)
 - [x] Stufe 3 — Frontend graph shell (scaffold + real pipeline data: 6124 nodes, 20091 edges)
-- [ ] Stufe 4 — Interaction & detail view
+- [x] Stufe 4 — Interaction & detail view (tooltip, panel, search, fly-to, smooth controls, labels)
 - [ ] Stufe 5 — Time axis & versions
 - [ ] Stufe 6 — Polish & v1 launch
