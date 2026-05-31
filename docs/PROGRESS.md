@@ -9,9 +9,30 @@
 ---
 
 ## Current stage
-**Stufe 2 — Layout & color** (Stages 09–13 complete — Stufe 2 done)
+**Stufe 3 — Frontend graph shell** — DONE. Pipeline end-to-end complete; 6124 nodes, 20 091 edges on disk.
 
 ## Last session
+2026-05-31. **Erste End-to-End-Ausführung der Pipeline + Stage-07-Bugfix.**
+
+**Frontend scaffold (Stufe 3):**
+- `web/tsconfig.json`, `web/vite.config.ts`, `web/index.html`
+- `web/src/types.ts`, `data.ts`, `graph.ts`, `main.ts`, `style.css`
+- `web/pnpm-workspace.yaml` — pnpm 11 esbuild approval
+- `web/public/data/` — 20-Node/20-Edge Fixtures für Dev ohne Pipeline
+- Vite dev middleware: `../data/*` → `/data/*` (echte Daten haben Vorrang vor Fixtures)
+- `pnpm build` sauber: 28 Module, 162 KB JS, TypeScript strict
+
+**Pipeline-Ausführung Stages 01–13:**
+- Stage 01–06, 08–13 liefen problemlos durch
+- Stage 07 (extract_refs) hing zwei Mal mit hängenden Worker-Prozessen
+- Fix: `pebble.ProcessPool` mit `timeout=60` (tötet Worker-Prozess tatsächlich; `concurrent.futures`-Timeout tut das nicht) — siehe ADR 008
+
+**Endergebnis:**
+- `data/de-bund/nodes.json` — 6 124 Gesetze mit x/y/color/size
+- `data/_global/edges.json` — 20 091 Kanten
+- `data/_global/layout.json`, `meta-taxonomy.json`, `reference-resolver.json`
+
+## Last session (prior)
 2026-05-30. Implemented **Stages 09, 10, 11 (updated), 12** in one block.
 New files:
 - `pipeline/src/embedder.py` — `texts_for_embedding()` + `embed()` (sentence-transformers)
@@ -49,16 +70,8 @@ Key decisions:
   Orphans with no resolvable neighbours get neutral slate (#ORPHAN_HSL).
 
 ## Next concrete step
-**Stufe 3 — Frontend graph shell.**
-Start with `web/` scaffold: Vite + TypeScript + sigma.js v3 + graphology.
-First milestone: load `data/de-bund/nodes.json` + `data/_global/edges.json` + `data/_global/layout.json`
-and render the graph with correct colors and sizes — no interaction yet.
-
-Steps:
-1. `web/src/data.ts` — typed loader for nodes.json + edges.json + layout.json
-2. `web/src/graph.ts` — build graphology MultiGraph from loaded data
-3. `web/src/main.ts` — mount sigma.js renderer with node reducers for color/size
-4. Verify: `pnpm dev` renders ~6000 nodes on dark background
+1. `cd web && pnpm dev` — im Browser prüfen ob 6 124 Nodes korrekt rendern (Farben, Größen, Zoom/Pan)
+2. Danach **Stufe 4 — Interaction & detail view**: Hover-Tooltip (jurabk + Titel) + Click-to-detail-Panel (Metadaten, ausgehende Referenzen).
 
 ## Open questions / parked thoughts
 - Stage 05 work for later: lift FNA PDF coverage past 53.5% via fuzzy/token title
@@ -93,7 +106,7 @@ Steps:
   - [x] Stage 11 updated (hard + soft edge union)
   - [x] Stage 12 layout (data/_global/layout.json)
   - [x] Stage 13 color (data/de-bund/nodes.json + data/_global/meta-taxonomy.json)
-- [ ] Stufe 3 — Frontend graph shell
+- [x] Stufe 3 — Frontend graph shell (scaffold + real pipeline data: 6124 nodes, 20091 edges)
 - [ ] Stufe 4 — Interaction & detail view
 - [ ] Stufe 5 — Time axis & versions
 - [ ] Stufe 6 — Polish & v1 launch
