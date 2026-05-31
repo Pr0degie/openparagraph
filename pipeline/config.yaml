@@ -19,11 +19,12 @@ orphan_neighbors:
 layout:
   seed: 42                 # fixed for reproducible coordinates
   iterations: 2000
-  scaling_ratio: 2.0
-  gravity: 1.0
+  scaling_ratio: 8.0       # was 2.0 — higher = stronger node repulsion, prevents clumping
+  gravity: 0.3             # was 1.0 — lower = less pull toward center, allows spreading
   strong_gravity: false
   barnes_hut_theta: 1.2
   outbound_attraction_distribution: true   # dissuade hubs
+  adjust_sizes: true       # FA2 accounts for node sizes in repulsion — larger hubs push harder
 
 validation:
   min_nodes: 5000

@@ -36,6 +36,7 @@ rule layout:
             strong_gravity=cfg["strong_gravity"],
             barnes_hut_theta=cfg["barnes_hut_theta"],
             outbound_attraction_distribution=cfg["outbound_attraction_distribution"],
+            adjust_sizes=cfg.get("adjust_sizes", False),
         )
 
         _log.info("Layout done; x range %.1f–%.1f",

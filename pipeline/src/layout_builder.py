@@ -35,6 +35,7 @@ def run_layout(
     strong_gravity: bool,
     barnes_hut_theta: float,
     outbound_attraction_distribution: bool,
+    adjust_sizes: bool = False,
 ) -> dict[str, dict]:
     """
     Returns {node_id: {"x": float, "y": float}} for every node.
@@ -58,6 +59,7 @@ def run_layout(
         scalingRatio=scaling_ratio,
         gravity=gravity,
         strongGravityMode=strong_gravity,
+        adjustSizes=adjust_sizes,
         verbose=False,
     )
 
