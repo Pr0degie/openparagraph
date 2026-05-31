@@ -1,0 +1,22 @@
+[
+  {"source":"DE-BUND/BGB","target":"DE-BUND/BGBEG","type":"explicit","weight":3.0},
+  {"source":"DE-BUND/BGB","target":"DE-BUND/HGB","type":"explicit","weight":2.0},
+  {"source":"DE-BUND/BGB","target":"DE-BUND/GmbHG","type":"explicit","weight":1.0},
+  {"source":"DE-BUND/BGB","target":"DE-BUND/AktG","type":"explicit","weight":1.0},
+  {"source":"DE-BUND/HGB","target":"DE-BUND/GmbHG","type":"explicit","weight":2.0},
+  {"source":"DE-BUND/HGB","target":"DE-BUND/AktG","type":"explicit","weight":2.0},
+  {"source":"DE-BUND/GG","target":"DE-BUND/BVerfGG","type":"explicit","weight":1.0},
+  {"source":"DE-BUND/GG","target":"DE-BUND/VwGO","type":"explicit","weight":1.0},
+  {"source":"DE-BUND/VwGO","target":"DE-BUND/VwVfG","type":"explicit","weight":2.0},
+  {"source":"DE-BUND/StGB","target":"DE-BUND/StPO","type":"explicit","weight":4.0},
+  {"source":"DE-BUND/StGB","target":"DE-BUND/JGG","type":"explicit","weight":1.0},
+  {"source":"DE-BUND/StGB","target":"DE-BUND/BtMG","type":"explicit","weight":1.0},
+  {"source":"DE-BUND/AO","target":"DE-BUND/EStG","type":"explicit","weight":3.0},
+  {"source":"DE-BUND/AO","target":"DE-BUND/UStG","type":"explicit","weight":2.0},
+  {"source":"DE-BUND/AO","target":"DE-BUND/KStG","type":"explicit","weight":1.0},
+  {"source":"DE-BUND/EStG","target":"DE-BUND/KStG","type":"explicit","weight":2.0},
+  {"source":"DE-BUND/EStG","target":"DE-BUND/GewStG","type":"explicit","weight":1.0},
+  {"source":"DE-BUND/BGB","target":"DE-BUND/UWG","type":"explicit","weight":1.0},
+  {"source":"DE-BUND/GG","target":"DE-BUND/StGB","type":"explicit","weight":1.0},
+  {"source":"DE-BUND/VwVfG","target":"DE-BUND/AWG","type":"explicit","weight":1.0}
+]

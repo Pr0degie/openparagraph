@@ -1,0 +1,29 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background: #0d0d0f;
+  color: #e0e0e0;
+  font-family: system-ui, sans-serif;
+  overflow: hidden;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+}
+
+#error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #e06c75;
+  font-size: 0.9rem;
+  padding: 2rem;
+  white-space: pre-wrap;
+}
