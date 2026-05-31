@@ -1,57 +1,27 @@
 // Graph renderer. ONE Three.js renderer (3d-force-graph) serves all three views;
 // the view is chosen by URL hash and only swaps the z-coordinate source + camera:
-//   #mode=2d    → z=0, flat FA2 map, rotation locked (the familiar 2D map)
-//   #mode=2.5d  → FA2 x/y map + semantic z (pipeline PCA z when present, else main_group)
+//   #mode=2d    → z=0, flat FA2 map, rotation locked
+//   #mode=2.5d  → FA2 x/y map + semantic z (pipeline PCA z)
 //   #mode=3d    → full in-browser 3D force layout
 // See docs/decisions/009-single-renderer-3d.md.
 import './style.css'
 import ForceGraph3D from '3d-force-graph'
 import * as THREE from 'three'
 import { loadNodes, loadEdges } from './data'
-import type { GraphNode } from './types'
+import type { GraphNode, GraphEdge } from './types'
+import {
+  initTooltip, showTooltip, hideTooltip,
+  initPanel, showPanel,
+  initSearch, initBanner,
+  type Mode,
+} from './ui'
 
-// --- sigma-like flat node look: crisp MeshBasic fill (ignores light, no dim
-// gradient) + thin dark BackSide outline as a border ring. Geometry/materials
-// cached so 6124 nodes stay cheap.
-const geoCache = new Map<string, any>()
-function sphereGeo(r: number): any {
-  const key = r.toFixed(1)
-  let g = geoCache.get(key)
-  if (!g) {
-    g = new THREE.SphereGeometry(r, 10, 10)
-    geoCache.set(key, g)
-  }
-  return g
-}
-const fillMatCache = new Map<string, any>()
-function fillMat(color: string): any {
-  let m = fillMatCache.get(color)
-  if (!m) {
-    m = new THREE.MeshBasicMaterial({ color })
-    fillMatCache.set(color, m)
-  }
-  return m
-}
-const outlineMat = new THREE.MeshBasicMaterial({ color: 0x0b0b0d, side: THREE.BackSide })
+// ── Constants ──────────────────────────────────────────────────────────────────
+const NODE_R = 1.4     // base radius multiplier
+const POS_SCALE = 20   // FA2 coords ±~20000 → camera-friendly range
+const Z_STEP = 100     // z-band per FNA main_group in fallback 2.5D mode
 
-// Node radius factor. Lower = smaller dots = less overlap in the flat 2D view
-// (where overlapping nodes fully occlude each other). 2.0 clumped hard; 1.2
-// keeps a little overlap in the dense core but lets you tell nodes apart.
-const NODE_R = 1.2
-
-function makeNodeObject(node: any): any {
-  const r = Math.cbrt(node.val || 1) * NODE_R
-  const fill = new THREE.Mesh(sphereGeo(r), fillMat(node.color))
-  const outline = new THREE.Mesh(sphereGeo(+(r * 1.28).toFixed(1)), outlineMat)
-  const group = new THREE.Group()
-  group.add(outline, fill)
-  return group
-}
-
-const POS_SCALE = 20 // FA2 coords are ±~20000 → bring into a camera-friendly range
-const Z_STEP = 100 // vertical gap per FNA main_group level in 2.5D mode
-
-type Mode = '2d' | '2.5d' | '3d'
+// ── Mode ───────────────────────────────────────────────────────────────────────
 function currentMode(): Mode {
   const raw = location.hash.match(/mode=([^&]+)/)?.[1] ?? ''
   if (raw === '2d') return '2d'
@@ -59,44 +29,115 @@ function currentMode(): Mode {
   return '2.5d'
 }
 
-// z-band from the FNA main group (1–9). Centered on 5, null → mid plane.
-function zFromMainGroup(node: GraphNode): number {
-  const g = node.classification?.main_group
-  if (g == null) return 0
-  return (g - 5) * Z_STEP
-}
-
-const LABELS: Record<Mode, string> = {
-  '2d': '2D (flache FA2-Karte)',
-  '2.5d': '2.5D (FA2-Karte + z)',
-  '3d': 'echtes 3D (d3-force)',
-}
-const MODES: Mode[] = ['2d', '2.5d', '3d']
-
-function banner(mode: Mode): void {
-  const link = (m: Mode) =>
-    m === mode
-      ? `<b style="color:#fff">${m}</b>`
-      : `<a style="color:#6db3ff" href="#mode=${m}">${m}</a>`
-  const el = document.createElement('div')
-  el.style.cssText =
-    'position:fixed;top:8px;left:8px;z-index:10;font:13px system-ui;' +
-    'color:#c8c8c8;background:#1a1a1ecc;padding:6px 10px;border-radius:6px'
-  el.innerHTML =
-    `Ansicht: <b>${LABELS[mode]}</b> &nbsp;·&nbsp; ${MODES.map(link).join(' / ')}`
-  document.body.appendChild(el)
-}
-
-// Selecting a mode only changes the URL hash, which alone won't re-render.
-// Reload so the new mode is built from scratch.
 window.addEventListener('hashchange', () => location.reload())
 
+// ── Geometry / material cache ──────────────────────────────────────────────────
+const geoCache = new Map<string, THREE.SphereGeometry>()
+function sphereGeo(r: number): THREE.SphereGeometry {
+  const key = r.toFixed(1)
+  let g = geoCache.get(key)
+  if (!g) {
+    g = new THREE.SphereGeometry(r, 12, 12)
+    geoCache.set(key, g)
+  }
+  return g
+}
+
+const outlineMat = new THREE.MeshBasicMaterial({ color: 0x0a0a0d, side: THREE.BackSide })
+
+// Each node's fill material is tracked so highlight can recolour them imperatively.
+const nodeFillMats = new Map<string, THREE.MeshBasicMaterial>()
+
+// ── Node labels ────────────────────────────────────────────────────────────────
+// OffscreenCanvas avoids DOM overhead; falls back to regular canvas.
+function makeLabel(text: string): THREE.Sprite {
+  const W = 256, H = 44
+  const canvas: HTMLCanvasElement =
+    typeof OffscreenCanvas !== 'undefined'
+      ? (new OffscreenCanvas(W, H) as unknown as HTMLCanvasElement)
+      : Object.assign(document.createElement('canvas'), { width: W, height: H })
+  const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
+  const label = text.length > 14 ? `${text.slice(0, 13)}…` : text
+  ctx.font = 'bold 18px system-ui, sans-serif'
+  ctx.textAlign = 'center'
+  ctx.textBaseline = 'middle'
+  ctx.fillStyle = 'rgba(255,255,255,0.88)'
+  ctx.fillText(label, W / 2, H / 2)
+  const tex = new THREE.CanvasTexture(canvas)
+  const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthTest: false })
+  const sprite = new THREE.Sprite(mat)
+  sprite.scale.set(14, 4, 1)
+  return sprite
+}
+
+// ── Node object factory ────────────────────────────────────────────────────────
+function makeNodeObject(node: any): THREE.Group {
+  const r = Math.max(Math.cbrt((node.val as number) || 1) * NODE_R, 0.6)
+  const mat = new THREE.MeshBasicMaterial({ color: node.color as string })
+  nodeFillMats.set(node.id as string, mat)
+
+  const fill = new THREE.Mesh(sphereGeo(r), mat)
+  const outline = new THREE.Mesh(sphereGeo(+(r * 1.3).toFixed(1)), outlineMat)
+
+  // Label sprite: sizeAttenuation=true (default) → readable when zoomed in,
+  // tiny/invisible when zoomed out — no per-frame JS needed.
+  const label = makeLabel(node.label as string)
+  label.position.y = r + 3.5
+
+  const group = new THREE.Group()
+  group.add(outline, fill, label)
+  return group
+}
+
+// ── Highlight ──────────────────────────────────────────────────────────────────
+let searchActive = false
+const highlightedIds = new Set<string>()
+
+function applyHighlight(nodeById: Map<string, GraphNode>): void {
+  nodeFillMats.forEach((mat, id) => {
+    const n = nodeById.get(id)
+    if (!n) return
+    if (!searchActive || highlightedIds.has(id)) {
+      mat.color.set(n.color)
+      mat.opacity = 1
+      mat.transparent = false
+    } else {
+      mat.color.set('#1a1a22')
+      mat.opacity = 0.22
+      mat.transparent = true
+    }
+  })
+}
+
+// Simple substring search (6124 nodes × short strings ≈ 2-4 ms — no FlexSearch needed).
+function runSearch(query: string, nodes: GraphNode[]): Set<string> {
+  const q = query.trim().toLowerCase()
+  if (!q) return new Set()
+  const result = new Set<string>()
+  for (const n of nodes) {
+    if (`${n.jurabk ?? ''} ${n.title ?? ''}`.toLowerCase().includes(q)) {
+      result.add(n.id)
+    }
+  }
+  return result
+}
+
+// ── z helpers ──────────────────────────────────────────────────────────────────
+function zFromMainGroup(node: GraphNode): number {
+  const g = node.classification?.main_group
+  return g != null ? (g - 5) * Z_STEP : 0
+}
+
+// ── Main ───────────────────────────────────────────────────────────────────────
 async function main(): Promise<void> {
   const container = document.getElementById('app')!
   const mode = currentMode()
-  banner(mode)
 
-  let nodes, edges
+  initBanner(mode)
+  initTooltip()
+  initPanel()
+
+  let nodes: GraphNode[], edges: GraphEdge[]
   try {
     ;[nodes, edges] = await Promise.all([loadNodes(), loadEdges()])
   } catch (err) {
@@ -106,6 +147,18 @@ async function main(): Promise<void> {
       'Run the pipeline first, or place fixture JSON in web/public/data/.'
     return
   }
+
+  // Lookup tables
+  const nodeById = new Map(nodes.map((n) => [n.id, n]))
+  const adjOut = new Map<string, GraphEdge[]>()
+  const adjIn = new Map<string, GraphEdge[]>()
+  for (const e of edges) {
+    if (!adjOut.has(e.source)) adjOut.set(e.source, [])
+    if (!adjIn.has(e.target)) adjIn.set(e.target, [])
+    adjOut.get(e.source)!.push(e)
+    adjIn.get(e.target)!.push(e)
+  }
+
   const nodeIds = new Set(nodes.map((n) => n.id))
 
   const gNodes = nodes.map((n) => {
@@ -116,67 +169,135 @@ async function main(): Promise<void> {
       val: n.size,
     }
     if (mode === '3d') {
-      // Seed from the FA2 layout (+ small z jitter) so the 3D relaxation starts
-      // near a good solution and is on-screen immediately.
       base.x = n.x / POS_SCALE
       base.y = n.y / POS_SCALE
       base.z = ((n.id.charCodeAt(0) % 11) - 5) * 20
     } else {
-      // 2d / 2.5d: fix every node so the force engine never moves it.
       base.fx = n.x / POS_SCALE
       base.fy = n.y / POS_SCALE
-      // 2.5d z: prefer the pipeline's semantic z (PCA, same coord space as x/y)
-      // once it exists; until then fall back to the FNA main_group band.
       base.fz = mode === '2.5d' ? (n.z != null ? n.z / POS_SCALE : zFromMainGroup(n)) : 0
     }
     return base
   })
 
+  const gNodeById = new Map(gNodes.map((n) => [n.id as string, n]))
+
   const gLinks = edges
     .filter((e) => nodeIds.has(e.source) && nodeIds.has(e.target))
     .map((e) => ({ source: e.source, target: e.target }))
 
+  // Mouse position for tooltip placement (onNodeHover doesn't carry coordinates)
+  let mouseX = 0, mouseY = 0
+  container.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY })
+
+  // Overview position for 2D reset button
+  let overview2d = { x: 0, y: 0 }
+
+  function flyTo(id: string): void {
+    const gNode = gNodeById.get(id)
+    if (!gNode) return
+    const x = ((mode === '3d' ? gNode.x : gNode.fx) ?? 0) as number
+    const y = ((mode === '3d' ? gNode.y : gNode.fy) ?? 0) as number
+    const z = ((mode === '3d' ? gNode.z : gNode.fz) ?? 0) as number
+
+    if (mode === '2d') {
+      // 2D detail view: rotate camera 90° to the left (side-on from −x direction).
+      const ctrl = Graph.controls() as any
+      ctrl.noRotate = false
+      Graph.cameraPosition({ x: x - 260, y, z: 90 }, { x, y, z: 0 }, 1200)
+    } else {
+      const dist = 120
+      const len = Math.hypot(x || 0.01, y || 0.01, z || 0.01)
+      const ratio = 1 + dist / len
+      Graph.cameraPosition(
+        { x: x * ratio, y: y * ratio, z: z * ratio + dist * 0.4 },
+        { x, y, z },
+        1200,
+      )
+    }
+
+    const nodeData = nodeById.get(id)
+    if (nodeData) {
+      showPanel(
+        nodeData,
+        adjOut.get(id) ?? [],
+        adjIn.get(id) ?? [],
+        nodeById,
+        flyTo,
+        mode === '2d' ? resetCamera2d : undefined,
+      )
+    }
+  }
+
+  function resetCamera2d(): void {
+    const ctrl = Graph.controls() as any
+    ctrl.noRotate = true
+    Graph.cameraPosition(
+      { x: overview2d.x, y: overview2d.y, z: 2200 },
+      { x: overview2d.x, y: overview2d.y, z: 0 },
+      1000,
+    )
+  }
+
+  // ── Graph instance ────────────────────────────────────────────────────────────
   const Graph = new (ForceGraph3D as any)(container)
     .backgroundColor('#0d0d0f')
     .graphData({ nodes: gNodes, links: gLinks })
     .nodeId('id')
-    .nodeLabel('label')
+    .nodeLabel(() => '')          // suppress built-in title; we use custom tooltip
     .nodeThreeObject(makeNodeObject)
-    .linkColor(() => '#3a3a3a')
-    .linkOpacity(0.12)
+    .linkColor(() => '#363640')
+    .linkOpacity(0.18)
     .linkWidth(0)
     .enableNodeDrag(false)
-    .onNodeClick((node: any) => {
-      // fly camera to the clicked node (proves Stufe-4 fly-to is trivial here)
-      const dist = 120
-      const ratio = 1 + dist / Math.hypot(node.x || 1, node.y || 1, node.z || 1)
-      Graph.cameraPosition(
-        { x: (node.x || 0) * ratio, y: (node.y || 0) * ratio, z: (node.z || 0) * ratio },
-        node,
-        1500,
-      )
+    .onNodeHover((node: any) => {
+      document.body.style.cursor = node ? 'pointer' : 'default'
+      if (node) {
+        const n = nodeById.get(node.id as string)
+        if (n) showTooltip(n, mouseX, mouseY)
+      } else {
+        hideTooltip()
+      }
     })
+    .onNodeClick((node: any) => flyTo(node.id as string))
 
-  const fixed = mode !== '3d'
-  Graph.cooldownTicks(fixed ? 0 : 80) // fixed coords → no sim; 3d → settle fast
+  // ── Controls ──────────────────────────────────────────────────────────────────
+  // three-forcegraph calls controls.update() every frame — enableDamping works.
+  const controls = Graph.controls() as any
+  controls.enableDamping = true
+  controls.dampingFactor = 0.07
+  controls.zoomSpeed = 0.35
+  controls.rotateSpeed = 0.45
+  controls.panSpeed = 0.6
 
-  // In 2D: look straight DOWN onto the map. The FA2 cloud is NOT centred on the
-  // origin, so the camera must sit directly above the cloud's centre — otherwise
-  // zoomToFit pulls it along a slanted axis and the view tilts. Rotation locked.
+  // ── Search wiring ─────────────────────────────────────────────────────────────
+  initSearch((q) => {
+    if (!q.trim()) {
+      searchActive = false
+      highlightedIds.clear()
+    } else {
+      searchActive = true
+      highlightedIds.clear()
+      runSearch(q, nodes).forEach((id) => highlightedIds.add(id))
+    }
+    applyHighlight(nodeById)
+  })
+
+  // ── Initial camera ────────────────────────────────────────────────────────────
+  Graph.cooldownTicks(mode !== '3d' ? 0 : 80)
+
   if (mode === '2d') {
-    const controls: any = Graph.controls()
     controls.noRotate = true
     const xs = gNodes.map((n) => n.fx as number)
     const ys = gNodes.map((n) => n.fy as number)
     const cx = (Math.min(...xs) + Math.max(...xs)) / 2
     const cy = (Math.min(...ys) + Math.max(...ys)) / 2
+    overview2d = { x: cx, y: cy }
     setTimeout(() => Graph.cameraPosition({ x: cx, y: cy, z: 2200 }, { x: cx, y: cy, z: 0 }, 0), 250)
-    // fit AFTER the camera sits straight above centre → stays perfectly top-down
     setTimeout(() => Graph.zoomToFit(600, 60), 350)
     return
   }
 
-  // Fit the whole corpus in view. Fixed modes are instant; 3D refits while settling.
   const fit = () => Graph.zoomToFit(600, 40)
   setTimeout(fit, 300)
   if (mode === '3d') {
