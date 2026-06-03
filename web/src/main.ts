@@ -366,9 +366,14 @@ async function main(): Promise<void> {
   // centre and soften the default repulsion so the cloud stays compact.
   const gravityForce = centerGravityForce().strength(tuneGravity)
   if (mode === '3d') {
+    // Register the custom forces on the (already-created) d3 simulation. Do NOT
+    // call d3ReheatSimulation() here: it synchronously sets engineRunning=true and
+    // starts the tick loop, but `state.layout` is only assigned at the end of the
+    // deferred graphData digest (next animation frame). The race crashed layoutTick
+    // with "Cannot read properties of undefined (reading 'tick')" → black screen.
+    // The engine starts itself after the digest and picks up these forces.
     Graph.d3Force('charge').strength(-tuneRepel)
     Graph.d3Force('gravity', gravityForce)
-    Graph.d3ReheatSimulation()
   }
 
   // ── Search wiring ─────────────────────────────────────────────────────────────
