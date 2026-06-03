@@ -30,6 +30,37 @@ let tuneLabelThreshold = 7.5 // node.size ≥ this ⇒ "large" ⇒ permanent lab
 let tuneLabelGap = 3.5       // vertical gap from the (scaled) sphere top to its label
 let tuneGravity = 0.18       // 3D: pull of every node toward the centre (0 = none)
 let tuneRepel = 12           // 3D: node-node repulsion strength (d3 charge ≈ 30 default)
+let tuneRingRadius = 400     // 3D: radius of the Saturn ring of unclassified laws
+let tuneRingWidth = 60       // 3D: radial band thickness of the ring
+let tuneRingZJitter = 20     // 3D: out-of-plane thickness of the ring (before tilt)
+let tuneRingTilt = 0.35      // 3D: ring tilt about the x-axis, radians (0 = flat z-plane)
+let tuneRingDim = 0.5        // 3D: size/colour de-emphasis of ring nodes (1 = none)
+
+// ── Saturn ring (3D) ─────────────────────────────────────────────────────────
+// The ~46% of laws with no FNA classification carry no meaningful map position,
+// so in 3D we pull them out of the force cloud and pin them to a thin flat ring
+// around it — letting the classified clusters in the centre read clearly.
+const isUnclassified = (n: GraphNode): boolean => n.classification?.main_group == null
+const GOLDEN = Math.PI * (3 - Math.sqrt(5))   // ≈ 2.39996 rad — even angular spread
+
+// Stable index of every ring node (built once in main, in node array order).
+let ringIndex = new Map<string, number>()
+
+// Deterministic position of ring node #i on a thin, tilted annulus. Golden-angle
+// for the angle; decorrelated fractional sequences for radius/z so the band reads
+// as a thin ring (not a 1-node-wide wire or a spiral).
+function ringPos(i: number): { fx: number; fy: number; fz: number } {
+  const theta = i * GOLDEN
+  const radius = tuneRingRadius + ((i * 0.61803398875) % 1 - 0.5) * tuneRingWidth
+  const zJit = ((i * 0.7548776662467) % 1 - 0.5) * tuneRingZJitter
+  const rx = Math.cos(theta) * radius
+  const ry = Math.sin(theta) * radius
+  return {
+    fx: rx,
+    fy: ry * Math.cos(tuneRingTilt) - zJit * Math.sin(tuneRingTilt),
+    fz: ry * Math.sin(tuneRingTilt) + zJit * Math.cos(tuneRingTilt),
+  }
+}
 
 // ── Mode ───────────────────────────────────────────────────────────────────────
 function currentMode(): Mode {
@@ -68,6 +99,7 @@ interface NodeParts {
   label: THREE.Sprite
   baseR: number
   size: number
+  isRing: boolean
 }
 const nodeParts = new Map<string, NodeParts>()
 let hoveredId: string | null = null
@@ -114,7 +146,7 @@ function makeNodeObject(node: any): THREE.Group {
   const group = new THREE.Group()
   group.add(outline, fill, label)
 
-  const parts: NodeParts = { id, group, fill, outline, label, baseR, size }
+  const parts: NodeParts = { id, group, fill, outline, label, baseR, size, isRing: ringIndex.has(id) }
   nodeParts.set(id, parts)
   applyNodeSize(parts)   // sets scale, label offset + visibility from tune state
   return group
@@ -123,7 +155,8 @@ function makeNodeObject(node: any): THREE.Group {
 // Apply the current size/label tune state to one node's parts.
 function applyNodeSize(p: NodeParts): void {
   const isLarge = p.size >= tuneLabelThreshold
-  const mul = isLarge ? tuneLargeMul : tuneSmallMul
+  // Ring (unclassified) nodes are shrunk so the central clusters dominate.
+  const mul = (isLarge ? tuneLargeMul : tuneSmallMul) * (p.isRing ? tuneRingDim : 1)
   p.fill.scale.setScalar(mul)
   p.outline.scale.setScalar(mul)
   // Float the label above the scaled outline so the node never hides its own label.
@@ -157,7 +190,10 @@ function applyHighlight(nodeById: Map<string, GraphNode>): void {
       timeRange[1],
     )
     if (inSearch && inTime) {
-      mat.color.set(n.color)
+      // Ring (unclassified) nodes are muted by default so the classified clusters
+      // pop; an active search match still gets full colour so it stays findable.
+      const muteRing = ringIndex.has(id) && tuneRingDim < 1 && !(searchActive && highlightedIds.has(id))
+      mat.color.set(muteRing ? '#3a3a44' : n.color)
       mat.opacity = 1
       mat.transparent = false
     } else {
@@ -239,6 +275,10 @@ async function main(): Promise<void> {
 
   const nodeIds = new Set(nodes.map((n) => n.id))
 
+  // Build the stable ring index (node array order) before gNodes so the 3D map
+  // can pin unclassified nodes and makeNodeObject can flag them.
+  ringIndex = new Map(nodes.filter(isUnclassified).map((n, i) => [n.id, i]))
+
   const gNodes = nodes.map((n) => {
     const base: Record<string, unknown> = {
       id: n.id,
@@ -247,9 +287,15 @@ async function main(): Promise<void> {
       val: n.size,
     }
     if (mode === '3d') {
-      base.x = n.x / POS_SCALE
-      base.y = n.y / POS_SCALE
-      base.z = ((n.id.charCodeAt(0) % 11) - 5) * 20
+      if (isUnclassified(n)) {
+        // Pin to the Saturn ring; classified nodes stay free-floating below.
+        const { fx, fy, fz } = ringPos(ringIndex.get(n.id)!)
+        base.fx = fx; base.fy = fy; base.fz = fz
+      } else {
+        base.x = n.x / POS_SCALE
+        base.y = n.y / POS_SCALE
+        base.z = ((n.id.charCodeAt(0) % 11) - 5) * 20
+      }
     } else {
       base.fx = (n.x / POS_SCALE) * tuneSpread
       base.fy = (n.y / POS_SCALE) * tuneSpread
@@ -423,6 +469,22 @@ async function main(): Promise<void> {
     Graph.d3ReheatSimulation()
   }
 
+  // Recompute the pinned ring coords in place (3D only) when a ring slider moves.
+  // Mirrors applyPositions: rewrite fixed + live coords, nudge the Three group,
+  // then reheat one tick so the lib flushes the new positions (ring nodes are
+  // pinned, so nothing drifts; the free cloud re-settles in the same basin).
+  function applyRing(): void {
+    if (mode !== '3d') return
+    ringIndex.forEach((i, id) => {
+      const { fx, fy, fz } = ringPos(i)
+      const g = gNodeById.get(id)
+      if (g) { g.fx = fx; g.fy = fy; g.fz = fz; g.x = fx; g.y = fy; g.z = fz }
+      const p = nodeParts.get(id)
+      if (p) p.group.position.set(fx, fy, fz)
+    })
+    Graph.d3ReheatSimulation()
+  }
+
   const tuneSpecs = [
     { key: 'largeSize', label: 'Große Kugeln ×', min: 0.5, max: 6, step: 0.1, value: tuneLargeMul },
     { key: 'smallSize', label: 'Andere Kugeln ×', min: 0.2, max: 4, step: 0.1, value: tuneSmallMul },
@@ -438,6 +500,11 @@ async function main(): Promise<void> {
     tuneSpecs.push(
       { key: 'gravity', label: 'Zentrum-Anziehung', min: 0, max: 1, step: 0.02, value: tuneGravity },
       { key: 'repel', label: 'Abstoßung', min: 0, max: 60, step: 1, value: tuneRepel },
+      { key: 'ringRadius', label: 'Ring-Radius', min: 150, max: 900, step: 10, value: tuneRingRadius },
+      { key: 'ringWidth', label: 'Ring-Breite', min: 0, max: 300, step: 5, value: tuneRingWidth },
+      { key: 'ringZJitter', label: 'Ring-Dicke', min: 0, max: 120, step: 2, value: tuneRingZJitter },
+      { key: 'ringTilt', label: 'Ring-Neigung', min: 0, max: 1.2, step: 0.02, value: tuneRingTilt },
+      { key: 'ringDim', label: 'Ring-Dämpfung', min: 0.2, max: 1, step: 0.05, value: tuneRingDim },
     )
   }
 
@@ -451,6 +518,11 @@ async function main(): Promise<void> {
       case 'labelGap': tuneLabelGap = v; applyAllSizes(); break
       case 'gravity': tuneGravity = v; gravityForce.strength(v); Graph.d3ReheatSimulation(); break
       case 'repel': tuneRepel = v; Graph.d3Force('charge').strength(-v); Graph.d3ReheatSimulation(); break
+      case 'ringRadius': tuneRingRadius = v; applyRing(); break
+      case 'ringWidth': tuneRingWidth = v; applyRing(); break
+      case 'ringZJitter': tuneRingZJitter = v; applyRing(); break
+      case 'ringTilt': tuneRingTilt = v; applyRing(); break
+      case 'ringDim': tuneRingDim = v; applyAllSizes(); applyHighlight(nodeById); break
     }
   })
 
@@ -469,7 +541,12 @@ async function main(): Promise<void> {
     return
   }
 
-  const fit = () => Graph.zoomToFit(600, 40)
+  // In 3D, fit the camera to the classified cluster cloud only (exclude the ring
+  // via getGraphBbox's node-filter arg) so the clusters fill the view and the ring
+  // frames them. 2.5D has no ring, so fit everything.
+  const fit = mode === '3d'
+    ? () => Graph.zoomToFit(600, 40, (node: any) => !ringIndex.has(node.id as string))
+    : () => Graph.zoomToFit(600, 40)
   setTimeout(fit, 300)
   if (mode === '3d') {
     setTimeout(fit, 1500)

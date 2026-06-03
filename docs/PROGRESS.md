@@ -17,10 +17,38 @@ interval-overlap (`created_at` .. `repealed_at`). Pipeline now extracts
 `repealed_at` from the source XML (was hardcoded `None`). Then, from live user
 feedback: 2.5D back to discrete FNA layers, opaque spheres + depth-tested labels,
 large-only permanent labels (others on hover), a live tuning panel, and 3D
-centre-gravity + softened repulsion. Branch `stufe5-time-slider`; **not merged**,
-**not committed**. Live visual eyeball ongoing with the user (build/tests green).
+centre-gravity + softened repulsion. Then (2026-06-03): fixed a 3D black-screen
+race and added the **Saturn ring** — the ~46% unclassified laws are pinned to a
+thin tilted annulus around the force cloud so the central clusters read (ADR 015).
+Branch `stufe5-time-slider`; **committed, not merged**. Live visual eyeball ongoing
+with the user (build/tests green).
 
 ## Last session
+2026-06-03. **3D black-screen fix + Saturn ring for unclassified laws.**
+
+Branch `stufe5-time-slider`. Two web-only changes (`web/src/main.ts`), each
+verified in a headless Chromium probe (no `pageerror` in 3D/2.5D/2D):
+
+- **3D black-screen race fix (commit `9ff51cc`).** The 3D force tuning from
+  `6fdd772` called `Graph.d3ReheatSimulation()` synchronously right after
+  `graphData()`. That flips `engineRunning=true` and starts the tick loop, but
+  3d-force-graph only assigns `state.layout` at the end of the *deferred* graphData
+  digest (next frame). The race fired `layoutTick` before `state.layout` existed →
+  `Cannot read properties of undefined (reading 'tick')` → dead render loop → black
+  screen. Fix: keep registering the custom charge/gravity forces but **drop the
+  init-time reheat**; the engine starts itself after the digest and picks them up.
+- **Saturn ring (ADR 015).** The 2806 unclassified laws (`main_group === null`,
+  46%) drowned the clusters. Now pinned via `fx/fy/fz` to a thin tilted annulus
+  (`ringPos(i)`: golden-angle + decorrelated radius/z, default radius 400 / width 60
+  / tilt 0.35); classified nodes stay force-driven in the centre. Ring nodes are
+  **de-emphasised** (shrunk by `tuneRingDim`, recoloured muted slate `#3a3a44` in
+  `applyHighlight`, still opaque) unless search-matched. **Camera fits the clusters
+  only** — 3D `zoomToFit` passes a node filter to `getGraphBbox` excluding the ring.
+  Five new live sliders (radius/width/thickness/tilt/dim) via a new `applyRing()`.
+- TS strict / `pnpm typecheck` green; geometry verified (annulus radius 370–430, no
+  NaN). 2D/2.5D untouched. Default cloud↔ring gap is tight — left to live tuning.
+
+## Last session (Stufe 5 birth/death + visual tuning, commit `6fdd772`)
 2026-05-31. **Stufe 5 — birth/death time filter + `repealed_at` extraction, then
 a visual/UX tuning round from live user feedback.**
 
@@ -164,18 +192,18 @@ Key decisions:
   Orphans with no resolvable neighbours get neutral slate (#ORPHAN_HSL).
 
 ## Next concrete step
-**Nothing is committed yet** — the whole session lives in the working tree on
-branch `stufe5-time-slider`. First action next time: review `git status`/diff and
-commit (pipeline `repealed_at` + tests + ADR 011, then the visual work + ADRs
-012–014, then the doc updates). There is also a stray untracked
+Stufe-5 work is **committed** on `stufe5-time-slider` (`6fdd772` core, `9ff51cc`
+3D fix, plus today's ring commit). Not merged. There may still be a stray untracked
 `stufe5timeslider.patch` (teleport artifact) that can be deleted.
 
 1. **Finish the visual eyeball / tuning** on the dev server
    (`http://<wsl-ip>:5174`, branch `stufe5-time-slider`): the user was dialling in
    the tuning-panel sliders (sphere sizes, label threshold/offset, 2.5D layer +
-   node spacing, 3D centre-gravity + repulsion). **Once they settle on values they
-   like, bake them in as the new defaults** (the `tune*` consts in `main.ts`) and
-   decide whether to keep the tuning panel as dev-only or hide it for v1.
+   node spacing, 3D centre-gravity + repulsion, **and now the 5 Saturn-ring
+   sliders**). Default cloud↔ring separation is tight — likely wants a larger ring
+   radius or stronger centre-gravity. **Once they settle on values they like, bake
+   them in as the new defaults** (the `tune*` consts in `main.ts`) and decide
+   whether to keep the tuning panel as dev-only or hide it for v1.
 2. Time slider: consider a label like "existierte zwischen" to convey the
    lifespan-overlap semantics. Verify future range (2027–2030) dims repealed laws.
 3. **Commit + merge** `stufe5-time-slider` → `main`. Note: local `main` already
