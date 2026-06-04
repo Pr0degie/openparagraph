@@ -213,6 +213,13 @@ Stufe-5 work is **committed** on `stufe5-time-slider` (`6fdd772` core, `9ff51cc`
    the still-open Stufe-5 tail: Stage 14 version history + per-law diff viewer.
 
 ## Open questions / parked thoughts
+- **Ring still covers the clusters too much (user, 2026-06-04).** The Saturn ring
+  of unclassified laws (ADR 015) is better than scattering, but the user is **not
+  yet satisfied** — the unclassified nodes still obscure the central clusters too
+  much. Wants to change something here in a future session. Not yet decided what;
+  candidate levers: larger default ring radius / stronger centre-gravity so the
+  cloud is more compact, a tighter cluster-only camera fit, smaller/dimmer ring
+  nodes (`tuneRingDim`), or moving the ring further out of the cluster's view cone.
 - **⚠️ Layout (Stage 12 / FA2) is NOT reproducible across runs.** Discovered this
   session: a full rebuild moved all 6124 x/y coords (max ~39k units) even though
   node set, edges, embeddings and the seed were unchanged. The z-axis (PCA from
