@@ -229,6 +229,10 @@ references read as fine mist rather than spaghetti, subtle node glow.
   discrete FNA-group layers, see ADR 012) / 3D (full in-browser force layout with
   centre-gravity + softened repulsion, see ADR 014). One renderer; the toggle swaps
   z-source + camera. 2D→3D can later animate by raising z (single-renderer benefit).
+  In 3D the ~46% **unclassified** laws (no FNA code) are pulled out of the force
+  cloud and pinned to a thin, tilted **Saturn ring** around it — de-emphasised
+  (shrunk + muted) so the classified clusters in the centre read; the camera fits
+  the clusters, not the ring. See ADR 015.
 - **Labels:** only "large" nodes (size ≥ threshold) carry a permanent sprite label;
   all others reveal theirs on hover. Spheres are always opaque and depth-test their
   labels (a front sphere hides a rear label; a node never hides its own). See ADR 013.
