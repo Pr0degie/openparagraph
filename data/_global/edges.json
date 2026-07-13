@@ -2449,15 +2449,15 @@
   },
   {
     "source": "de-bund/AsylVfG 1992",
-    "target": "de-bund/ZPO",
+    "target": "de-bund/StPO",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/AsylVfG 1992",
-    "target": "de-bund/StPO",
+    "source": "de-bund/AsylZBV 2026",
+    "target": "de-bund/AsylVfG 1992",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
@@ -7729,7 +7729,7 @@
   },
   {
     "source": "de-bund/BImSchV 37 2024",
-    "target": "de-bund/UIG 2005",
+    "target": "de-bund/InsO",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
@@ -7738,6 +7738,14 @@
   {
     "source": "de-bund/BImSchV 37 2024",
     "target": "de-bund/VwVfG",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BImSchV 37 2024",
+    "target": "de-bund/UIG 2005",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
@@ -8593,6 +8601,14 @@
   },
   {
     "source": "de-bund/BMELBGebV",
+    "target": "de-bund/ÖLG-DV",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BMELBGebV",
     "target": "de-bund/SeeFischG",
     "type": "explicit",
     "weight": 1.0,
@@ -8602,6 +8618,22 @@
   {
     "source": "de-bund/BMELBGebV",
     "target": "de-bund/SeefiV",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BMELBGebV",
+    "target": "de-bund/KCanG",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BMELBGebV",
+    "target": "de-bund/MedCanG",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
@@ -8625,6 +8657,14 @@
   },
   {
     "source": "de-bund/BMELBGebV",
+    "target": "de-bund/BGebG",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BMELBGebV",
     "target": "de-bund/TabakerzG",
     "type": "explicit",
     "weight": 1.0,
@@ -8641,7 +8681,7 @@
   },
   {
     "source": "de-bund/BMELBGebV",
-    "target": "de-bund/TierGesG",
+    "target": "de-bund/VwVfG",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
@@ -8649,7 +8689,7 @@
   },
   {
     "source": "de-bund/BMELBGebV",
-    "target": "de-bund/VwVfG",
+    "target": "de-bund/TierGesG",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
@@ -9120,14 +9160,6 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/BMJGerWidAnO 2024",
-    "target": "de-bund/BBG 2009",
-    "type": "explicit",
-    "weight": 1.0,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
     "source": "de-bund/BMJVBhWidVertrAnO",
     "target": "de-bund/BBG 2009",
     "type": "explicit",
@@ -9146,6 +9178,14 @@
   {
     "source": "de-bund/BMJVertrAnO 2013",
     "target": "de-bund/AO 1977",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BMJVGerWidAnO 2026",
+    "target": "de-bund/BBG 2009",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
@@ -16872,6 +16912,14 @@
     "valid_to": null
   },
   {
+    "source": "de-bund/FGO",
+    "target": "de-bund/GKG 2004",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
     "source": "de-bund/FHBLeistBV",
     "target": "de-bund/BBesG",
     "type": "explicit",
@@ -17522,22 +17570,6 @@
   {
     "source": "de-bund/FloristMFPrV",
     "target": "de-bund/BBiG 2005",
-    "type": "explicit",
-    "weight": 1.0,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/FlRV",
-    "target": "de-bund/SchRegO",
-    "type": "explicit",
-    "weight": 1.0,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/FlRV",
-    "target": "de-bund/EStG",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
@@ -21481,6 +21513,30 @@
   },
   {
     "source": "de-bund/GWB",
+    "target": "de-bund/FStrG",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/GWB",
+    "target": "de-bund/WaStrG",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/GWB",
+    "target": "de-bund/LuftVG",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/GWB",
     "target": "de-bund/StGB",
     "type": "explicit",
     "weight": 1.0,
@@ -24368,14 +24424,6 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/KäseV",
-    "target": "de-bund/KäseV",
-    "type": "explicit",
-    "weight": 1.0,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
     "source": "de-bund/KaffeeStG 2009",
     "target": "de-bund/AO 1977",
     "type": "explicit",
@@ -25162,6 +25210,46 @@
   {
     "source": "de-bund/KMAG",
     "target": "de-bund/KAGB",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/KMAnzV",
+    "target": "de-bund/VwVfG",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/KMAnzV",
+    "target": "de-bund/KMAG",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/KMAnzV",
+    "target": "de-bund/WpIG",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/KMAnzV",
+    "target": "de-bund/KAGB",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/KMAnzV",
+    "target": "de-bund/WpHG",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
@@ -26609,14 +26697,6 @@
   },
   {
     "source": "de-bund/LNGG",
-    "target": "de-bund/ZPO",
-    "type": "explicit",
-    "weight": 1.0,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/LNGG",
     "target": "de-bund/VwGO",
     "type": "explicit",
     "weight": 1.0,
@@ -26642,6 +26722,14 @@
   {
     "source": "de-bund/LogSystFachwBAProFV",
     "target": "de-bund/BBiG 2005",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/LohnUGAÜV 7",
+    "target": "de-bund/TVG",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
@@ -27330,14 +27418,6 @@
   {
     "source": "de-bund/LuftVZO",
     "target": "de-bund/VwZG 2005",
-    "type": "explicit",
-    "weight": 1.0,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/LupinenV 2026",
-    "target": "de-bund/SaatVerkG 1985",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
@@ -29954,14 +30034,6 @@
   {
     "source": "de-bund/MilchTAusbV",
     "target": "de-bund/BBiG 2005",
-    "type": "explicit",
-    "weight": 1.0,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/MilchV",
-    "target": "de-bund/KäseV",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
@@ -33897,14 +33969,6 @@
   },
   {
     "source": "de-bund/PStV",
-    "target": "de-bund/AsylVfG 1992",
-    "type": "explicit",
-    "weight": 1.0,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/PStV",
     "target": "de-bund/AO 1977",
     "type": "explicit",
     "weight": 1.0,
@@ -35385,6 +35449,22 @@
   },
   {
     "source": "de-bund/RVG",
+    "target": "de-bund/VwGO",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/RVG",
+    "target": "de-bund/FGO",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/RVG",
     "target": "de-bund/GKG 2004",
     "type": "explicit",
     "weight": 1.0,
@@ -35402,14 +35482,6 @@
   {
     "source": "de-bund/RVG",
     "target": "de-bund/GVG",
-    "type": "explicit",
-    "weight": 1.0,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/RVG",
-    "target": "de-bund/VwGO",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
@@ -35450,14 +35522,6 @@
   {
     "source": "de-bund/RVG",
     "target": "de-bund/GWB",
-    "type": "explicit",
-    "weight": 1.0,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/RVG",
-    "target": "de-bund/FGO",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
@@ -36208,8 +36272,16 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/SchAusrV",
-    "target": "de-bund/SchSV 1998",
+    "source": "de-bund/SchAusrV 2026",
+    "target": "de-bund/FlRV",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/SchAusrV 2026",
+    "target": "de-bund/SchSG",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
@@ -36314,14 +36386,6 @@
   {
     "source": "de-bund/SchlussFinG",
     "target": "de-bund/BHO",
-    "type": "explicit",
-    "weight": 1.0,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/SchnellLG",
-    "target": "de-bund/GWB",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
@@ -36938,6 +37002,14 @@
   {
     "source": "de-bund/SeeFischG",
     "target": "de-bund/FlRV",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/SeeFischG",
+    "target": "de-bund/VwVfG",
     "type": "explicit",
     "weight": 1.0,
     "valid_from": null,
@@ -41441,6 +41513,14 @@
   },
   {
     "source": "de-bund/SVHV",
+    "target": "de-bund/BHO",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/SVHV",
     "target": "de-bund/HGB",
     "type": "explicit",
     "weight": 1.0,
@@ -45193,6 +45273,14 @@
   },
   {
     "source": "de-bund/VwGO",
+    "target": "de-bund/GKG 2004",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/VwGO",
     "target": "de-bund/RPflG 1969",
     "type": "explicit",
     "weight": 1.0,
@@ -47185,6 +47273,14 @@
   },
   {
     "source": "de-bund/WRegG",
+    "target": "de-bund/StGB",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/WRegG",
     "target": "de-bund/UStG 1980",
     "type": "explicit",
     "weight": 1.0,
@@ -48049,6 +48145,14 @@
   },
   {
     "source": "de-bund/ZPO",
+    "target": "de-bund/GKG 2004",
+    "type": "explicit",
+    "weight": 1.0,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/ZPO",
     "target": "de-bund/GVG",
     "type": "explicit",
     "weight": 1.0,
@@ -48810,6 +48914,46 @@
   {
     "source": "de-bund/ÖDAPrV",
     "target": "de-bund/BASPOErmV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/ÖkodesignG",
+    "target": "de-bund/ElektroG 2015",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/ÖkodesignG",
+    "target": "de-bund/StromPBG",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/ÖkodesignG",
+    "target": "de-bund/AbfBeauftrV 2017",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/ÖkodesignG",
+    "target": "de-bund/ROG 2008",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/ÖkodesignG",
+    "target": "de-bund/PflFAssG",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -50097,7 +50241,7 @@
   },
   {
     "source": "de-bund/AgrarFrostBeih2024V",
-    "target": "de-bund/AgrarOLkV",
+    "target": "de-bund/BLESV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -50105,7 +50249,15 @@
   },
   {
     "source": "de-bund/AgrarFrostBeih2024V",
-    "target": "de-bund/BMELBGebV",
+    "target": "de-bund/HonigV 2004",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/AgrarFrostBeih2024V",
+    "target": "de-bund/AgrarOLkV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -50122,14 +50274,6 @@
   {
     "source": "de-bund/AgrarFrostBeih2024V",
     "target": "de-bund/OGVermNormDV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/AgrarFrostBeih2024V",
-    "target": "de-bund/LupinenV 2026",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -50737,7 +50881,7 @@
   },
   {
     "source": "de-bund/AlgIIV 2008",
-    "target": "de-bund/BBFestV 2025",
+    "target": "de-bund/KomtrZV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -50745,7 +50889,7 @@
   },
   {
     "source": "de-bund/AlgIIV 2008",
-    "target": "de-bund/AusbErstV",
+    "target": "de-bund/EVV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -50761,7 +50905,7 @@
   },
   {
     "source": "de-bund/AlgIIV 2008",
-    "target": "de-bund/EVV",
+    "target": "de-bund/AusbErstV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -51217,14 +51361,6 @@
   },
   {
     "source": "de-bund/AMRNOG",
-    "target": "de-bund/EuRAG",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/AMRNOG",
     "target": "de-bund/KWGVermV",
     "type": "soft",
     "weight": 0.1,
@@ -51234,6 +51370,14 @@
   {
     "source": "de-bund/AMRNOG",
     "target": "de-bund/ERVV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/AMRNOG",
+    "target": "de-bund/ÖkodesignG",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -52417,7 +52561,7 @@
   },
   {
     "source": "de-bund/AsylVfG 1992",
-    "target": "de-bund/AUG 2011",
+    "target": "de-bund/ZPO",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -52425,7 +52569,7 @@
   },
   {
     "source": "de-bund/AsylVfG 1992",
-    "target": "de-bund/GastStG",
+    "target": "de-bund/BMG",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -52433,15 +52577,7 @@
   },
   {
     "source": "de-bund/AsylVfG 1992",
-    "target": "de-bund/AufenthG 2004",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/AsylVfG 1992",
-    "target": "de-bund/IntErbRVG",
+    "target": "de-bund/WSG 2020",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -52450,6 +52586,14 @@
   {
     "source": "de-bund/AsylVfG 1992",
     "target": "de-bund/IntGüRVG",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/AsylVfG 1992",
+    "target": "de-bund/IntErbRVG",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -52490,6 +52634,46 @@
   {
     "source": "de-bund/AsylVfGNG",
     "target": "de-bund/HolzSiG",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/AsylZBV 2026",
+    "target": "de-bund/RVIOBeschZG",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/AsylZBV 2026",
+    "target": "de-bund/AuswSG",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/AsylZBV 2026",
+    "target": "de-bund/VersStGDB",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/AsylZBV 2026",
+    "target": "de-bund/DienstUnFürAngAAÜbertrAnO",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/AsylZBV 2026",
+    "target": "de-bund/FreizügG/EU 2004",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -53696,40 +53880,40 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/AugOptMstrV",
-    "target": "de-bund/TischlMstrV 2008",
+    "source": "de-bund/AugOptMstrV 2026",
+    "target": "de-bund/FPMMstrV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/AugOptMstrV",
-    "target": "de-bund/MaurerBetonbMstrV",
+    "source": "de-bund/AugOptMstrV 2026",
+    "target": "de-bund/BestMstrV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/AugOptMstrV",
-    "target": "de-bund/MuLMstrV",
+    "source": "de-bund/AugOptMstrV 2026",
+    "target": "de-bund/ElektroTechMstrV 2024",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/AugOptMstrV",
-    "target": "de-bund/BrbMstrV",
+    "source": "de-bund/AugOptMstrV 2026",
+    "target": "de-bund/InformationsTechMstrV 2024",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/AugOptMstrV",
-    "target": "de-bund/StuckMstrV",
+    "source": "de-bund/AugOptMstrV 2026",
+    "target": "de-bund/ElektroMbMstrV 2024",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -54057,6 +54241,14 @@
   },
   {
     "source": "de-bund/AusbDienstLArbbV 6",
+    "target": "de-bund/AusbErstV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/AusbDienstLArbbV 6",
     "target": "de-bund/MiLoAufzV",
     "type": "soft",
     "weight": 0.1,
@@ -54074,14 +54266,6 @@
   {
     "source": "de-bund/AusbDienstLArbbV 6",
     "target": "de-bund/ArbMDFAngAusbV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/AusbDienstLArbbV 6",
-    "target": "de-bund/PflegeArbbV 6",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -54177,7 +54361,7 @@
   },
   {
     "source": "de-bund/AusbErstV",
-    "target": "de-bund/SGB2§20Abs2Bek 2007",
+    "target": "de-bund/AlgIIV 2008",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57225,7 +57409,7 @@
   },
   {
     "source": "de-bund/BBiG2005§73AnO",
-    "target": "de-bund/BBiG§84AnO 9",
+    "target": "de-bund/BBiG§84AnO 8",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57233,7 +57417,7 @@
   },
   {
     "source": "de-bund/BBiG2005§73AnO",
-    "target": "de-bund/BBiG§84AnO 8",
+    "target": "de-bund/BBiG§84AnO 9",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57393,7 +57577,7 @@
   },
   {
     "source": "de-bund/BBiG2005§73AnO 2023",
-    "target": "de-bund/BBiG§84AnO 9",
+    "target": "de-bund/BBiG§84AnO 10",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57401,7 +57585,7 @@
   },
   {
     "source": "de-bund/BBiG2005§73AnO 2023",
-    "target": "de-bund/BBiG§84AnO 10",
+    "target": "de-bund/BBiG§84AnO 9",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57457,7 +57641,7 @@
   },
   {
     "source": "de-bund/BBiG§84AnO 10",
-    "target": "de-bund/BBiG§84AnO 17",
+    "target": "de-bund/BBiG§84AnO 19",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57481,14 +57665,6 @@
   },
   {
     "source": "de-bund/BBiG§84AnO 10",
-    "target": "de-bund/BBiG§84AnO 8",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/BBiG§84AnO 10",
     "target": "de-bund/BBiG§84AnO 9",
     "type": "soft",
     "weight": 0.1,
@@ -57496,8 +57672,16 @@
     "valid_to": null
   },
   {
+    "source": "de-bund/BBiG§84AnO 10",
+    "target": "de-bund/BBiG§84AnO 8",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
     "source": "de-bund/BBiG§84AnO 12",
-    "target": "de-bund/BBiG§84AnO 17",
+    "target": "de-bund/BBiG§84AnO 19",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57537,14 +57721,6 @@
   },
   {
     "source": "de-bund/BBiG§84AnO 13",
-    "target": "de-bund/BBiG§84AnO 14",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/BBiG§84AnO 13",
     "target": "de-bund/BBiG§84AnO 17",
     "type": "soft",
     "weight": 0.1,
@@ -57553,6 +57729,22 @@
   },
   {
     "source": "de-bund/BBiG§84AnO 13",
+    "target": "de-bund/BBiG§84AnO 18",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BBiG§84AnO 13",
+    "target": "de-bund/BBiG§84AnO 15",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BBiG§84AnO 13",
     "target": "de-bund/BBiG§84AnO 16",
     "type": "soft",
     "weight": 0.1,
@@ -57568,8 +57760,24 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/BBiG§84AnO 13",
-    "target": "de-bund/BBiG§84AnO 18",
+    "source": "de-bund/BBiG§84AnO 14",
+    "target": "de-bund/BBiG§84AnO 15",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BBiG§84AnO 14",
+    "target": "de-bund/BBiG§84AnO 17",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BBiG§84AnO 14",
+    "target": "de-bund/BBiG§84AnO 16",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57592,15 +57800,15 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/BBiG§84AnO 14",
-    "target": "de-bund/BBiG§84AnO 16",
+    "source": "de-bund/BBiG§84AnO 15",
+    "target": "de-bund/BBiG§84AnO 14",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/BBiG§84AnO 14",
+    "source": "de-bund/BBiG§84AnO 15",
     "target": "de-bund/BBiG§84AnO 17",
     "type": "soft",
     "weight": 0.1,
@@ -57608,8 +57816,8 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/BBiG§84AnO 14",
-    "target": "de-bund/BBiG§84AnO 15",
+    "source": "de-bund/BBiG§84AnO 15",
+    "target": "de-bund/BBiG§84AnO 16",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57632,15 +57840,15 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/BBiG§84AnO 15",
-    "target": "de-bund/BBiG§84AnO 16",
+    "source": "de-bund/BBiG§84AnO 16",
+    "target": "de-bund/BBiG§84AnO 14",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/BBiG§84AnO 15",
+    "source": "de-bund/BBiG§84AnO 16",
     "target": "de-bund/BBiG§84AnO 17",
     "type": "soft",
     "weight": 0.1,
@@ -57648,8 +57856,8 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/BBiG§84AnO 15",
-    "target": "de-bund/BBiG§84AnO 14",
+    "source": "de-bund/BBiG§84AnO 16",
+    "target": "de-bund/BBiG§84AnO 15",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57672,24 +57880,24 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/BBiG§84AnO 16",
-    "target": "de-bund/BBiG§84AnO 15",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/BBiG§84AnO 16",
-    "target": "de-bund/BBiG§84AnO 17",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/BBiG§84AnO 16",
+    "source": "de-bund/BBiG§84AnO 17",
     "target": "de-bund/BBiG§84AnO 14",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BBiG§84AnO 17",
+    "target": "de-bund/BBiG§84AnO 16",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BBiG§84AnO 17",
+    "target": "de-bund/BBiG§84AnO 15",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57712,15 +57920,15 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/BBiG§84AnO 17",
-    "target": "de-bund/BBiG§84AnO 15",
+    "source": "de-bund/BBiG§84AnO 18",
+    "target": "de-bund/BBiG§84AnO 14",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/BBiG§84AnO 17",
+    "source": "de-bund/BBiG§84AnO 18",
     "target": "de-bund/BBiG§84AnO 16",
     "type": "soft",
     "weight": 0.1,
@@ -57728,8 +57936,8 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/BBiG§84AnO 17",
-    "target": "de-bund/BBiG§84AnO 14",
+    "source": "de-bund/BBiG§84AnO 18",
+    "target": "de-bund/BBiG§84AnO 15",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57752,15 +57960,15 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/BBiG§84AnO 18",
-    "target": "de-bund/BBiG§84AnO 15",
+    "source": "de-bund/BBiG§84AnO 19",
+    "target": "de-bund/BBiG§84AnO 14",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/BBiG§84AnO 18",
+    "source": "de-bund/BBiG§84AnO 19",
     "target": "de-bund/BBiG§84AnO 16",
     "type": "soft",
     "weight": 0.1,
@@ -57768,8 +57976,8 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/BBiG§84AnO 18",
-    "target": "de-bund/BBiG§84AnO 14",
+    "source": "de-bund/BBiG§84AnO 19",
+    "target": "de-bund/BBiG§84AnO 15",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57786,30 +57994,6 @@
   {
     "source": "de-bund/BBiG§84AnO 19",
     "target": "de-bund/BBiG§84AnO 17",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/BBiG§84AnO 19",
-    "target": "de-bund/BBiG§84AnO 15",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/BBiG§84AnO 19",
-    "target": "de-bund/BBiG§84AnO 16",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/BBiG§84AnO 19",
-    "target": "de-bund/BBiG§84AnO 14",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57841,7 +58025,7 @@
   },
   {
     "source": "de-bund/BBiG§84AnO 1979",
-    "target": "de-bund/BBiG§84AnO 14",
+    "target": "de-bund/BBiG§84AnO 16",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57857,7 +58041,7 @@
   },
   {
     "source": "de-bund/BBiG§84AnO 2",
-    "target": "de-bund/BBiG§84AnO 8",
+    "target": "de-bund/BBiG§84AnO 9",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57905,7 +58089,7 @@
   },
   {
     "source": "de-bund/BBiG§84AnO 3",
-    "target": "de-bund/BBiG§84AnO 9",
+    "target": "de-bund/BBiG§84AnO 10",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57937,7 +58121,7 @@
   },
   {
     "source": "de-bund/BBiG§84AnO 7",
-    "target": "de-bund/BBiG§84AnO 14",
+    "target": "de-bund/BBiG§84AnO 17",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57946,14 +58130,6 @@
   {
     "source": "de-bund/BBiG§84AnO 7",
     "target": "de-bund/BBiG§84AnO 16",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/BBiG§84AnO 7",
-    "target": "de-bund/BBiG§84AnO 9",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -57969,6 +58145,14 @@
   },
   {
     "source": "de-bund/BBiG§84AnO 7",
+    "target": "de-bund/BBiG§84AnO 9",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BBiG§84AnO 7",
     "target": "de-bund/BBiG§84AnO 10",
     "type": "soft",
     "weight": 0.1,
@@ -57977,7 +58161,7 @@
   },
   {
     "source": "de-bund/BBiG§84AnO 8",
-    "target": "de-bund/BBiG§84AnO 16",
+    "target": "de-bund/BBiG§84AnO 18",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -58017,7 +58201,7 @@
   },
   {
     "source": "de-bund/BBiG§84AnO 9",
-    "target": "de-bund/BBiG§84AnO 16",
+    "target": "de-bund/BBiG§84AnO 18",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -58073,7 +58257,7 @@
   },
   {
     "source": "de-bund/BBiGZustBek",
-    "target": "de-bund/BBiG§84AnO 10",
+    "target": "de-bund/BBiG§84AnO 9",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -58081,7 +58265,7 @@
   },
   {
     "source": "de-bund/BBiGZustBek",
-    "target": "de-bund/BBiG§84AnO 9",
+    "target": "de-bund/BBiG§84AnO 10",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -58225,7 +58409,7 @@
   },
   {
     "source": "de-bund/BBRÜbertrAnO",
-    "target": "de-bund/BMWSBBesBeihUnffAnO",
+    "target": "de-bund/BMJVWidVertrAnO",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -58233,7 +58417,7 @@
   },
   {
     "source": "de-bund/BBRÜbertrAnO",
-    "target": "de-bund/BMJVWidVertrAnO",
+    "target": "de-bund/BMWSBBesBeihUnffAnO",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -58377,14 +58561,6 @@
   },
   {
     "source": "de-bund/BBVAnpG95Art3Abs3Bek",
-    "target": "de-bund/GesamtBeitrV 1998",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/BBVAnpG95Art3Abs3Bek",
     "target": "de-bund/BMinASBDGAnO 2024",
     "type": "soft",
     "weight": 0.1,
@@ -58410,6 +58586,14 @@
   {
     "source": "de-bund/BBVAnpG95Art3Abs3Bek",
     "target": "de-bund/BABefugV 2008",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BBVAnpG95Art3Abs3Bek",
+    "target": "de-bund/LohnUGAÜV 7",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -59137,7 +59321,7 @@
   },
   {
     "source": "de-bund/BEG§172DV 67",
-    "target": "de-bund/FinAusglG2019DV 1",
+    "target": "de-bund/RechVersV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -59177,7 +59361,7 @@
   },
   {
     "source": "de-bund/BEGÄndG 3",
-    "target": "de-bund/NSUnrG BY 2",
+    "target": "de-bund/NSUnrG HE 2",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -59817,7 +60001,7 @@
   },
   {
     "source": "de-bund/BeratungsG",
-    "target": "de-bund/SchKG§19Abs2/§24Bek 2017",
+    "target": "de-bund/SchKG§19Abs2/§24Bek 2026",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -60010,6 +60194,46 @@
   {
     "source": "de-bund/BerlinFG",
     "target": "de-bund/StÄndG 1961",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BerRehaGAnpV 2026",
+    "target": "de-bund/KfzHV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BerRehaGAnpV 2026",
+    "target": "de-bund/FeinOAusbV 2024",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BerRehaGAnpV 2026",
+    "target": "de-bund/JFAngAusbV 2025",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BerRehaGAnpV 2026",
+    "target": "de-bund/VwRehaGSchäV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BerRehaGAnpV 2026",
+    "target": "de-bund/StrRehaGAnpV 2026",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -61537,7 +61761,7 @@
   },
   {
     "source": "de-bund/BierStGemWÜG",
-    "target": "de-bund/NSUnrG HE",
+    "target": "de-bund/NSUnrG BR",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -62585,7 +62809,7 @@
   },
   {
     "source": "de-bund/BImSchV 37 2024",
-    "target": "de-bund/BImSchV 41",
+    "target": "de-bund/AnrV 2023",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -62593,7 +62817,7 @@
   },
   {
     "source": "de-bund/BImSchV 37 2024",
-    "target": "de-bund/AnrV 2023",
+    "target": "de-bund/BImSchV 41",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -63313,6 +63537,14 @@
   },
   {
     "source": "de-bund/BinSchPRG",
+    "target": "de-bund/FlaggRG",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BinSchPRG",
     "target": "de-bund/SportbootVermV-Bin2000",
     "type": "soft",
     "weight": 0.1,
@@ -63322,14 +63554,6 @@
   {
     "source": "de-bund/BinSchPRG",
     "target": "de-bund/SeelotG",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/BinSchPRG",
-    "target": "de-bund/FlaggRG",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -63945,6 +64169,14 @@
   },
   {
     "source": "de-bund/BITV 2.0",
+    "target": "de-bund/AlgIIV 2008",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BITV 2.0",
     "target": "de-bund/BMinASBDGAnO 2024",
     "type": "soft",
     "weight": 0.1,
@@ -63962,14 +64194,6 @@
   {
     "source": "de-bund/BITV 2.0",
     "target": "de-bund/ErreichbV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/BITV 2.0",
-    "target": "de-bund/AlgIIV 2008",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -64377,6 +64601,14 @@
   },
   {
     "source": "de-bund/BKOrgErl1998Bek",
+    "target": "de-bund/BKOrgErl 2007",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BKOrgErl1998Bek",
     "target": "de-bund/BKOrgErl 2005",
     "type": "soft",
     "weight": 0.1,
@@ -64393,23 +64625,15 @@
   },
   {
     "source": "de-bund/BKOrgErl1998Bek",
-    "target": "de-bund/BKOrgErl 2018",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/BKOrgErl1998Bek",
-    "target": "de-bund/BKOrgErl 2007",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/BKOrgErl1998Bek",
     "target": "de-bund/BKOrgErl 2009-10",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BKOrgErl1998Bek",
+    "target": "de-bund/BKOrgErl 2018",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -64817,7 +65041,7 @@
   },
   {
     "source": "de-bund/BKOrgErl 1991-04",
-    "target": "de-bund/BKOrgErl 2013",
+    "target": "de-bund/BKOrgErl 2018",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -64833,7 +65057,7 @@
   },
   {
     "source": "de-bund/BKOrgErl 1991-04",
-    "target": "de-bund/BKOrgErl 2021",
+    "target": "de-bund/BKOrgErl 2002",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -64841,7 +65065,7 @@
   },
   {
     "source": "de-bund/BKOrgErl 1991-04",
-    "target": "de-bund/BKOrgErl 2002",
+    "target": "de-bund/BKOrgErl 2021",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -64945,7 +65169,7 @@
   },
   {
     "source": "de-bund/BKOrgErl 1995-05",
-    "target": "de-bund/BKOrgErl 2018",
+    "target": "de-bund/BKOrgErl 2009-10",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -64953,7 +65177,7 @@
   },
   {
     "source": "de-bund/BKOrgErl 1995-05",
-    "target": "de-bund/BKOrgErl 2002",
+    "target": "de-bund/BKOrgErl 2021",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -64969,7 +65193,7 @@
   },
   {
     "source": "de-bund/BKOrgErl 1995-05",
-    "target": "de-bund/BKOrgErl 2021",
+    "target": "de-bund/BKOrgErl 2002",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -65537,7 +65761,7 @@
   },
   {
     "source": "de-bund/BMFJubAnO",
-    "target": "de-bund/BMJGerWidAnO 2024",
+    "target": "de-bund/BMJVGerWidAnO 2026",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -66210,6 +66434,46 @@
   {
     "source": "de-bund/BMJMaßgabenBerG",
     "target": "de-bund/BodSchVereinhG",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BMJVGerWidAnO 2026",
+    "target": "de-bund/BGHWidVertrAnO",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BMJVGerWidAnO 2026",
+    "target": "de-bund/BMASGBWidVertrAnO",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BMJVGerWidAnO 2026",
+    "target": "de-bund/BMJErnAnO 2024",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BMJVGerWidAnO 2026",
+    "target": "de-bund/BRHWidVertAnO",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BMJVGerWidAnO 2026",
+    "target": "de-bund/GBAWidVertrAnO",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -67017,7 +67281,7 @@
   },
   {
     "source": "de-bund/BodSchätzDV",
-    "target": "de-bund/WpÜGAnwendV",
+    "target": "de-bund/KMAnzV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -67977,6 +68241,14 @@
   },
   {
     "source": "de-bund/BrbMstrV",
+    "target": "de-bund/StrbauMstrV 2009",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/BrbMstrV",
     "target": "de-bund/ZimMstrV 2008",
     "type": "soft",
     "weight": 0.1,
@@ -67994,14 +68266,6 @@
   {
     "source": "de-bund/BrbMstrV",
     "target": "de-bund/MaurerBetonbMstrV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/BrbMstrV",
-    "target": "de-bund/AugOptMstrV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -68537,7 +68801,7 @@
   },
   {
     "source": "de-bund/BSNotFPrV",
-    "target": "de-bund/EinkFachwBAProPPrV",
+    "target": "de-bund/PflAPrV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -68545,7 +68809,7 @@
   },
   {
     "source": "de-bund/BSNotFPrV",
-    "target": "de-bund/PflAPrV",
+    "target": "de-bund/PflFAssAPrV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -70137,7 +70401,7 @@
   },
   {
     "source": "de-bund/Butt/KäseuaPrV",
-    "target": "de-bund/WZG§4NLDBek 1975",
+    "target": "de-bund/MilchQBALMZustV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -70145,7 +70409,15 @@
   },
   {
     "source": "de-bund/Butt/KäseuaPrV",
-    "target": "de-bund/KaseinV",
+    "target": "de-bund/MilchLMeistPrV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/Butt/KäseuaPrV",
+    "target": "de-bund/MilchLAusbStEignV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -70161,15 +70433,7 @@
   },
   {
     "source": "de-bund/Butt/KäseuaPrV",
-    "target": "de-bund/ButtV 1997",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/Butt/KäseuaPrV",
-    "target": "de-bund/KäseV",
+    "target": "de-bund/MilchPQV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -71577,7 +71841,7 @@
   },
   {
     "source": "de-bund/DachdArbbV 13",
-    "target": "de-bund/BStV",
+    "target": "de-bund/LohnUGAÜV 7",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -71585,7 +71849,7 @@
   },
   {
     "source": "de-bund/DachdArbbV 13",
-    "target": "de-bund/PflegeArbbV 6",
+    "target": "de-bund/PflegeArbbV 7",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -72217,7 +72481,7 @@
   },
   {
     "source": "de-bund/DDG",
-    "target": "de-bund/EinwV",
+    "target": "de-bund/SchwarmfdPV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -72225,7 +72489,7 @@
   },
   {
     "source": "de-bund/DDG",
-    "target": "de-bund/TKTransparenzV",
+    "target": "de-bund/GntVDDVCSVDV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -72233,7 +72497,15 @@
   },
   {
     "source": "de-bund/DDG",
-    "target": "de-bund/UDÜV",
+    "target": "de-bund/AnpVfAussG 2020",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/DDG",
+    "target": "de-bund/HolzEinschlBeschrV2021",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -72242,14 +72514,6 @@
   {
     "source": "de-bund/DDG",
     "target": "de-bund/TKMV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/DDG",
-    "target": "de-bund/UrhDaG",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -74057,6 +74321,14 @@
   },
   {
     "source": "de-bund/EEMD-ZVAnl II",
+    "target": "de-bund/TELEKOMBRAnO",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/EEMD-ZVAnl II",
     "target": "de-bund/EStrCHEVRegAusfG",
     "type": "soft",
     "weight": 0.1,
@@ -74074,14 +74346,6 @@
   {
     "source": "de-bund/EEMD-ZVAnl II",
     "target": "de-bund/FStrBAG",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/EEMD-ZVAnl II",
-    "target": "de-bund/KBAG",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -75057,14 +75321,6 @@
   },
   {
     "source": "de-bund/ElektroMbMstrV 2024",
-    "target": "de-bund/FPMMstrV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/ElektroMbMstrV 2024",
     "target": "de-bund/RollSonnMstrV",
     "type": "soft",
     "weight": 0.1,
@@ -75096,8 +75352,8 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/ElektroTechMstrV 2024",
-    "target": "de-bund/IndElAusbV 2007",
+    "source": "de-bund/ElektroMbMstrV 2024",
+    "target": "de-bund/AugOptMstrV 2026",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -75114,6 +75370,14 @@
   {
     "source": "de-bund/ElektroTechMstrV 2024",
     "target": "de-bund/GSIAusbV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/ElektroTechMstrV 2024",
+    "target": "de-bund/AugOptMstrV 2026",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -75570,6 +75834,46 @@
   {
     "source": "de-bund/EntsorgFondsGZVereinnV",
     "target": "de-bund/ZKAV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/EnVKG 2012",
+    "target": "de-bund/WpPG",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/EnVKG 2012",
+    "target": "de-bund/KrZwMG",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/EnVKG 2012",
+    "target": "de-bund/EnVKV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/EnVKG 2012",
+    "target": "de-bund/Pkw-EnVKV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/EnVKG 2012",
+    "target": "de-bund/ProdSG 2021",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -76057,7 +76361,7 @@
   },
   {
     "source": "de-bund/ErsDiG",
-    "target": "de-bund/BLV 2026",
+    "target": "de-bund/SG",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -76385,7 +76689,7 @@
   },
   {
     "source": "de-bund/ETWStBefrV",
-    "target": "de-bund/NatKautschOrgVorRV 1989",
+    "target": "de-bund/NatKautschOrgVorRV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -76393,7 +76697,7 @@
   },
   {
     "source": "de-bund/ETWStBefrV",
-    "target": "de-bund/NatKautschOrgVorRV",
+    "target": "de-bund/NatKautschOrgVorRV 1989",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -77481,7 +77785,7 @@
   },
   {
     "source": "de-bund/FamNamV BR 3",
-    "target": "de-bund/FamNamV WB 3",
+    "target": "de-bund/FamNamV HE 3",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -77489,7 +77793,7 @@
   },
   {
     "source": "de-bund/FamNamV BR 3",
-    "target": "de-bund/FamNamV HE 3",
+    "target": "de-bund/FamNamV WB 3",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -77514,6 +77818,14 @@
   {
     "source": "de-bund/FamNamV BY 3",
     "target": "de-bund/FamNamV BR 3",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/FamNamV BY 3",
+    "target": "de-bund/FamNamV HE 3",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -77528,14 +77840,6 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/FamNamV BY 3",
-    "target": "de-bund/FamNamV HE 3",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
     "source": "de-bund/FamNamV HE 3",
     "target": "de-bund/PersStdBerV NW",
     "type": "soft",
@@ -77554,6 +77858,14 @@
   {
     "source": "de-bund/FamNamV HE 3",
     "target": "de-bund/FamNamV BR 3",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/FamNamV HE 3",
+    "target": "de-bund/FamNamV BY 3",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -77568,14 +77880,6 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/FamNamV HE 3",
-    "target": "de-bund/FamNamV BY 3",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
     "source": "de-bund/FamNamV WB 3",
     "target": "de-bund/PersStdBerV NW",
     "type": "soft",
@@ -77601,7 +77905,7 @@
   },
   {
     "source": "de-bund/FamNamV WB 3",
-    "target": "de-bund/FamNamV HE 3",
+    "target": "de-bund/FamNamV BY 3",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -77609,7 +77913,7 @@
   },
   {
     "source": "de-bund/FamNamV WB 3",
-    "target": "de-bund/FamNamV BY 3",
+    "target": "de-bund/FamNamV HE 3",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -78457,14 +78761,6 @@
   },
   {
     "source": "de-bund/FinAusglG1970DV 2",
-    "target": "de-bund/FinAusglG2025DV 1",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/FinAusglG1970DV 2",
     "target": "de-bund/FinAusglG1970DV 1",
     "type": "soft",
     "weight": 0.1,
@@ -78496,6 +78792,22 @@
     "valid_to": null
   },
   {
+    "source": "de-bund/FinAusglG1970DV 2",
+    "target": "de-bund/FinAusglG2019DV 2",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/FinAusglG2004DV 1",
+    "target": "de-bund/ZAGMonAwV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
     "source": "de-bund/FinAusglG2004DV 1",
     "target": "de-bund/FinDAGKostV",
     "type": "soft",
@@ -78514,14 +78826,6 @@
   {
     "source": "de-bund/FinAusglG2004DV 1",
     "target": "de-bund/MarVerstMeldV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/FinAusglG2004DV 1",
-    "target": "de-bund/FinAusglG2019DV 1",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -78817,14 +79121,6 @@
   },
   {
     "source": "de-bund/FinAusglG2018DV 2",
-    "target": "de-bund/FinAusglG2011DV 2",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/FinAusglG2018DV 2",
     "target": "de-bund/FinAusglG2012DV 2",
     "type": "soft",
     "weight": 0.1,
@@ -78856,31 +79152,39 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/FinAusglG2019DV 1",
-    "target": "de-bund/FinAusglG2023DV 1",
+    "source": "de-bund/FinAusglG2018DV 2",
+    "target": "de-bund/FinAusglG2019DV 2",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/FinAusglG2019DV 1",
-    "target": "de-bund/FinAusglG2024DV 1",
+    "source": "de-bund/FinAusglG2019DV 2",
+    "target": "de-bund/FinAusglG2011DV 2",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/FinAusglG2019DV 1",
-    "target": "de-bund/FinAusglG2025DV 1",
+    "source": "de-bund/FinAusglG2019DV 2",
+    "target": "de-bund/FinAusglG2015DV 2",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/FinAusglG2019DV 1",
+    "source": "de-bund/FinAusglG2019DV 2",
+    "target": "de-bund/FinAusglG2016DV 2",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/FinAusglG2019DV 2",
     "target": "de-bund/FinAusglG2026DV 1",
     "type": "soft",
     "weight": 0.1,
@@ -78888,8 +79192,8 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/FinAusglG2019DV 1",
-    "target": "de-bund/FinAusglG2020DV 1",
+    "source": "de-bund/FinAusglG2019DV 2",
+    "target": "de-bund/FinAusglG2018DV 2",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -79153,14 +79457,6 @@
   },
   {
     "source": "de-bund/FinAusglG2026DV 1",
-    "target": "de-bund/FinAusglG2019DV 1",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/FinAusglG2026DV 1",
     "target": "de-bund/FinAusglG2025DV 1",
     "type": "soft",
     "weight": 0.1,
@@ -79170,6 +79466,14 @@
   {
     "source": "de-bund/FinAusglG2026DV 1",
     "target": "de-bund/FinAusglG2020DV 1",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/FinAusglG2026DV 1",
+    "target": "de-bund/FinAusglG2019DV 2",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -79417,6 +79721,14 @@
   },
   {
     "source": "de-bund/FischSeuchV 2008",
+    "target": "de-bund/ÜAnlG",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/FischSeuchV 2008",
     "target": "de-bund/SeeSchStrO 1971",
     "type": "soft",
     "weight": 0.1,
@@ -79434,14 +79746,6 @@
   {
     "source": "de-bund/FischSeuchV 2008",
     "target": "de-bund/TEHG 2025",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/FischSeuchV 2008",
-    "target": "de-bund/SchAusrV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -82465,7 +82769,7 @@
   },
   {
     "source": "de-bund/G21 BY",
-    "target": "de-bund/NSUnrG HE",
+    "target": "de-bund/NSUnrG BR",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -82473,7 +82777,7 @@
   },
   {
     "source": "de-bund/G21 BY",
-    "target": "de-bund/NSUnrG BR",
+    "target": "de-bund/NSUnrG HE",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -82817,6 +83121,14 @@
   },
   {
     "source": "de-bund/GAPKondG§27Abs4S2Bek",
+    "target": "de-bund/LwAusglAbgV 1971",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/GAPKondG§27Abs4S2Bek",
     "target": "de-bund/PferdewMeistPrV",
     "type": "soft",
     "weight": 0.1,
@@ -82826,14 +83138,6 @@
   {
     "source": "de-bund/GAPKondG§27Abs4S2Bek",
     "target": "de-bund/DüBV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/GAPKondG§27Abs4S2Bek",
-    "target": "de-bund/BMELBGebV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -83497,6 +83801,14 @@
   },
   {
     "source": "de-bund/GebäudeArbbV 10",
+    "target": "de-bund/BBFestV 2018",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/GebäudeArbbV 10",
     "target": "de-bund/MiLoAufzV",
     "type": "soft",
     "weight": 0.1,
@@ -83506,14 +83818,6 @@
   {
     "source": "de-bund/GebäudeArbbV 10",
     "target": "de-bund/AEntGMeldStellV 2020",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/GebäudeArbbV 10",
-    "target": "de-bund/PflegeArbbV 6",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -84457,7 +84761,7 @@
   },
   {
     "source": "de-bund/GerüstbArbbV 9",
-    "target": "de-bund/HZvV 8",
+    "target": "de-bund/AGMahnVordrVÄndV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -84465,7 +84769,7 @@
   },
   {
     "source": "de-bund/GerüstbArbbV 9",
-    "target": "de-bund/AGMahnVordrVÄndV",
+    "target": "de-bund/PflegeArbbV 7",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -86297,6 +86601,14 @@
   },
   {
     "source": "de-bund/GO-MEDAS",
+    "target": "de-bund/StrabBlPV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/GO-MEDAS",
     "target": "de-bund/HeilVfV 2020",
     "type": "soft",
     "weight": 0.1,
@@ -86314,14 +86626,6 @@
   {
     "source": "de-bund/GO-MEDAS",
     "target": "de-bund/GOÄ 1982",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/GO-MEDAS",
-    "target": "de-bund/SchAusrV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -86401,7 +86705,7 @@
   },
   {
     "source": "de-bund/GoetheMedStat",
-    "target": "de-bund/GoetheMedStat 2008",
+    "target": "de-bund/GoetheMedStat 2003",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -86409,7 +86713,7 @@
   },
   {
     "source": "de-bund/GoetheMedStat",
-    "target": "de-bund/GoetheMedStat 2003",
+    "target": "de-bund/GoetheMedStat 2008",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -86617,14 +86921,6 @@
   },
   {
     "source": "de-bund/GräbPauschV 2025/2026",
-    "target": "de-bund/ProstAV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/GräbPauschV 2025/2026",
     "target": "de-bund/BBFestV 2025",
     "type": "soft",
     "weight": 0.1,
@@ -86650,6 +86946,14 @@
   {
     "source": "de-bund/GräbPauschV 2025/2026",
     "target": "de-bund/AdVermiStAnKoV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/GräbPauschV 2025/2026",
+    "target": "de-bund/PflFAssAPrV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -88777,7 +89081,7 @@
   },
   {
     "source": "de-bund/GwGMeldV",
-    "target": "de-bund/TrDüV",
+    "target": "de-bund/BMFBDGAnO 2024",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -88785,7 +89089,7 @@
   },
   {
     "source": "de-bund/GwGMeldV",
-    "target": "de-bund/FinAusglG2019DV 1",
+    "target": "de-bund/TrDüV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -89250,46 +89554,6 @@
   {
     "source": "de-bund/HafenSchAusbV",
     "target": "de-bund/HafenlogAusbV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/HaftEntschBefStoffeSeeÜbk",
-    "target": "de-bund/HNSG",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/HaftEntschBefStoffeSeeÜbk",
-    "target": "de-bund/PCTAO",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/HaftEntschBefStoffeSeeÜbk",
-    "target": "de-bund/SchBrÜbkG",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/HaftEntschBefStoffeSeeÜbk",
-    "target": "de-bund/ÖlSG",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/HaftEntschBefStoffeSeeÜbk",
-    "target": "de-bund/HeuerVtrÜbkG",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -91097,7 +91361,7 @@
   },
   {
     "source": "de-bund/HZAZustV 2023",
-    "target": "de-bund/AO1977§139bAbs13Bek 2024",
+    "target": "de-bund/InsoGeldFestV 2024",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -91105,7 +91369,7 @@
   },
   {
     "source": "de-bund/HZAZustV 2023",
-    "target": "de-bund/FinAusglG2019DV 1",
+    "target": "de-bund/AO1977§139bAbs13Bek 2024",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -92417,14 +92681,6 @@
   },
   {
     "source": "de-bund/InformationsTechMstrV 2024",
-    "target": "de-bund/EPSV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/InformationsTechMstrV 2024",
     "target": "de-bund/RollSonnMstrV",
     "type": "soft",
     "weight": 0.1,
@@ -92442,6 +92698,14 @@
   {
     "source": "de-bund/InformationsTechMstrV 2024",
     "target": "de-bund/ElektroTechMstrV 2024",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/InformationsTechMstrV 2024",
+    "target": "de-bund/AugOptMstrV 2026",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -96296,8 +96560,40 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/KMMV",
-    "target": "de-bund/BVwADisRZustAnO",
+    "source": "de-bund/KMAnzV",
+    "target": "de-bund/UKRatZustAnO",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/KMAnzV",
+    "target": "de-bund/DeckRegV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/KMAnzV",
+    "target": "de-bund/WpI-InhKontrollV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/KMAnzV",
+    "target": "de-bund/SchiffsBelWertV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/KMAnzV",
+    "target": "de-bund/KMMV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -96330,6 +96626,14 @@
   {
     "source": "de-bund/KMMV",
     "target": "de-bund/BMFBDGAnO 2024",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/KMMV",
+    "target": "de-bund/KMAnzV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -98057,7 +98361,7 @@
   },
   {
     "source": "de-bund/KSAbg2025V",
-    "target": "de-bund/BBFestV 2025",
+    "target": "de-bund/SVWO 1997",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -98065,7 +98369,7 @@
   },
   {
     "source": "de-bund/KSAbg2025V",
-    "target": "de-bund/AlgIIV 2008",
+    "target": "de-bund/BBFestV 2025",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -98337,7 +98641,7 @@
   },
   {
     "source": "de-bund/KundenbTischlPrV",
-    "target": "de-bund/AugOptMstrV",
+    "target": "de-bund/MaurerBetonbMstrV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -99896,6 +100200,46 @@
     "valid_to": null
   },
   {
+    "source": "de-bund/LohnUGAÜV 7",
+    "target": "de-bund/EhrBetätV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/LohnUGAÜV 7",
+    "target": "de-bund/InsoGeldEinzPV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/LohnUGAÜV 7",
+    "target": "de-bund/BBFestV 2019",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/LohnUGAÜV 7",
+    "target": "de-bund/DachdArbbV 13",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/LohnUGAÜV 7",
+    "target": "de-bund/PflegeArbbV 7",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
     "source": "de-bund/LStDV",
     "target": "de-bund/VerpflG",
     "type": "soft",
@@ -101377,7 +101721,7 @@
   },
   {
     "source": "de-bund/LuftVODV 155",
-    "target": "de-bund/LuftVODV 174 2022",
+    "target": "de-bund/LuftVODV 145 2025",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -101385,7 +101729,7 @@
   },
   {
     "source": "de-bund/LuftVODV 155",
-    "target": "de-bund/LuftVODV 173",
+    "target": "de-bund/LuftVODV 174 2022",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -101776,7 +102120,15 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/LuftVODV 173",
+    "source": "de-bund/LuftVODV 173 2026",
+    "target": "de-bund/LuftVODV 198",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/LuftVODV 173 2026",
     "target": "de-bund/LuftVODV 178",
     "type": "soft",
     "weight": 0.1,
@@ -101784,15 +102136,7 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/LuftVODV 173",
-    "target": "de-bund/LuftVODV 155",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/LuftVODV 173",
+    "source": "de-bund/LuftVODV 173 2026",
     "target": "de-bund/LuftVODV 174 2022",
     "type": "soft",
     "weight": 0.1,
@@ -101800,16 +102144,16 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/LuftVODV 173",
-    "target": "de-bund/LuftVODV 162",
+    "source": "de-bund/LuftVODV 173 2026",
+    "target": "de-bund/LuftVODV 96",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/LuftVODV 173",
-    "target": "de-bund/LuftVODV 96",
+    "source": "de-bund/LuftVODV 173 2026",
+    "target": "de-bund/LuftVODV 162",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -104489,7 +104833,7 @@
   },
   {
     "source": "de-bund/LuftVODV 96",
-    "target": "de-bund/LuftVODV 173",
+    "target": "de-bund/LuftVODV 173 2026",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -105050,46 +105394,6 @@
   {
     "source": "de-bund/LuKrFrühErkV",
     "target": "de-bund/BrKrFrühErkV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/LupinenV 2026",
-    "target": "de-bund/SojBoSaatV 2015",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/LupinenV 2026",
-    "target": "de-bund/HWeizSaatV 2015",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/LupinenV 2026",
-    "target": "de-bund/RotkleeSaatV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/LupinenV 2026",
-    "target": "de-bund/SonnenblV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/LupinenV 2026",
-    "target": "de-bund/SojBoSaatV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -116377,7 +116681,7 @@
   },
   {
     "source": "de-bund/MalerArbbV 12",
-    "target": "de-bund/AGMahnVordrVÄndV",
+    "target": "de-bund/SGB2§20Abs2Bek 2009",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -116385,7 +116689,7 @@
   },
   {
     "source": "de-bund/MalerArbbV 12",
-    "target": "de-bund/SGB2§20Abs2Bek 2009",
+    "target": "de-bund/PflegeArbbV 7",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -117577,7 +117881,7 @@
   },
   {
     "source": "de-bund/MaschinenDG",
-    "target": "de-bund/VIG",
+    "target": "de-bund/EJG 2019",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -117585,7 +117889,7 @@
   },
   {
     "source": "de-bund/MaschinenDG",
-    "target": "de-bund/EJG 2019",
+    "target": "de-bund/FinAusglG2019DV 2",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -117697,6 +118001,14 @@
   },
   {
     "source": "de-bund/MaurerBetonbMstrV",
+    "target": "de-bund/ZimMstrV 2008",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/MaurerBetonbMstrV",
     "target": "de-bund/StrbauMstrV 2009",
     "type": "soft",
     "weight": 0.1,
@@ -117706,14 +118018,6 @@
   {
     "source": "de-bund/MaurerBetonbMstrV",
     "target": "de-bund/MuLMstrV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/MaurerBetonbMstrV",
-    "target": "de-bund/AugOptMstrV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -118616,8 +118920,40 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/MilchQBALMZustV",
-    "target": "de-bund/MilchV",
+    "source": "de-bund/MilchPQV",
+    "target": "de-bund/RohmilchGütV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/MilchPQV",
+    "target": "de-bund/TierHaltKennzG",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/MilchPQV",
+    "target": "de-bund/Butt/KäseuaPrV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/MilchPQV",
+    "target": "de-bund/TierSchNutztV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/MilchPQV",
+    "target": "de-bund/MilchQuotV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -118625,7 +118961,15 @@
   },
   {
     "source": "de-bund/MilchQBALMZustV",
-    "target": "de-bund/MilchKennzV",
+    "target": "de-bund/RindFlSoErstV 1994",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/MilchQBALMZustV",
+    "target": "de-bund/LwAusglAbgV 1971",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -118657,14 +119001,6 @@
   },
   {
     "source": "de-bund/MilchQuotV",
-    "target": "de-bund/KaffeeStG 2009",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/MilchQuotV",
     "target": "de-bund/TEHG 2025",
     "type": "soft",
     "weight": 0.1,
@@ -118682,6 +119018,14 @@
   {
     "source": "de-bund/MilchQuotV",
     "target": "de-bund/DesignV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/MilchQuotV",
+    "target": "de-bund/MilchPQV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -119977,6 +120321,14 @@
   },
   {
     "source": "de-bund/MuLMstrV",
+    "target": "de-bund/TischlMstrV 2008",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/MuLMstrV",
     "target": "de-bund/ZimMstrV 2008",
     "type": "soft",
     "weight": 0.1,
@@ -119994,14 +120346,6 @@
   {
     "source": "de-bund/MuLMstrV",
     "target": "de-bund/BrbMstrV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/MuLMstrV",
-    "target": "de-bund/AugOptMstrV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -121465,7 +121809,7 @@
   },
   {
     "source": "de-bund/NSAhndG WB",
-    "target": "de-bund/NSAhndgG BR",
+    "target": "de-bund/NSAhndgG HE",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -121473,7 +121817,7 @@
   },
   {
     "source": "de-bund/NSAhndG WB",
-    "target": "de-bund/NSAhndgG HE",
+    "target": "de-bund/NSAhndgG BR",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -121577,7 +121921,7 @@
   },
   {
     "source": "de-bund/NSStRpflV BrZ",
-    "target": "de-bund/NSUnrG HE",
+    "target": "de-bund/NSUnrG BR",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -121585,7 +121929,7 @@
   },
   {
     "source": "de-bund/NSStRpflV BrZ",
-    "target": "de-bund/NSUnrG BR",
+    "target": "de-bund/NSUnrG HE",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -121633,14 +121977,6 @@
   },
   {
     "source": "de-bund/NSUnrAnO",
-    "target": "de-bund/NSUnrG HE",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/NSUnrAnO",
     "target": "de-bund/NSUnrG BR",
     "type": "soft",
     "weight": 0.1,
@@ -121649,6 +121985,14 @@
   },
   {
     "source": "de-bund/NSUnrAnO",
+    "target": "de-bund/NSUnrG HE",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/NSUnrAnO",
     "target": "de-bund/NSUnrG RP",
     "type": "soft",
     "weight": 0.1,
@@ -121657,7 +122001,7 @@
   },
   {
     "source": "de-bund/NSUnrG BR",
-    "target": "de-bund/NSUnrG BR 2",
+    "target": "de-bund/NSUnrG HE 2",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -121714,6 +122058,14 @@
   {
     "source": "de-bund/NSUnrG BR 2",
     "target": "de-bund/NSUnrG HE",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/NSUnrG BR 2",
+    "target": "de-bund/NSUnrG BY 2",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -121728,14 +122080,6 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/NSUnrG BR 2",
-    "target": "de-bund/NSUnrG BY 2",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
     "source": "de-bund/NSUnrG BY 2",
     "target": "de-bund/NSUnrAnO",
     "type": "soft",
@@ -121761,14 +122105,6 @@
   },
   {
     "source": "de-bund/NSUnrG BY 2",
-    "target": "de-bund/NSUnrG HE 2",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/NSUnrG BY 2",
     "target": "de-bund/NSUnrG BR 2",
     "type": "soft",
     "weight": 0.1,
@@ -121776,8 +122112,16 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/NSUnrG HE",
+    "source": "de-bund/NSUnrG BY 2",
     "target": "de-bund/NSUnrG HE 2",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/NSUnrG HE",
+    "target": "de-bund/NSUnrG BR 2",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -121825,14 +122169,6 @@
   },
   {
     "source": "de-bund/NSUnrG HE 2",
-    "target": "de-bund/NSUnrG HE",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/NSUnrG HE 2",
     "target": "de-bund/NSUnrG BR",
     "type": "soft",
     "weight": 0.1,
@@ -121841,7 +122177,7 @@
   },
   {
     "source": "de-bund/NSUnrG HE 2",
-    "target": "de-bund/NSUnrG BR 2",
+    "target": "de-bund/NSUnrG HE",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -121856,8 +122192,8 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/NSUnrG RP",
-    "target": "de-bund/NSAhndgG HE",
+    "source": "de-bund/NSUnrG HE 2",
+    "target": "de-bund/NSUnrG BR 2",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -121866,6 +122202,14 @@
   {
     "source": "de-bund/NSUnrG RP",
     "target": "de-bund/NSAhndgG BR",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/NSUnrG RP",
+    "target": "de-bund/NSAhndgG HE",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -121913,7 +122257,7 @@
   },
   {
     "source": "de-bund/NSUnrG WB",
-    "target": "de-bund/NSUnrG HE",
+    "target": "de-bund/NSUnrG BR",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -121921,7 +122265,7 @@
   },
   {
     "source": "de-bund/NSUnrG WB",
-    "target": "de-bund/NSUnrG BR",
+    "target": "de-bund/NSUnrG HE",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -121937,7 +122281,7 @@
   },
   {
     "source": "de-bund/NSUnrG WB 2",
-    "target": "de-bund/NSUnrG HE",
+    "target": "de-bund/NSUnrG BR",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -121945,7 +122289,7 @@
   },
   {
     "source": "de-bund/NSUnrG WB 2",
-    "target": "de-bund/NSUnrG BR",
+    "target": "de-bund/NSUnrG HE",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -121961,7 +122305,7 @@
   },
   {
     "source": "de-bund/NSUnrG WB 2",
-    "target": "de-bund/NSUnrG BY 2",
+    "target": "de-bund/NSUnrG BR 2",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -121969,7 +122313,7 @@
   },
   {
     "source": "de-bund/NSUnrG WB 2",
-    "target": "de-bund/NSUnrG BR 2",
+    "target": "de-bund/NSUnrG BY 2",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -124041,7 +124385,7 @@
   },
   {
     "source": "de-bund/PatInfoZBek 1999-11",
-    "target": "de-bund/PatInfoZBek 2000-09",
+    "target": "de-bund/PatInfoZBek 2001-02",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -124049,7 +124393,7 @@
   },
   {
     "source": "de-bund/PatInfoZBek 1999-11",
-    "target": "de-bund/PatInfoZBek 2001-02",
+    "target": "de-bund/PatInfoZBek 2000-09",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -124081,7 +124425,7 @@
   },
   {
     "source": "de-bund/PatInfoZBek 2000-09",
-    "target": "de-bund/PatInfoZBek 1999-11",
+    "target": "de-bund/PatInfoZBek 2001-02",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -124089,7 +124433,7 @@
   },
   {
     "source": "de-bund/PatInfoZBek 2000-09",
-    "target": "de-bund/PatInfoZBek 2001-02",
+    "target": "de-bund/PatInfoZBek 1999-11",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -124121,7 +124465,7 @@
   },
   {
     "source": "de-bund/PatInfoZBek 2001-02",
-    "target": "de-bund/PatInfoZBek 1999-11",
+    "target": "de-bund/PatInfoZBek 2000-09",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -124129,15 +124473,7 @@
   },
   {
     "source": "de-bund/PatInfoZBek 2001-02",
-    "target": "de-bund/PatInfoZBek 2000-09",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/PatInfoZBek 2004",
-    "target": "de-bund/PatInfoZBek 2000-09",
+    "target": "de-bund/PatInfoZBek 1999-11",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -124154,6 +124490,14 @@
   {
     "source": "de-bund/PatInfoZBek 2004",
     "target": "de-bund/PatInfoZBek 1999-11",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/PatInfoZBek 2004",
+    "target": "de-bund/PatInfoZBek 2000-09",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -124233,7 +124577,7 @@
   },
   {
     "source": "de-bund/PatInfoZBek 2016",
-    "target": "de-bund/PatInfoZBek 2020",
+    "target": "de-bund/PatInfoZBek 2018",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -124249,7 +124593,7 @@
   },
   {
     "source": "de-bund/PatInfoZBek 2016",
-    "target": "de-bund/PatInfoZBek 2018",
+    "target": "de-bund/PatInfoZBek 2020",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -124730,46 +125074,6 @@
   {
     "source": "de-bund/PCBAbfallV",
     "target": "de-bund/AltölV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/PCTAO",
-    "target": "de-bund/IntPatÜbkGArtII§2V",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/PCTAO",
-    "target": "de-bund/IntSchVermÜbkG",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/PCTAO",
-    "target": "de-bund/IntPatÜbkG",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/PCTAO",
-    "target": "de-bund/EUROCONTROLÜbkG",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/PCTAO",
-    "target": "de-bund/HeuerVtrÜbkG",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -125817,14 +126121,6 @@
   },
   {
     "source": "de-bund/PflBBetV",
-    "target": "de-bund/PflNV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/PflBBetV",
     "target": "de-bund/PBAV 2025",
     "type": "soft",
     "weight": 0.1,
@@ -125849,6 +126145,14 @@
   },
   {
     "source": "de-bund/PflBBetV",
+    "target": "de-bund/PflFAssAPrV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/PflBBetV",
     "target": "de-bund/TeleFinV 2026",
     "type": "soft",
     "weight": 0.1,
@@ -125856,31 +126160,39 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/PflegeArbbV 6",
-    "target": "de-bund/BBFestV 2019",
+    "source": "de-bund/PflegeArbbV 7",
+    "target": "de-bund/VFlughSiKArbbV 4",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/PflegeArbbV 6",
-    "target": "de-bund/KugÖV",
+    "source": "de-bund/PflegeArbbV 7",
+    "target": "de-bund/MalerArbbV 12",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/PflegeArbbV 6",
-    "target": "de-bund/GebäudeArbbV 10",
+    "source": "de-bund/PflegeArbbV 7",
+    "target": "de-bund/LohnUGAÜV 7",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/PflegeArbbV 6",
+    "source": "de-bund/PflegeArbbV 7",
+    "target": "de-bund/GerüstbArbbV 9",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/PflegeArbbV 7",
     "target": "de-bund/DachdArbbV 13",
     "type": "soft",
     "weight": 0.1,
@@ -125888,16 +126200,40 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/PflegeArbbV 6",
-    "target": "de-bund/AusbDienstLArbbV 6",
+    "source": "de-bund/PflFAssAPrV",
+    "target": "de-bund/PflAFinV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/PflFAssG",
-    "target": "de-bund/VersAusglG",
+    "source": "de-bund/PflFAssAPrV",
+    "target": "de-bund/BAProNotFPrV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/PflFAssAPrV",
+    "target": "de-bund/PflBBetV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/PflFAssAPrV",
+    "target": "de-bund/BSNotFPrV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/PflFAssAPrV",
+    "target": "de-bund/PflAPrV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -125930,6 +126266,14 @@
   {
     "source": "de-bund/PflFAssG",
     "target": "de-bund/ALG",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/PflFAssG",
+    "target": "de-bund/ÖkodesignG",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -130225,7 +130569,7 @@
   },
   {
     "source": "de-bund/RBkPräsErl",
-    "target": "de-bund/BKOrgErl1994Bek",
+    "target": "de-bund/BKOrgErl1995-05Bek",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -130233,7 +130577,7 @@
   },
   {
     "source": "de-bund/RBkPräsErl",
-    "target": "de-bund/BKOrgErl1995-05Bek",
+    "target": "de-bund/BKOrgErl1994Bek",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -132737,14 +133081,6 @@
   },
   {
     "source": "de-bund/RWBestV 2025",
-    "target": "de-bund/RWBestV 2021",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/RWBestV 2025",
     "target": "de-bund/RWBestV 2019",
     "type": "soft",
     "weight": 0.1,
@@ -132770,6 +133106,54 @@
   {
     "source": "de-bund/RWBestV 2025",
     "target": "de-bund/RWBestV 2024",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/RWBestV 2025",
+    "target": "de-bund/RWBestV 2026",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/RWBestV 2026",
+    "target": "de-bund/RWBestV 2023",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/RWBestV 2026",
+    "target": "de-bund/RWBestV 2020",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/RWBestV 2026",
+    "target": "de-bund/RWBestV 2007",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/RWBestV 2026",
+    "target": "de-bund/RWBestV 2024",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/RWBestV 2026",
+    "target": "de-bund/RWBestV 2025",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -134097,14 +134481,6 @@
   },
   {
     "source": "de-bund/SchKG§19Abs2/§24Bek 2025",
-    "target": "de-bund/SchKG§19Abs2/§24Bek 2019",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/SchKG§19Abs2/§24Bek 2025",
     "target": "de-bund/SchKG§19Abs2/§24Bek 2023",
     "type": "soft",
     "weight": 0.1,
@@ -134130,6 +134506,54 @@
   {
     "source": "de-bund/SchKG§19Abs2/§24Bek 2025",
     "target": "de-bund/SchKG§19Abs2/§24Bek 2022",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/SchKG§19Abs2/§24Bek 2025",
+    "target": "de-bund/SchKG§19Abs2/§24Bek 2026",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/SchKG§19Abs2/§24Bek 2026",
+    "target": "de-bund/SchKG§19Abs2/§24Bek 2019",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/SchKG§19Abs2/§24Bek 2026",
+    "target": "de-bund/SchKG§19Abs2/§24Bek 2022",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/SchKG§19Abs2/§24Bek 2026",
+    "target": "de-bund/SchKG§19Abs2/§24Bek 2023",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/SchKG§19Abs2/§24Bek 2026",
+    "target": "de-bund/SchKG§19Abs2/§24Bek 2024",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/SchKG§19Abs2/§24Bek 2026",
+    "target": "de-bund/SchKG§19Abs2/§24Bek 2025",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -134697,14 +135121,6 @@
   },
   {
     "source": "de-bund/SchwbAV 1988",
-    "target": "de-bund/EhrBetätV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/SchwbAV 1988",
     "target": "de-bund/AVAVGDV 22",
     "type": "soft",
     "weight": 0.1,
@@ -134714,6 +135130,14 @@
   {
     "source": "de-bund/SchwbAV 1988",
     "target": "de-bund/ArbPlSchGAbschn3V",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/SchwbAV 1988",
+    "target": "de-bund/LohnUGAÜV 7",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -134850,46 +135274,6 @@
   {
     "source": "de-bund/SeeFischG",
     "target": "de-bund/BetrPrämDurchfV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/SeeFischVtrG 1976",
-    "target": "de-bund/CSCGKostOÄndV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/SeeFischVtrG 1976",
-    "target": "de-bund/SchVermssgÄndÜbkV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/SeeFischVtrG 1976",
-    "target": "de-bund/OstseeschutzÄndV 1",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/SeeFischVtrG 1976",
-    "target": "de-bund/SeeStrOV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/SeeFischVtrG 1976",
-    "target": "de-bund/MARPOLÄndV 8",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -136896,8 +137280,40 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/SGB 4",
-    "target": "de-bund/SGB 11",
+    "source": "de-bund/SGB 2",
+    "target": "de-bund/BetrSichV 2015",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/SGB 2",
+    "target": "de-bund/SGB 3",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/SGB 2",
+    "target": "de-bund/SGB 4",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/SGB 2",
+    "target": "de-bund/KtEfV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/SGB 2",
+    "target": "de-bund/ASG",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -136905,7 +137321,15 @@
   },
   {
     "source": "de-bund/SGB 4",
-    "target": "de-bund/SGB 2",
+    "target": "de-bund/SGB 14",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/SGB 4",
+    "target": "de-bund/SGB 11",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -137105,14 +137529,6 @@
   },
   {
     "source": "de-bund/SGleiG 2024",
-    "target": "de-bund/SG",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/SGleiG 2024",
     "target": "de-bund/SVG 2025",
     "type": "soft",
     "weight": 0.1,
@@ -137130,6 +137546,14 @@
   {
     "source": "de-bund/SGleiG 2024",
     "target": "de-bund/SEG",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/SGleiG 2024",
+    "target": "de-bund/SG",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -138537,7 +138961,7 @@
   },
   {
     "source": "de-bund/RuStAG",
-    "target": "de-bund/FlaggRG",
+    "target": "de-bund/VStGB",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -139657,6 +140081,14 @@
   },
   {
     "source": "de-bund/StromStG§10Abs3uaBek",
+    "target": "de-bund/StromStG§10Abs3uaBek 2016",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StromStG§10Abs3uaBek",
     "target": "de-bund/StromStG§10Abs3uaBek 2021",
     "type": "soft",
     "weight": 0.1,
@@ -139665,7 +140097,7 @@
   },
   {
     "source": "de-bund/StromStG§10Abs3uaBek",
-    "target": "de-bund/StromStG§10Abs3uaBek 2019",
+    "target": "de-bund/StromStG§10Abs3uaBek 2022",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -139673,6 +140105,126 @@
   },
   {
     "source": "de-bund/StromStG§10Abs3uaBek",
+    "target": "de-bund/StromStG§10Abs3uaBek 2018",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StromStG§10Abs3uaBek",
+    "target": "de-bund/StromStG§10Abs3uaBek 2020",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StromStG§10Abs3uaBek 2016",
+    "target": "de-bund/StromStG§10Abs3uaBek",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StromStG§10Abs3uaBek 2016",
+    "target": "de-bund/StromStG§10Abs3uaBek 2021",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StromStG§10Abs3uaBek 2016",
+    "target": "de-bund/StromStG§10Abs3uaBek 2022",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StromStG§10Abs3uaBek 2016",
+    "target": "de-bund/StromStG§10Abs3uaBek 2018",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StromStG§10Abs3uaBek 2016",
+    "target": "de-bund/StromStG§10Abs3uaBek 2020",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StromStG§10Abs3uaBek 2017",
+    "target": "de-bund/StromStG§10Abs3uaBek",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StromStG§10Abs3uaBek 2017",
+    "target": "de-bund/StromStG§10Abs3uaBek 2021",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StromStG§10Abs3uaBek 2017",
+    "target": "de-bund/StromStG§10Abs3uaBek 2022",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StromStG§10Abs3uaBek 2017",
+    "target": "de-bund/StromStG§10Abs3uaBek 2018",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StromStG§10Abs3uaBek 2017",
+    "target": "de-bund/StromStG§10Abs3uaBek 2020",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StromStG§10Abs3uaBek 2018",
+    "target": "de-bund/StromStG§10Abs3uaBek",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StromStG§10Abs3uaBek 2018",
+    "target": "de-bund/StromStG§10Abs3uaBek 2021",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StromStG§10Abs3uaBek 2018",
+    "target": "de-bund/StromStG§10Abs3uaBek 2022",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StromStG§10Abs3uaBek 2018",
     "target": "de-bund/StromStG§10Abs3uaBek 2017",
     "type": "soft",
     "weight": 0.1,
@@ -139680,7 +140232,7 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/StromStG§10Abs3uaBek",
+    "source": "de-bund/StromStG§10Abs3uaBek 2018",
     "target": "de-bund/StromStG§10Abs3uaBek 2020",
     "type": "soft",
     "weight": 0.1,
@@ -139688,15 +140240,15 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/StromStG§10Abs3uaBek",
-    "target": "de-bund/StromStG§10Abs3uaBek 2016",
+    "source": "de-bund/StromStG§10Abs3uaBek 2019",
+    "target": "de-bund/StromStG§10Abs3uaBek",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/StromStG§10Abs3uaBek 2016",
+    "source": "de-bund/StromStG§10Abs3uaBek 2019",
     "target": "de-bund/StromStG§10Abs3uaBek 2021",
     "type": "soft",
     "weight": 0.1,
@@ -139704,15 +140256,15 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/StromStG§10Abs3uaBek 2016",
-    "target": "de-bund/StromStG§10Abs3uaBek 2019",
+    "source": "de-bund/StromStG§10Abs3uaBek 2019",
+    "target": "de-bund/StromStG§10Abs3uaBek 2022",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
     "valid_to": null
   },
   {
-    "source": "de-bund/StromStG§10Abs3uaBek 2016",
+    "source": "de-bund/StromStG§10Abs3uaBek 2019",
     "target": "de-bund/StromStG§10Abs3uaBek 2017",
     "type": "soft",
     "weight": 0.1,
@@ -139720,126 +140272,6 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/StromStG§10Abs3uaBek 2016",
-    "target": "de-bund/StromStG§10Abs3uaBek 2020",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/StromStG§10Abs3uaBek 2016",
-    "target": "de-bund/StromStG§10Abs3uaBek",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/StromStG§10Abs3uaBek 2017",
-    "target": "de-bund/StromStG§10Abs3uaBek 2021",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/StromStG§10Abs3uaBek 2017",
-    "target": "de-bund/StromStG§10Abs3uaBek 2019",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/StromStG§10Abs3uaBek 2017",
-    "target": "de-bund/StromStG§10Abs3uaBek 2016",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/StromStG§10Abs3uaBek 2017",
-    "target": "de-bund/StromStG§10Abs3uaBek 2020",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/StromStG§10Abs3uaBek 2017",
-    "target": "de-bund/StromStG§10Abs3uaBek",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/StromStG§10Abs3uaBek 2018",
-    "target": "de-bund/StromStG§10Abs3uaBek 2021",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/StromStG§10Abs3uaBek 2018",
-    "target": "de-bund/StromStG§10Abs3uaBek 2019",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/StromStG§10Abs3uaBek 2018",
-    "target": "de-bund/StromStG§10Abs3uaBek 2016",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/StromStG§10Abs3uaBek 2018",
-    "target": "de-bund/StromStG§10Abs3uaBek 2020",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/StromStG§10Abs3uaBek 2018",
-    "target": "de-bund/StromStG§10Abs3uaBek",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/StromStG§10Abs3uaBek 2019",
-    "target": "de-bund/StromStG§10Abs3uaBek 2021",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/StromStG§10Abs3uaBek 2019",
-    "target": "de-bund/StromStG§10Abs3uaBek 2018",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/StromStG§10Abs3uaBek 2019",
-    "target": "de-bund/StromStG§10Abs3uaBek 2016",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
     "source": "de-bund/StromStG§10Abs3uaBek 2019",
     "target": "de-bund/StromStG§10Abs3uaBek 2020",
     "type": "soft",
@@ -139848,7 +140280,7 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/StromStG§10Abs3uaBek 2019",
+    "source": "de-bund/StromStG§10Abs3uaBek 2020",
     "target": "de-bund/StromStG§10Abs3uaBek",
     "type": "soft",
     "weight": 0.1,
@@ -139865,7 +140297,7 @@
   },
   {
     "source": "de-bund/StromStG§10Abs3uaBek 2020",
-    "target": "de-bund/StromStG§10Abs3uaBek 2018",
+    "target": "de-bund/StromStG§10Abs3uaBek 2022",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -139873,7 +140305,7 @@
   },
   {
     "source": "de-bund/StromStG§10Abs3uaBek 2020",
-    "target": "de-bund/StromStG§10Abs3uaBek 2016",
+    "target": "de-bund/StromStG§10Abs3uaBek 2017",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -139888,7 +140320,7 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/StromStG§10Abs3uaBek 2020",
+    "source": "de-bund/StromStG§10Abs3uaBek 2021",
     "target": "de-bund/StromStG§10Abs3uaBek",
     "type": "soft",
     "weight": 0.1,
@@ -139905,7 +140337,7 @@
   },
   {
     "source": "de-bund/StromStG§10Abs3uaBek 2021",
-    "target": "de-bund/StromStG§10Abs3uaBek 2018",
+    "target": "de-bund/StromStG§10Abs3uaBek 2022",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -139913,7 +140345,7 @@
   },
   {
     "source": "de-bund/StromStG§10Abs3uaBek 2021",
-    "target": "de-bund/StromStG§10Abs3uaBek 2016",
+    "target": "de-bund/StromStG§10Abs3uaBek 2017",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -139928,7 +140360,7 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/StromStG§10Abs3uaBek 2021",
+    "source": "de-bund/StromStG§10Abs3uaBek 2022",
     "target": "de-bund/StromStG§10Abs3uaBek",
     "type": "soft",
     "weight": 0.1,
@@ -139945,7 +140377,7 @@
   },
   {
     "source": "de-bund/StromStG§10Abs3uaBek 2022",
-    "target": "de-bund/StromStG§10Abs3uaBek 2018",
+    "target": "de-bund/StromStG§10Abs3uaBek 2021",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -139953,7 +140385,7 @@
   },
   {
     "source": "de-bund/StromStG§10Abs3uaBek 2022",
-    "target": "de-bund/StromStG§10Abs3uaBek 2016",
+    "target": "de-bund/StromStG§10Abs3uaBek 2017",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -139962,14 +140394,6 @@
   {
     "source": "de-bund/StromStG§10Abs3uaBek 2022",
     "target": "de-bund/StromStG§10Abs3uaBek 2019",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/StromStG§10Abs3uaBek 2022",
-    "target": "de-bund/StromStG§10Abs3uaBek",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -140096,8 +140520,40 @@
     "valid_to": null
   },
   {
-    "source": "de-bund/StrRehaGSchäV",
-    "target": "de-bund/EÜGV",
+    "source": "de-bund/StrRehaGAnpV 2026",
+    "target": "de-bund/FinSV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StrRehaGAnpV 2026",
+    "target": "de-bund/VbrInsVV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StrRehaGAnpV 2026",
+    "target": "de-bund/VwRehaGSchäV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StrRehaGAnpV 2026",
+    "target": "de-bund/StrRehaGSchäV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StrRehaGAnpV 2026",
+    "target": "de-bund/BerRehaGAnpV 2026",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -140122,6 +140578,14 @@
   {
     "source": "de-bund/StrRehaGSchäV",
     "target": "de-bund/HHGSchäV",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StrRehaGSchäV",
+    "target": "de-bund/StrRehaGAnpV 2026",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -140297,6 +140761,14 @@
   },
   {
     "source": "de-bund/StuckMstrV",
+    "target": "de-bund/TischlMstrV 2008",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/StuckMstrV",
     "target": "de-bund/ZimMstrV 2008",
     "type": "soft",
     "weight": 0.1,
@@ -140314,14 +140786,6 @@
   {
     "source": "de-bund/StuckMstrV",
     "target": "de-bund/MuLMstrV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/StuckMstrV",
-    "target": "de-bund/AugOptMstrV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -141257,7 +141721,7 @@
   },
   {
     "source": "de-bund/SUrlV 2016",
-    "target": "de-bund/BGHWidVertrAnO",
+    "target": "de-bund/BMJVGerWidAnO 2026",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -142937,7 +143401,7 @@
   },
   {
     "source": "de-bund/TermVInfGebV",
-    "target": "de-bund/ArznRAV",
+    "target": "de-bund/ArznRAV 1993-11",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -142945,7 +143409,7 @@
   },
   {
     "source": "de-bund/TermVInfGebV",
-    "target": "de-bund/ArznRAV 1993-11",
+    "target": "de-bund/ArznRAV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -143897,6 +144361,14 @@
   },
   {
     "source": "de-bund/TierSeuchErV",
+    "target": "de-bund/BienSchV 1992",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/TierSeuchErV",
     "target": "de-bund/LKV",
     "type": "soft",
     "weight": 0.1,
@@ -143906,14 +144378,6 @@
   {
     "source": "de-bund/TierSeuchErV",
     "target": "de-bund/ZTV 1986",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/TierSeuchErV",
-    "target": "de-bund/MilchV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -144937,7 +145401,7 @@
   },
   {
     "source": "de-bund/TSEÜberwV 2001",
-    "target": "de-bund/UWG/EinigVtrEÜbV",
+    "target": "de-bund/AugOptMstrV 2026",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -145177,7 +145641,7 @@
   },
   {
     "source": "de-bund/TVMindestlohnDachd 13",
-    "target": "de-bund/PflegeArbbV 6",
+    "target": "de-bund/GebäudeArbbV 10",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -145537,14 +146001,6 @@
   },
   {
     "source": "de-bund/UhAnpV 24",
-    "target": "de-bund/SGB2§20Abs2Bek 2007",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/UhAnpV 24",
     "target": "de-bund/BRüGDV 1",
     "type": "soft",
     "weight": 0.1,
@@ -145570,6 +146026,14 @@
   {
     "source": "de-bund/UhAnpV 24",
     "target": "de-bund/InsoGeldFestV 2024",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/UhAnpV 24",
+    "target": "de-bund/BerRehaGAnpV 2026",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -145657,7 +146121,7 @@
   },
   {
     "source": "de-bund/UKRatZustAnO",
-    "target": "de-bund/BRAO§206DV",
+    "target": "de-bund/BMDVBeihÜbertrAnO",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -145665,7 +146129,7 @@
   },
   {
     "source": "de-bund/UKRatZustAnO",
-    "target": "de-bund/BMDVBeihÜbertrAnO",
+    "target": "de-bund/KMAnzV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -147297,6 +147761,14 @@
   },
   {
     "source": "de-bund/VermSammlG",
+    "target": "de-bund/WertAusglG",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/VermSammlG",
     "target": "de-bund/BVFG",
     "type": "soft",
     "weight": 0.1,
@@ -147314,14 +147786,6 @@
   {
     "source": "de-bund/VermSammlG",
     "target": "de-bund/VerschÄndG",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/VermSammlG",
-    "target": "de-bund/AsylbLG",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -147473,7 +147937,7 @@
   },
   {
     "source": "de-bund/VersorgAusglAnglFaktorBek 2003",
-    "target": "de-bund/VersorgAusglAnglFaktorBek 2008",
+    "target": "de-bund/VersorgAusglAnglFaktorBek 2007",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -147481,7 +147945,7 @@
   },
   {
     "source": "de-bund/VersorgAusglAnglFaktorBek 2003",
-    "target": "de-bund/VersorgAusglAnglFaktorBek 2007",
+    "target": "de-bund/VersorgAusglAnglFaktorBek 2008",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -148537,7 +149001,7 @@
   },
   {
     "source": "de-bund/VFlughSiKArbbV 4",
-    "target": "de-bund/HZvV 4",
+    "target": "de-bund/HZvV 8",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -148545,7 +149009,7 @@
   },
   {
     "source": "de-bund/VFlughSiKArbbV 4",
-    "target": "de-bund/HZvV 8",
+    "target": "de-bund/PflegeArbbV 7",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -148617,7 +149081,7 @@
   },
   {
     "source": "de-bund/VglWebMV",
-    "target": "de-bund/VergoldAusbV",
+    "target": "de-bund/KMAnzV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -149337,7 +149801,7 @@
   },
   {
     "source": "de-bund/VStRG",
-    "target": "de-bund/AlgIIV 2008",
+    "target": "de-bund/StÄndG 1961",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -149617,23 +150081,23 @@
   },
   {
     "source": "de-bund/VwRehaGSchäV",
-    "target": "de-bund/DHRV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/VwRehaGSchäV",
-    "target": "de-bund/RehaErstV",
-    "type": "soft",
-    "weight": 0.1,
-    "valid_from": null,
-    "valid_to": null
-  },
-  {
-    "source": "de-bund/VwRehaGSchäV",
     "target": "de-bund/BMJVBhWidVertrAnO",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/VwRehaGSchäV",
+    "target": "de-bund/BerRehaGAnpV 2026",
+    "type": "soft",
+    "weight": 0.1,
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "source": "de-bund/VwRehaGSchäV",
+    "target": "de-bund/StrRehaGAnpV 2026",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -151137,7 +151601,7 @@
   },
   {
     "source": "de-bund/WeinfondsV 2008",
-    "target": "de-bund/WDüngV",
+    "target": "de-bund/FuttMKontrV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -151145,7 +151609,7 @@
   },
   {
     "source": "de-bund/WeinfondsV 2008",
-    "target": "de-bund/MilchKennzV",
+    "target": "de-bund/WDüngV",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -151577,7 +152041,7 @@
   },
   {
     "source": "de-bund/WGemRefKiVtr",
-    "target": "de-bund/ZJDVtrÄndVtr 2023",
+    "target": "de-bund/ZJDVtrÄndVtr 2018",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -151585,7 +152049,7 @@
   },
   {
     "source": "de-bund/WGemRefKiVtr",
-    "target": "de-bund/ZJDVtrÄndVtr 2018",
+    "target": "de-bund/ZJDVtrÄndVtr 2023",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -159785,7 +160249,7 @@
   },
   {
     "source": "de-bund/ZJDVtr",
-    "target": "de-bund/ZJDVtrÄndVtr 2023",
+    "target": "de-bund/ZJDVtrÄndVtr 2018",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
@@ -159793,7 +160257,7 @@
   },
   {
     "source": "de-bund/ZJDVtr",
-    "target": "de-bund/ZJDVtrÄndVtr 2018",
+    "target": "de-bund/ZJDVtrÄndVtr 2023",
     "type": "soft",
     "weight": 0.1,
     "valid_from": null,
